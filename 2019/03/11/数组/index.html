@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="清尘闲聊">
 <meta property="og:description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
 <meta property="og:locale" content="Java,H5,">
-<meta property="og:updated_time" content="2019-03-12T00:28:22.586Z">
+<meta property="og:updated_time" content="2019-03-12T00:29:14.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组">
 <meta name="twitter:description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
@@ -72,6 +72,8 @@
             
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -161,7 +163,7 @@
 <h3 id="数组有什么特性？"><a href="#数组有什么特性？" class="headerlink" title="数组有什么特性？"></a>数组有什么特性？</h3><p>需要初始化空间大小，并且不可改变。<br>在内存中空间是连续性的，中间不会存在其他程序需要调用的数据。<br>可以利用数组元素下标快速访问元素。</p>
 <h3 id="数组有什么作用？"><a href="#数组有什么作用？" class="headerlink" title="数组有什么作用？"></a>数组有什么作用？</h3><p>数组需要提前分配固定大小，并且一旦分配就不能修改，整个数组地址是连续的，通过数组的下标来访问数组对应的元素。可以在一些可以确定数据大小和随机访问元素等场景中使用，因为它可以根据下标直接获取到元素。</p>
 <h3 id="数组该怎么使用？"><a href="#数组该怎么使用？" class="headerlink" title="数组该怎么使用？"></a>数组该怎么使用？</h3><p>声明并初始化数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] data = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] tdData = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>获取指定下标的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> one = data[<span class="number">0</span>];</span><br><span class="line">System.out.println(one);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> td = tdData[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">System.out.println(td);</span><br></pre></td></tr></table></figure></p>
+<p>获取指定下标的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> one = data[<span class="number">0</span>];</span><br><span class="line">System.out.println(one);<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> td = tdData[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">System.out.println(td);<span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
 <p> 遍历数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    System.out.print(data[i] + <span class="string">" "</span>);<span class="comment">//1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tdData.length; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] d = tdData[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; d.length; j++) &#123;</span><br><span class="line">        System.out.print(d[j] + <span class="string">" "</span>);<span class="comment">// 1 2 3 4 5 6</span></span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>数组可以是一维，也可以是多维的。需要初始化在使用，并且之后大小是不可更改的，整个数组地址是连续的，通过数组的下标来访问数组对应的元素，也可通过遍历来访问。一般可以确定元素数量，并且需要快速访问时，可用数组来实现。</p>
 
@@ -249,6 +251,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/03/12/Linked-List/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          链表
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -329,6 +345,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
+      
+      
     
     
 
@@ -336,11 +354,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -366,6 +386,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
             
             <div class="clearfix"></div>
@@ -413,6 +437,12 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
     
 
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">&lt;div style=&#34;width:92%;&#34;&gt;&lt;div&gt;我是一名后端开发&lt;br/&gt;&lt;br/&gt;在空余时间学习数据结构和算法，相信算法是未来核心竞争力。&lt;br&gt;查看更多精彩内容请 &lt;strong&gt;扫码&lt;/strong&gt;,欢迎大家加入一起讨论技术，但不局限于算法。&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;img src=&#34;/img/wechat.jpg&#34;&gt;&lt;/div&gt;&lt;/div&gt;</div>
+  	  	
+    	</section>
     
   </div>
   
