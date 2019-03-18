@@ -144,6 +144,172 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hash-table" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/18/hash-table/">哈希表</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/18/hash-table/" class="archive-article-date">
+  	<time datetime="2019-03-18T13:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是哈希表？"><a href="#什么是哈希表？" class="headerlink" title="什么是哈希表？"></a>什么是哈希表？</h3><p>哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。<br>哈希函数的实现方法：<br>1.除留余数法<br>取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。<br>2.折叠法<br>将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址.<br>3.平方取中法<br>取关键字平方后的中间几位为哈希地址.<br>4.直接定址法<br>取关键字或关键字的某个线性函数值为哈希地址。</p>
+<h3 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h3><p>不管用什么哈希函数去计算哈希地址，都是会产生哈希冲突的，因此我们需要想办法解决哈希冲突，并且在设计哈希函数时，尽可能减少哈希冲突。<br>1.单独的链表法<br>在哈希表的后面单独链上一个单链表来存储冲突的元素，JDK 1.8 里的 HashMap 就是选择的这种方式解决冲突的，不过它对链表做了一层优化。当元素个数大于等于 8 时，会把链表转换成红黑树，提升查询效率。<br>2.线性探测法<br>当发生哈希冲突时，逐个探测存放地址的表，直到查找到一个空单元。这个方式不便于查找，不建议使用。<br>3.建立一个公共溢出区<br>当发生哈希冲突时，就把元素存入到公用的溢出区，查询时遍历溢出区。<br>从上面这几种处理方法来说，还是链表法效率比较高，推荐使用。不过都有现成的工具类使用，因此只需要知道实现原理，最好自己可以去写代码实现它。<br><img src="/img/hash_table.png" alt="哈希表"></p>
+<h3 id="哈希表有什么用？"><a href="#哈希表有什么用？" class="headerlink" title="哈希表有什么用？"></a>哈希表有什么用？</h3><p>哈希表在日常开发中还是比较常用的，因为它最优的查询时间复杂度是 O(1)，当哈希冲突比较严重的时候，查询效率就相当于线性的，因此哈希算法直接影响到查询的效率。</p>
+<h3 id="哈希表怎么实现的？"><a href="#哈希表怎么实现的？" class="headerlink" title="哈希表怎么实现的？"></a>哈希表怎么实现的？</h3><p>哈希表的结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//用节点数组当作哈希表</span></span><br><span class="line">    Node&lt;K,V&gt;[] table;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="comment">//节点</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">        <span class="comment">//哈希值</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">        <span class="comment">//键</span></span><br><span class="line">        <span class="keyword">final</span> K key;</span><br><span class="line">        <span class="comment">//值</span></span><br><span class="line">        V value;</span><br><span class="line">        <span class="comment">//哈希值冲突是存储</span></span><br><span class="line">        Node&lt;K,V&gt; next;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">            <span class="keyword">this</span>.hash = hash;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>哈希表是一个键值对的存储结构，并且根据键进行哈希算法找到对应的存储位置。哈希算法会直接影响到哈希表的查询效率，一般选择哈希冲突小的实现方式，以便提升查询效率。当哈希冲突时，一般选择链表来存储冲突的元素，当冲突的元素增多时，可以采用红黑树来存储，以提升查询效率。JDK 1.8 版本的 HashMap，当链表个数大于等于 8 时，就是采用红黑树来存储的。在知道元素个数时，初始化哈希表时直接指定哈希表大小，因为当元素达到哈希表大小时，会做 resize 操作。当元素越来越多时，resize 是很耗时的，相当于重建哈希表。因此直接指定哈希表大小，减少 resize 次数以便提升插入性能。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/18/hash-table/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-deque" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/17/deque/">双端队列</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/17/deque/" class="archive-article-date">
+  	<time datetime="2019-03-17T07:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是双端队列？"><a href="#什么是双端队列？" class="headerlink" title="什么是双端队列？"></a>什么是双端队列？</h3><p>双端队列（deque）是指允许两端都可以进行入队和出队操作的队列，deque 是 “double ended queue” 的简称。那就说明元素可以从队头出队和入队，也可以从队尾出队和入队。<br><img src="/img/deque.png" alt="双端队列"></p>
+<h3 id="双端队列怎么实现？"><a href="#双端队列怎么实现？" class="headerlink" title="双端队列怎么实现？"></a>双端队列怎么实现？</h3><p>双端队列的存储结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedBlockingDeque</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//队头</span></span><br><span class="line">    Node&lt;E&gt; first;</span><br><span class="line">    <span class="comment">//队尾</span></span><br><span class="line">    Node&lt;E&gt; last;</span><br><span class="line">    <span class="comment">//元素个数</span></span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">        <span class="comment">//存储元素</span></span><br><span class="line">        E item;</span><br><span class="line">        <span class="comment">//上一个元素</span></span><br><span class="line">        Node&lt;E&gt; prev;</span><br><span class="line">        <span class="comment">//下一个元素</span></span><br><span class="line">        Node&lt;E&gt; next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从队头入队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offerFirst</span><span class="params">(Node&lt;E&gt; node)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//头节点临时变量</span></span><br><span class="line">    Node&lt;E&gt; f = first;</span><br><span class="line">    <span class="comment">//把当前的下一个节点指向头节点</span></span><br><span class="line">    node.next = f;</span><br><span class="line">    <span class="comment">//更新当前节点为头节点</span></span><br><span class="line">    first = node;</span><br><span class="line">    <span class="comment">//假如尾节点为空，则把当前节点设置为尾节点</span></span><br><span class="line">    <span class="keyword">if</span> (last == <span class="keyword">null</span>)</span><br><span class="line">        last = node;</span><br><span class="line">    <span class="comment">//就把以前的头节点指向当前节点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        f.prev = node;</span><br><span class="line">    <span class="comment">//总数加一</span></span><br><span class="line">    ++count;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从队头出队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">pollFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     Node&lt;E&gt; f = first;</span><br><span class="line">    <span class="comment">//头节点的下一个节点</span></span><br><span class="line">    Node&lt;E&gt; n = f.next;</span><br><span class="line">    <span class="comment">//获取头节点元素</span></span><br><span class="line">    E item = f.item;</span><br><span class="line">    <span class="comment">//置空</span></span><br><span class="line">    f.item = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//孤立头节点，不指向任何节点</span></span><br><span class="line">    f.next = f; <span class="comment">// help GC</span></span><br><span class="line">    <span class="comment">//重置头节点</span></span><br><span class="line">    first = n;</span><br><span class="line">    <span class="comment">//说明是最后一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="keyword">null</span>)</span><br><span class="line">        last = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//否则把头节点的上一个节点置空</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        n.prev = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//总数减一</span></span><br><span class="line">    --count;</span><br><span class="line">    <span class="keyword">return</span> item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从队尾入队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offerLast</span><span class="params">(Node&lt;E&gt; node)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//尾节点临时变量</span></span><br><span class="line">    Node&lt;E&gt; l = last;</span><br><span class="line">    <span class="keyword">if</span> (l == <span class="keyword">null</span>) </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//把当前的上一个节点指向尾节点</span></span><br><span class="line">    node.prev = l;</span><br><span class="line">    <span class="comment">//更新当前节点为尾节点</span></span><br><span class="line">    last = node;</span><br><span class="line">    <span class="comment">//假如头节点为空，则把头节点置为当前节点</span></span><br><span class="line">    <span class="keyword">if</span> (first == <span class="keyword">null</span>)</span><br><span class="line">        first = node;</span><br><span class="line">    <span class="comment">//否则把临时的尾节点的下一个节点指向当前节点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        l.next = node;</span><br><span class="line">    <span class="comment">//总数加一</span></span><br><span class="line">    ++count;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从队尾出队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">pollLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Node&lt;E&gt; l = last;</span><br><span class="line">    <span class="keyword">if</span> (l == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//最后节点的上一个节点</span></span><br><span class="line">    Node&lt;E&gt; p = l.prev;</span><br><span class="line">    <span class="comment">//获取元素</span></span><br><span class="line">    E item = l.item;</span><br><span class="line">    <span class="comment">//置空</span></span><br><span class="line">    l.item = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//孤立尾节点</span></span><br><span class="line">    l.prev = l; <span class="comment">// help GC</span></span><br><span class="line">    <span class="comment">//更新尾节点</span></span><br><span class="line">    last = p;</span><br><span class="line">    <span class="comment">//假如是最后一个元素，置空头节点</span></span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span>)</span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//否则置空下一个节点指向</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        p.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//总数减一</span></span><br><span class="line">    --count;</span><br><span class="line">    <span class="keyword">return</span> item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>双端队列其实和队列差不多的，只是更加灵活了，队头和队尾均可进行入队和出队操作。这里是基于链表的双端队列实现，具体详情可查看 JDK 的 LinkedBlockingDeque 的实现，它还考虑了线程安全相关的东西，这里只是简单的一个实现，了解双端队列的结构和运作方式。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/17/deque/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-queue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -579,15 +745,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
