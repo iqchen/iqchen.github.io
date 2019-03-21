@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="https://iqchen.github.io">
   <title>哈希表 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是哈希表？哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。哈希函数的实现方法：1.除留余数法取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。2.折叠法将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址.3">
+  <meta name="description" content="什么是哈希表？哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。哈希函数的实现方法：1.除留余数法取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。2.折叠法将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。3">
 <meta name="keywords" content="数据结构,哈希表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哈希表">
 <meta property="og:url" content="https://iqchen.github.io/2019/03/18/hash-table/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="什么是哈希表？哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。哈希函数的实现方法：1.除留余数法取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。2.折叠法将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址.3">
+<meta property="og:description" content="什么是哈希表？哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。哈希函数的实现方法：1.除留余数法取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。2.折叠法将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。3">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://iqchen.github.io/img/hash_table.png">
-<meta property="og:updated_time" content="2019-03-18T14:20:54.391Z">
+<meta property="og:updated_time" content="2019-03-18T14:37:50.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="哈希表">
-<meta name="twitter:description" content="什么是哈希表？哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。哈希函数的实现方法：1.除留余数法取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。2.折叠法将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址.3">
+<meta name="twitter:description" content="什么是哈希表？哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。哈希函数的实现方法：1.除留余数法取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。2.折叠法将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。3">
 <meta name="twitter:image" content="https://iqchen.github.io/img/hash_table.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
@@ -165,7 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是哈希表？"><a href="#什么是哈希表？" class="headerlink" title="什么是哈希表？"></a>什么是哈希表？</h3><p>哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。<br>哈希函数的实现方法：<br>1.除留余数法<br>取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。<br>2.折叠法<br>将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址.<br>3.平方取中法<br>取关键字平方后的中间几位为哈希地址.<br>4.直接定址法<br>取关键字或关键字的某个线性函数值为哈希地址。</p>
+        <h3 id="什么是哈希表？"><a href="#什么是哈希表？" class="headerlink" title="什么是哈希表？"></a>什么是哈希表？</h3><p>哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。<br>哈希函数的实现方法：<br>1.除留余数法<br>取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。<br>2.折叠法<br>将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。<br>3.平方取中法<br>取关键字平方后的中间几位为哈希地址。<br>4.直接定址法<br>取关键字或关键字的某个线性函数值为哈希地址。</p>
 <h3 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h3><p>不管用什么哈希函数去计算哈希地址，都是会产生哈希冲突的，因此我们需要想办法解决哈希冲突，并且在设计哈希函数时，尽可能减少哈希冲突。<br>1.单独的链表法<br>在哈希表的后面单独链上一个单链表来存储冲突的元素，JDK 1.8 里的 HashMap 就是选择的这种方式解决冲突的，不过它对链表做了一层优化。当元素个数大于等于 8 时，会把链表转换成红黑树，提升查询效率。<br>2.线性探测法<br>当发生哈希冲突时，逐个探测存放地址的表，直到查找到一个空单元。这个方式不便于查找，不建议使用。<br>3.建立一个公共溢出区<br>当发生哈希冲突时，就把元素存入到公用的溢出区，查询时遍历溢出区。<br>从上面这几种处理方法来说，还是链表法效率比较高，推荐使用。不过都有现成的工具类使用，因此只需要知道实现原理，最好自己可以去写代码实现它。<br><img src="/img/hash_table.png" alt="哈希表"></p>
 <h3 id="哈希表有什么用？"><a href="#哈希表有什么用？" class="headerlink" title="哈希表有什么用？"></a>哈希表有什么用？</h3><p>哈希表在日常开发中还是比较常用的，因为它最优的查询时间复杂度是 O(1)，当哈希冲突比较严重的时候，查询效率就相当于线性的，因此哈希算法直接影响到查询的效率。</p>
 <h3 id="哈希表怎么实现的？"><a href="#哈希表怎么实现的？" class="headerlink" title="哈希表怎么实现的？"></a>哈希表怎么实现的？</h3><p>哈希表的结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//用节点数组当作哈希表</span></span><br><span class="line">    Node&lt;K,V&gt;[] table;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="comment">//节点</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">        <span class="comment">//哈希值</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">        <span class="comment">//键</span></span><br><span class="line">        <span class="keyword">final</span> K key;</span><br><span class="line">        <span class="comment">//值</span></span><br><span class="line">        V value;</span><br><span class="line">        <span class="comment">//哈希值冲突是存储</span></span><br><span class="line">        Node&lt;K,V&gt; next;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">            <span class="keyword">this</span>.hash = hash;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -256,6 +256,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/03/21/tree-base/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          树
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/17/deque/" id="article-nav-older" class="article-nav-link-wrap">
@@ -385,7 +394,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -393,15 +402,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
               </li>
             
             <div class="clearfix"></div>

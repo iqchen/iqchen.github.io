@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>Tag: 哈希表 | 清尘闲聊</title>
+  <title>清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
 <meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
 <meta property="og:type" content="website">
 <meta property="og:title" content="清尘闲聊">
-<meta property="og:url" content="https://iqchen.github.io/tags/哈希表/index.html">
+<meta property="og:url" content="https://iqchen.github.io/page/2/index.html">
 <meta property="og:site_name" content="清尘闲聊">
 <meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
 <meta property="og:locale" content="default">
@@ -144,34 +144,45 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-Linked-List" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/18/hash-table/" class="archive-article-date">
-  	<time datetime="2019-03-18T13:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/hash-table/">哈希表</a>
+      <a class="article-title" href="/2019/03/12/Linked-List/">链表</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/12/Linked-List/" class="archive-article-date">
+  	<time datetime="2019-03-12T14:27:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是链表？"><a href="#什么是链表？" class="headerlink" title="什么是链表？"></a>什么是链表？</h3><p>链表是一种线性表，但并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的指针(Pointer)。因此它不需要分配连续的存储空间，也不需要预先固定元素的大小，它可以动态的添加删除元素，而且时间复杂度是O(1)。只不过查找某个元素时，时间复杂度是O(n)。<br>链表有多种不同的类型：单向链表，双向链表和循环链表。</p>
+<h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><p>单向链表是最简单的一种，它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。<br><img src="/img/linked_list1.png" alt="单向链表"></p>
+<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><p>双向链表中不仅有指向后一个节点的指针，还有指向前一个节点的指针。这样可以从任何一个节点访问前一个节点，当然也可以访问后一个节点。<br><img src="/img/linked_list3.png" alt="双向链表"></p>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><p>循环链表是把链表的首节点和末节点连接在一起，形成一个环。这种方式在单向和双向链表中皆可实现。<br><img src="/img/linked_list4.png" alt="循环链表"></p>
+<h3 id="链表有什么作用？"><a href="#链表有什么作用？" class="headerlink" title="链表有什么作用？"></a>链表有什么作用？</h3><p>根据链表的特性，动态的把元素加入到链表中，不需要预先指定链表长度，理论上链表可以无限长，直到内存耗尽。链表会存储下一个元素的地址，因此插入和删除会很方便，但查询指定元素时，最坏的情况是遍历整个链表。</p>
+<h3 id="链表该怎么使用？"><a href="#链表该怎么使用？" class="headerlink" title="链表该怎么使用？"></a>链表该怎么使用？</h3><p>这里我用Java语言来简单介绍下怎么使用链表。</p>
+<p>构建链表结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个私有的静态的Node泛型对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">Node&lt;E&gt; first;<span class="comment">//第一个节点</span></span><br><span class="line">Node&lt;E&gt; last;<span class="comment">//最后一个节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    E item;<span class="comment">//存储元素</span></span><br><span class="line">    Node&lt;E&gt; next;<span class="comment">//下一个元素</span></span><br><span class="line">    Node&lt;E&gt; prev;<span class="comment">//上一个元素</span></span><br><span class="line">    <span class="comment">//通过构造器设置值</span></span><br><span class="line">    Node(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next) &#123;</span><br><span class="line">        <span class="keyword">this</span>.item = element;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">        <span class="keyword">this</span>.prev = prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在链表后插入元素，前面插入也类似<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//中间变量存储链表的最后一个节点</span></span><br><span class="line">Node&lt;E&gt; l = last;</span><br><span class="line"><span class="comment">//构建新节点，头节点指向链表的最后节点</span></span><br><span class="line">Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;&gt;(l, <span class="number">5</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//把新节点当作最后一个节点</span></span><br><span class="line">last = newNode;</span><br><span class="line"><span class="comment">//if 最后节点为空，说明是一个新链表</span></span><br><span class="line"><span class="keyword">if</span> (l == <span class="keyword">null</span>)</span><br><span class="line">    first = newNode;</span><br><span class="line"><span class="comment">//否则把链表最后一个节点的 next 节点指向新节点</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    l.next = newNode;</span><br></pre></td></tr></table></figure></p>
+<p>删除指定节点 d<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">E element = d.item;</span><br><span class="line">Node&lt;E&gt; next = d.next;</span><br><span class="line">Node&lt;E&gt; prev = d.prev;</span><br><span class="line"><span class="comment">//if 当前节点的上一个节点为空，</span></span><br><span class="line"><span class="comment">//说明删除的是第一个节点，</span></span><br><span class="line"><span class="comment">//把当前节点的下一个节点置为第一个节点。</span></span><br><span class="line"><span class="keyword">if</span> (prev == <span class="keyword">null</span>) &#123;</span><br><span class="line">    first = next;</span><br><span class="line"><span class="comment">//否则把上一个节点的下一个节点指向当前节点的下一个节点，</span></span><br><span class="line"><span class="comment">//相当于跳过了当前节点，并把当前节点的上一个节点置空。</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    prev.next = next;</span><br><span class="line">    d.prev = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//if 当前节点的下一个节点为空，说明是最后一个节点。</span></span><br><span class="line"><span class="comment">//把最后一个节点置为上一个节点。</span></span><br><span class="line"><span class="keyword">if</span> (next == <span class="keyword">null</span>) &#123;</span><br><span class="line">    last = prev;</span><br><span class="line"><span class="comment">//否则把当前的上一节点指向当前的下一个节点，</span></span><br><span class="line"><span class="comment">//相当于跳过当前节点，在把当前节点的下一个节点置空。</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next.prev = prev;</span><br><span class="line">    d.next = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//置空当前节点元素，帮助 GC 回收</span></span><br><span class="line">d.item = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>遍历链表<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Node&lt;E&gt; d = first;</span><br><span class="line"><span class="keyword">while</span> (d != <span class="keyword">null</span> &amp;&amp; d.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">    System.out.println(d.item);</span><br><span class="line">    d = d.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>数组需要初始化确定好长度，并且不能修改数组的长度。在有的场景下，是不知道有多少元素的，因此我们是不能准确的分配数组的长度。但也提供了数组扩容的方案，就是在现有的数组大小上，在按一定算法来创建一个新的数组，并把数组的数据拷贝进扩容后的数组里去，但数组的扩容是很影响性能的。因此需要一种新的数据结构来存储不能确定有多少元素的数据，这就是链表的应用场景。<br>但它也有缺点，每个节点多需要多的空间来存储下一个节点的地址，查询时最坏情况是遍历整个数组。<br>它的优点是不需要预分配固定大小，不限制元素个数，理论上可以直到内存耗尽，插入和删除时间复杂度是O(1)。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,25 +192,135 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/12/Linked-List/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
+    <article id="post-数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    </div></section>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/数组/">数组</a>
+    </h1>
   
 
+        
+        <a href="/2019/03/11/数组/" class="archive-article-date">
+  	<time datetime="2019-03-11T14:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是数组？"><a href="#什么是数组？" class="headerlink" title="什么是数组？"></a>什么是数组？</h3><p>数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。<br>一维数组就是最简单的数组，就像 int[] data = &#123;1,2,3}。<br>二维数组实质就是存储的一维数组，就像 int[][] data = &#123;&#123;1,2,3},&#123;4,5,6}}。<br>大于等于二维的数组就是多维数组。</p>
+<h3 id="数组有什么特性？"><a href="#数组有什么特性？" class="headerlink" title="数组有什么特性？"></a>数组有什么特性？</h3><p>需要初始化空间大小，并且不可改变。<br>在内存中空间是连续性的，中间不会存在其他程序需要调用的数据。<br>可以利用数组元素下标快速访问元素。</p>
+<h3 id="数组有什么作用？"><a href="#数组有什么作用？" class="headerlink" title="数组有什么作用？"></a>数组有什么作用？</h3><p>数组需要提前分配固定大小，并且一旦分配就不能修改，整个数组地址是连续的，通过数组的下标来访问数组对应的元素。可以在一些可以确定数据大小和随机访问元素等场景中使用，因为它可以根据下标直接获取到元素。</p>
+<h3 id="数组该怎么使用？"><a href="#数组该怎么使用？" class="headerlink" title="数组该怎么使用？"></a>数组该怎么使用？</h3><p>声明并初始化数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] data = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] tdData = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>获取指定下标的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> one = data[<span class="number">0</span>];</span><br><span class="line">System.out.println(one);<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> td = tdData[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">System.out.println(td);<span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
+<p> 遍历数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    System.out.print(data[i] + <span class="string">" "</span>);<span class="comment">//1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tdData.length; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] d = tdData[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; d.length; j++) &#123;</span><br><span class="line">        System.out.print(d[j] + <span class="string">" "</span>);<span class="comment">// 1 2 3 4 5 6</span></span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>数组可以是一维，也可以是多维的。需要初始化在使用，并且之后大小是不可更改的，整个数组地址是连续的，通过数组的下标来访问数组对应的元素，也可通过遍历来访问。一般可以确定元素数量，并且需要快速访问时，可用数组来实现。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/11/数组/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -221,10 +342,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
