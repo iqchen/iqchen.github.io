@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>Tag: 哈希表 | 清尘闲聊</title>
+  <title>二叉搜索树 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
-<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="清尘闲聊">
-<meta property="og:url" content="https://iqchen.github.io/tags/哈希表/index.html">
+  <meta name="description" content="二叉搜索树二叉搜索树也叫二叉查找树或者二叉排序树，它要么是一颗空树，要么满足以下几点：1.若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值。2.若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值。3.任意节点的左、右子树也分别为二叉搜索树。4.没有键值相等的节点。 二叉搜索树的实现1.二叉搜索树的存储结构12345678910111213141516public">
+<meta name="keywords" content="数据结构,二叉搜索树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉搜索树">
+<meta property="og:url" content="https://iqchen.github.io/2019/03/26/binary-search-tree/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta property="og:description" content="二叉搜索树二叉搜索树也叫二叉查找树或者二叉排序树，它要么是一颗空树，要么满足以下几点：1.若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值。2.若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值。3.任意节点的左、右子树也分别为二叉搜索树。4.没有键值相等的节点。 二叉搜索树的实现1.二叉搜索树的存储结构12345678910111213141516public">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://iqchen.github.io/img/binary_search_tree.png">
+<meta property="og:image" content="https://iqchen.github.io/img/delete_lr_bstree.jpg">
+<meta property="og:updated_time" content="2019-03-28T00:33:01.764Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清尘闲聊">
-<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="twitter:title" content="二叉搜索树">
+<meta name="twitter:description" content="二叉搜索树二叉搜索树也叫二叉查找树或者二叉排序树，它要么是一颗空树，要么满足以下几点：1.若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值。2.若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值。3.任意节点的左、右子树也分别为二叉搜索树。4.没有键值相等的节点。 二叉搜索树的实现1.二叉搜索树的存储结构12345678910111213141516public">
+<meta name="twitter:image" content="https://iqchen.github.io/img/binary_search_tree.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -142,36 +146,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-binary-search-tree" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/18/hash-table/" class="archive-article-date">
-  	<time datetime="2019-03-18T13:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/hash-table/">哈希表</a>
+    <h1 class="article-title" itemprop="name">
+      二叉搜索树
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/26/binary-search-tree/" class="archive-article-date">
+  	<time datetime="2019-03-26T14:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h3><p>二叉搜索树也叫二叉查找树或者二叉排序树，它要么是一颗空树，要么满足以下几点：<br>1.若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值。<br>2.若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值。<br>3.任意节点的左、右子树也分别为二叉搜索树。<br>4.没有键值相等的节点。<br><img src="/img/binary_search_tree.png" alt="二叉搜索树"></p>
+<h3 id="二叉搜索树的实现"><a href="#二叉搜索树的实现" class="headerlink" title="二叉搜索树的实现"></a>二叉搜索树的实现</h3><p><strong>1.二叉搜索树的存储结构</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinarySearchTree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span>  Node root;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BinarySearchTree</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node left;</span><br><span class="line">    Node right;	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        left = <span class="keyword">null</span>;</span><br><span class="line">        right = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.二叉树的插入</strong><br>a.循环二分查找到需要插入的地方。<br>b.假如插入的值小于当前的值，并且当前左节点为空，那么左节点就指向新节点。<br>c.假如插入的值大于当前的值，并且当前右节点为空，那么右节点就指向新节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    Node newNode = <span class="keyword">new</span> Node(id);</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        root = newNode;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node current = root;</span><br><span class="line">    Node parent = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        parent = current;</span><br><span class="line">        <span class="keyword">if</span>(id &lt; current.data)&#123;				</span><br><span class="line">            current = current.left;</span><br><span class="line">            <span class="keyword">if</span>(current == <span class="keyword">null</span>)&#123;</span><br><span class="line">                parent.left = newNode;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            current = current.right;</span><br><span class="line">            <span class="keyword">if</span>(current == <span class="keyword">null</span>)&#123;</span><br><span class="line">                parent.right = newNode;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.二叉树的删除</strong><br>a.当删除节点为叶子节点时，直接删除节点。<br>b.当删除节点只有左子树时，重接左子树。<br>c.当删除节点只有右子树时，重接右子树。<br>d.当删除节点既有左子树，又有右子树时，先找一个可以替换删除节点的节点。由于二叉树的性质，左子树的值小于根节点的值，右子树的值大于根节点的值。所以右子树的最左的节点就是替换删除的节点，然后在重接右子树。<br>第 d 点的图例：<br><img src="/img/delete_lr_bstree.jpg" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    Node parent = root;</span><br><span class="line">    Node current = root;</span><br><span class="line">    <span class="keyword">boolean</span> isLeftChild = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (current.data != id) &#123;</span><br><span class="line">        parent = current;</span><br><span class="line">        <span class="keyword">if</span> (current.data &gt; id) &#123;</span><br><span class="line">            isLeftChild = <span class="keyword">true</span>;</span><br><span class="line">            current = current.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            isLeftChild = <span class="keyword">false</span>;</span><br><span class="line">            current = current.right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (current == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除的节点既没左节点，也没右节点</span></span><br><span class="line">    <span class="keyword">if</span> (current.left == <span class="keyword">null</span> &amp;&amp; current.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (current == root) &#123;</span><br><span class="line">            root = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isLeftChild == <span class="keyword">true</span>) &#123;</span><br><span class="line">            parent.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parent.right = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除的节点只有左节点</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (current == root) &#123;</span><br><span class="line">            root = current.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isLeftChild) &#123;</span><br><span class="line">            parent.left = current.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parent.right = current.left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除的节点只有右节点</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (current == root) &#123;</span><br><span class="line">            root = current.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isLeftChild) &#123;</span><br><span class="line">            parent.left = current.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parent.right = current.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除的节点既有左节点，又有右节点</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current.left != <span class="keyword">null</span> &amp;&amp; current.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">//找到右子树的最左节点</span></span><br><span class="line">        Node successor = getSuccessor(current);</span><br><span class="line">        <span class="keyword">if</span> (current == root) &#123;</span><br><span class="line">           root = successor;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isLeftChild) &#123;</span><br><span class="line">                parent.left = successor;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.right = successor;</span><br><span class="line">            &#125;</span><br><span class="line">            successor.left = current.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">getSuccessor</span><span class="params">(Node deleleNode)</span> </span>&#123;</span><br><span class="line">        Node successsor = <span class="keyword">null</span>;</span><br><span class="line">        Node successsorParent = <span class="keyword">null</span>;</span><br><span class="line">        Node current = deleleNode.right;</span><br><span class="line">        <span class="keyword">while</span> (current != <span class="keyword">null</span>) &#123;</span><br><span class="line">            successsorParent = successsor;</span><br><span class="line">            successsor = current;</span><br><span class="line">            current = current.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (successsor != deleleNode.right) &#123;</span><br><span class="line">            successsorParent.left = successsor.right;</span><br><span class="line">            successsor.right = deleleNode.right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> successsor;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>4.二叉树的查找</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    Node current = root;</span><br><span class="line">    <span class="keyword">while</span> (current != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (current.data == id) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.data &gt; id) &#123;</span><br><span class="line">            current = current.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            current = current.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>由于它是一颗有序的树，就可以进行折半查找，每一次查找，假如不是匹配的值，都可以排除一半的值。所以一般的时间复杂度是 O(log n)。假如这棵树退化为斜树，就差不多是线性表了，它的时间复杂度就是 O(n)。  </p>
+<p>虽然二叉搜索树的最坏时间复杂度是 O(n)，但通过一些改进可以把最坏时间复杂度降至 O(log n)，比如 AVL树、红黑树等。红黑树不需要绝对的平衡，所以插入和删除效率上要高，在 JDK1.8 中哈希表存储大于等于 8 个节点的链表就是采用的红黑树。  </p>
+<p>所以二叉搜索树在查找上是非常快的，在一些需要很高查询效率上推荐使用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,25 +192,112 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">二叉搜索树</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/03/26/binary-search-tree/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/03/24/binary-tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二叉树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +320,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
