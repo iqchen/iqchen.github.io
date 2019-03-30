@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>数组 | 清尘闲聊</title>
+  <title>Tag: 平衡二叉搜索树 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
-<meta name="keywords" content="数据结构,数组">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数组">
-<meta property="og:url" content="https://iqchen.github.io/2019/03/11/数组/index.html">
+  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="清尘闲聊">
+<meta property="og:url" content="https://iqchen.github.io/tags/平衡二叉搜索树/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
+<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-12T00:29:14.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组">
-<meta name="twitter:description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
+<meta name="twitter:title" content="清尘闲聊">
+<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -143,41 +142,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-数组" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      数组
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/03/30/balancing-BSTree/" class="archive-article-date">
+  	<time datetime="2019-03-30T06:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/30/balancing-BSTree/">平衡二叉搜索树</a>
     </h1>
   
 
-        
-        <a href="/2019/03/11/数组/" class="archive-article-date">
-  	<time datetime="2019-03-11T14:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是数组？"><a href="#什么是数组？" class="headerlink" title="什么是数组？"></a>什么是数组？</h3><p>数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。<br>一维数组就是最简单的数组，就像 int[] data = &#123;1,2,3}。<br>二维数组实质就是存储的一维数组，就像 int[][] data = &#123;&#123;1,2,3},&#123;4,5,6}}。<br>大于等于二维的数组就是多维数组。</p>
-<h3 id="数组有什么特性？"><a href="#数组有什么特性？" class="headerlink" title="数组有什么特性？"></a>数组有什么特性？</h3><p>需要初始化空间大小，并且不可改变。<br>在内存中空间是连续性的，中间不会存在其他程序需要调用的数据。<br>可以利用数组元素下标快速访问元素。</p>
-<h3 id="数组有什么作用？"><a href="#数组有什么作用？" class="headerlink" title="数组有什么作用？"></a>数组有什么作用？</h3><p>数组需要提前分配固定大小，并且一旦分配就不能修改，整个数组地址是连续的，通过数组的下标来访问数组对应的元素。可以在一些可以确定数据大小和随机访问元素等场景中使用，因为它可以根据下标直接获取到元素。</p>
-<h3 id="数组该怎么使用？"><a href="#数组该怎么使用？" class="headerlink" title="数组该怎么使用？"></a>数组该怎么使用？</h3><p>声明并初始化数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] data = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] tdData = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>获取指定下标的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> one = data[<span class="number">0</span>];</span><br><span class="line">System.out.println(one);<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> td = tdData[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">System.out.println(td);<span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
-<p> 遍历数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    System.out.print(data[i] + <span class="string">" "</span>);<span class="comment">//1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tdData.length; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] d = tdData[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; d.length; j++) &#123;</span><br><span class="line">        System.out.print(d[j] + <span class="string">" "</span>);<span class="comment">// 1 2 3 4 5 6</span></span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>数组可以是一维，也可以是多维的。需要初始化在使用，并且之后大小是不可更改的，整个数组地址是连续的，通过数组的下标来访问数组对应的元素，也可通过遍历来访问。一般可以确定元素数量，并且需要快速访问时，可用数组来实现。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -187,116 +181,25 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">平衡二叉搜索树</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/03/11/数组/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/03/12/Linked-List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          链表
-        
-      </div>
-    </a>
   
   
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -319,9 +222,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

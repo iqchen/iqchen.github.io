@@ -6,20 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>数组 | 清尘闲聊</title>
+  <title>平衡二叉搜索树 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
-<meta name="keywords" content="数据结构,数组">
+  <meta name="description" content="前言二叉搜索树在一般情况下它的查找时间复杂度是 O(log n)。但在一些特殊的情况下，它会退化为斜树变成线性结构，导致查询效率大大降低，根本发挥不出折半查找的优势。因此，就需要一种平衡的二叉搜索树来达到我们期望查询时间复杂度为 O(log n) 的数据结构，那就是平衡二叉搜索树。 平衡二叉搜索树平衡二叉搜索树又叫 AVL树，它具有以下性质：1.任一节点对应的两棵子树的最大高度差为 1。2.两棵子">
+<meta name="keywords" content="数据结构,平衡二叉搜索树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组">
-<meta property="og:url" content="https://iqchen.github.io/2019/03/11/数组/index.html">
+<meta property="og:title" content="平衡二叉搜索树">
+<meta property="og:url" content="https://iqchen.github.io/2019/03/30/balancing-BSTree/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
+<meta property="og:description" content="前言二叉搜索树在一般情况下它的查找时间复杂度是 O(log n)。但在一些特殊的情况下，它会退化为斜树变成线性结构，导致查询效率大大降低，根本发挥不出折半查找的优势。因此，就需要一种平衡的二叉搜索树来达到我们期望查询时间复杂度为 O(log n) 的数据结构，那就是平衡二叉搜索树。 平衡二叉搜索树平衡二叉搜索树又叫 AVL树，它具有以下性质：1.任一节点对应的两棵子树的最大高度差为 1。2.两棵子">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-12T00:29:14.717Z">
+<meta property="og:image" content="https://iqchen.github.io/img/rotation_bbst.png">
+<meta property="og:image" content="https://iqchen.github.io/img/l_l_bbst.png">
+<meta property="og:image" content="https://iqchen.github.io/img/l_r_bbst.png">
+<meta property="og:image" content="https://iqchen.github.io/img/r_r_bbst.png">
+<meta property="og:image" content="https://iqchen.github.io/img/r_l_bbst.png">
+<meta property="og:updated_time" content="2019-03-30T08:35:54.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组">
-<meta name="twitter:description" content="什么是数组？数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。一维数组就是最简单的数组，就像 int[] data = &amp;#123;1,2,3}。二维数组实质就是存储的一维数组，就像 int[][] data = &amp;#123;&amp;#123;1,2,3},&amp;#123;4,5,6}}。大于等于二维的数组就是多维数组。">
+<meta name="twitter:title" content="平衡二叉搜索树">
+<meta name="twitter:description" content="前言二叉搜索树在一般情况下它的查找时间复杂度是 O(log n)。但在一些特殊的情况下，它会退化为斜树变成线性结构，导致查询效率大大降低，根本发挥不出折半查找的优势。因此，就需要一种平衡的二叉搜索树来达到我们期望查询时间复杂度为 O(log n) 的数据结构，那就是平衡二叉搜索树。 平衡二叉搜索树平衡二叉搜索树又叫 AVL树，它具有以下性质：1.任一节点对应的两棵子树的最大高度差为 1。2.两棵子">
+<meta name="twitter:image" content="https://iqchen.github.io/img/rotation_bbst.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -143,33 +149,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-数组" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-balancing-BSTree" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数组
+      平衡二叉搜索树
     </h1>
   
 
         
-        <a href="/2019/03/11/数组/" class="archive-article-date">
-  	<time datetime="2019-03-11T14:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
+        <a href="/2019/03/30/balancing-BSTree/" class="archive-article-date">
+  	<time datetime="2019-03-30T06:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是数组？"><a href="#什么是数组？" class="headerlink" title="什么是数组？"></a>什么是数组？</h3><p>数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。<br>一维数组就是最简单的数组，就像 int[] data = &#123;1,2,3}。<br>二维数组实质就是存储的一维数组，就像 int[][] data = &#123;&#123;1,2,3},&#123;4,5,6}}。<br>大于等于二维的数组就是多维数组。</p>
-<h3 id="数组有什么特性？"><a href="#数组有什么特性？" class="headerlink" title="数组有什么特性？"></a>数组有什么特性？</h3><p>需要初始化空间大小，并且不可改变。<br>在内存中空间是连续性的，中间不会存在其他程序需要调用的数据。<br>可以利用数组元素下标快速访问元素。</p>
-<h3 id="数组有什么作用？"><a href="#数组有什么作用？" class="headerlink" title="数组有什么作用？"></a>数组有什么作用？</h3><p>数组需要提前分配固定大小，并且一旦分配就不能修改，整个数组地址是连续的，通过数组的下标来访问数组对应的元素。可以在一些可以确定数据大小和随机访问元素等场景中使用，因为它可以根据下标直接获取到元素。</p>
-<h3 id="数组该怎么使用？"><a href="#数组该怎么使用？" class="headerlink" title="数组该怎么使用？"></a>数组该怎么使用？</h3><p>声明并初始化数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] data = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] tdData = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>获取指定下标的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> one = data[<span class="number">0</span>];</span><br><span class="line">System.out.println(one);<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> td = tdData[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">System.out.println(td);<span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
-<p> 遍历数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    System.out.print(data[i] + <span class="string">" "</span>);<span class="comment">//1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tdData.length; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] d = tdData[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; d.length; j++) &#123;</span><br><span class="line">        System.out.print(d[j] + <span class="string">" "</span>);<span class="comment">// 1 2 3 4 5 6</span></span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>数组可以是一维，也可以是多维的。需要初始化在使用，并且之后大小是不可更改的，整个数组地址是连续的，通过数组的下标来访问数组对应的元素，也可通过遍历来访问。一般可以确定元素数量，并且需要快速访问时，可用数组来实现。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>二叉搜索树在一般情况下它的查找时间复杂度是 O(log n)。但在一些特殊的情况下，它会退化为斜树变成线性结构，导致查询效率大大降低，根本发挥不出折半查找的优势。因此，就需要一种平衡的二叉搜索树来达到我们期望查询时间复杂度为 O(log n) 的数据结构，那就是<strong>平衡二叉搜索树</strong>。</p>
+<h3 id="平衡二叉搜索树"><a href="#平衡二叉搜索树" class="headerlink" title="平衡二叉搜索树"></a>平衡二叉搜索树</h3><p>平衡二叉搜索树又叫 AVL树，它具有以下性质：<br>1.任一节点对应的两棵子树的最大高度差为 1。<br>2.两棵子树都是平衡二叉树。</p>
+<p>通过保证上面 2 条规则，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是O(log n)。因此，它是一颗相对稳定的树。</p>
+<p>为了保证左右 2 棵子树的最大高度差为 1，我们需要在插入和删除时，对树进行旋转操作，以保证树的平衡性。有 2 种基本的操作，那就是<strong>左旋</strong>和<strong>右旋</strong>。<br><img src="/img/rotation_bbst.png" alt></p>
+<p>在进行左右旋转时，会出现四种可能性：<br><strong>1.左左形态</strong><br>当 x 是 y 的左节点，y 又是 z 的左节点时，这个时候只需要把 y 节点向右旋转即可。如下图：<br><img src="/img/l_l_bbst.png" alt><br><strong>2.左右形态</strong><br>当 x 是 y 的右节点，而 y 又是 z 的左节点时，需要先把 y 左旋，变成 <strong>左左形态</strong>，然后再把 z 右旋。如下图：<br><img src="/img/l_r_bbst.png" alt><br><strong>3.右右形态</strong><br>当 x 是 y 的右节点， y 又是 z 的右节点时，这时候只需要把 y 节点向左旋转即可。如下图：<br><img src="/img/r_r_bbst.png" alt><br><strong>4.右左形态</strong><br>当 x 是 y 的左节点，而 y 又是 z 的右节点时，需要先把 y 右旋，变成 <strong>右右形态</strong>，然后再把 z 左旋。如下图：<br><img src="/img/r_l_bbst.png" alt></p>
+<h3 id="平衡二叉树的实现"><a href="#平衡二叉树的实现" class="headerlink" title="平衡二叉树的实现"></a>平衡二叉树的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AVLTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取左右节点的高度差</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">(Node n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (getHeight(n.left) - getHeight(n.right));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取节点的高度</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(Node n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n.height;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//右旋</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">rightRotate</span><span class="params">(Node y)</span> </span>&#123;</span><br><span class="line">        Node x = y.left;</span><br><span class="line">        Node T2 = x.right;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 旋转</span></span><br><span class="line">        x.right = y;</span><br><span class="line">        y.left = T2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新节点的高度</span></span><br><span class="line">        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + <span class="number">1</span>;</span><br><span class="line">        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//左旋</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">leftRotate</span><span class="params">(Node x)</span> </span>&#123;</span><br><span class="line">        Node y = x.right;</span><br><span class="line">        Node T2 = y.left;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 旋转</span></span><br><span class="line">        y.left = x;</span><br><span class="line">        x.right = T2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新节点的高度</span></span><br><span class="line">        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + <span class="number">1</span>;</span><br><span class="line">        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">insert</span><span class="params">(Node node, <span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">new</span> Node(data));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (node.data &gt; data) &#123;</span><br><span class="line">            node.left = insert(node.left, data);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            node.right = insert(node.right, data);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新节点的高度</span></span><br><span class="line">        node.height = Math.max(getHeight(node.left), getHeight(node.right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> balDiff = getBalance(node);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 右旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &gt; <span class="number">1</span> &amp;&amp; data &lt; node.left.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> rightRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 左旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &lt; -<span class="number">1</span> &amp;&amp; data &gt; node.right.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> leftRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先左旋在右旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &gt; <span class="number">1</span> &amp;&amp; data &gt; node.left.data) &#123;</span><br><span class="line">            node.left = leftRotate(node.left);</span><br><span class="line">            <span class="keyword">return</span> rightRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先右旋在左旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &lt; -<span class="number">1</span> &amp;&amp; data &lt; node.right.data) &#123;</span><br><span class="line">            node.right = rightRotate(node.right);</span><br><span class="line">            <span class="keyword">return</span> leftRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node left;</span><br><span class="line">    Node right;</span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        height = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>二叉搜索树的不稳定性，就有可能退化为近似链或链，查询时间复杂度就退化为 O(n)。当 n 很大的时候，性能就大大降低，达不到折半的效果。因此，我们需要一个平衡的二叉搜索树。</p>
+<p>平衡二叉树是通过对树节点的左旋和右旋来保证树的平衡性，也就是保证左右子树的高度差不超过 1。</p>
+<p>在对树进行左旋和右旋时，有四种形态分别是：<strong>左左</strong>，<strong>左右</strong>，<strong>右右</strong>，<strong>右左</strong>。</p>
+<p>因此，平衡二叉树的查找、插入和删除在平均和最坏情况下的时间复杂度都是O(log n)。</p>
 
       
 
@@ -187,7 +196,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">平衡二叉搜索树</a>
         		</li>
       		
 		</ul>
@@ -243,7 +252,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/03/11/数组/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/03/30/balancing-BSTree/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -257,15 +266,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/12/Linked-List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          链表
-        
-      </div>
-    </a>
   
+    <a href="/2019/03/26/binary-search-tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二叉搜索树</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
