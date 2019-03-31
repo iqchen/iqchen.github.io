@@ -144,6 +144,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hash-table" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/18/hash-table/">哈希表</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/18/hash-table/" class="archive-article-date">
+  	<time datetime="2019-03-18T13:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是哈希表？"><a href="#什么是哈希表？" class="headerlink" title="什么是哈希表？"></a>什么是哈希表？</h3><p>哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。<br>哈希函数的实现方法：<br>1.除留余数法<br>取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。<br>2.折叠法<br>将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。<br>3.平方取中法<br>取关键字平方后的中间几位为哈希地址。<br>4.直接定址法<br>取关键字或关键字的某个线性函数值为哈希地址。</p>
+<h3 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h3><p>不管用什么哈希函数去计算哈希地址，都是会产生哈希冲突的，因此我们需要想办法解决哈希冲突，并且在设计哈希函数时，尽可能减少哈希冲突。<br>1.单独的链表法<br>在哈希表的后面单独链上一个单链表来存储冲突的元素，JDK 1.8 里的 HashMap 就是选择的这种方式解决冲突的，不过它对链表做了一层优化。当元素个数大于等于 8 时，会把链表转换成红黑树，提升查询效率。<br>2.线性探测法<br>当发生哈希冲突时，逐个探测存放地址的表，直到查找到一个空单元。这个方式不便于查找，不建议使用。<br>3.建立一个公共溢出区<br>当发生哈希冲突时，就把元素存入到公用的溢出区，查询时遍历溢出区。<br>从上面这几种处理方法来说，还是链表法效率比较高，推荐使用。不过都有现成的工具类使用，因此只需要知道实现原理，最好自己可以去写代码实现它。<br><img src="/img/hash_table.png" alt="哈希表"></p>
+<h3 id="哈希表有什么用？"><a href="#哈希表有什么用？" class="headerlink" title="哈希表有什么用？"></a>哈希表有什么用？</h3><p>哈希表在日常开发中还是比较常用的，因为它最优的查询时间复杂度是 O(1)，当哈希冲突比较严重的时候，查询效率就相当于线性的，因此哈希算法直接影响到查询的效率。</p>
+<h3 id="哈希表怎么实现的？"><a href="#哈希表怎么实现的？" class="headerlink" title="哈希表怎么实现的？"></a>哈希表怎么实现的？</h3><p>哈希表的结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//用节点数组当作哈希表</span></span><br><span class="line">    Node&lt;K,V&gt;[] table;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="comment">//节点</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">        <span class="comment">//哈希值</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">        <span class="comment">//键</span></span><br><span class="line">        <span class="keyword">final</span> K key;</span><br><span class="line">        <span class="comment">//值</span></span><br><span class="line">        V value;</span><br><span class="line">        <span class="comment">//哈希值冲突是存储</span></span><br><span class="line">        Node&lt;K,V&gt; next;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">            <span class="keyword">this</span>.hash = hash;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>哈希表是一个键值对的存储结构，并且根据键进行哈希算法找到对应的存储位置。哈希算法会直接影响到哈希表的查询效率，一般选择哈希冲突小的实现方式，以便提升查询效率。当哈希冲突时，一般选择链表来存储冲突的元素，当冲突的元素增多时，可以采用红黑树来存储，以提升查询效率。JDK 1.8 版本的 HashMap，当链表个数大于等于 8 时，就是采用红黑树来存储的。在知道元素个数时，初始化哈希表时直接指定哈希表大小，因为当元素达到哈希表大小时，会做 resize 操作。当元素越来越多时，resize 是很耗时的，相当于重建哈希表。因此直接指定哈希表大小，减少 resize 次数以便提升插入性能。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/18/hash-table/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-deque" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -486,93 +568,9 @@
 
 
   
-    <article id="post-数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/数组/">数组</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/11/数组/" class="archive-article-date">
-  	<time datetime="2019-03-11T14:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是数组？"><a href="#什么是数组？" class="headerlink" title="什么是数组？"></a>什么是数组？</h3><p>数组是由相同类型的元素的集合所组成的数据结构并且是分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。<br>一维数组就是最简单的数组，就像 int[] data = &#123;1,2,3}。<br>二维数组实质就是存储的一维数组，就像 int[][] data = &#123;&#123;1,2,3},&#123;4,5,6}}。<br>大于等于二维的数组就是多维数组。</p>
-<h3 id="数组有什么特性？"><a href="#数组有什么特性？" class="headerlink" title="数组有什么特性？"></a>数组有什么特性？</h3><p>需要初始化空间大小，并且不可改变。<br>在内存中空间是连续性的，中间不会存在其他程序需要调用的数据。<br>可以利用数组元素下标快速访问元素。</p>
-<h3 id="数组有什么作用？"><a href="#数组有什么作用？" class="headerlink" title="数组有什么作用？"></a>数组有什么作用？</h3><p>数组需要提前分配固定大小，并且一旦分配就不能修改，整个数组地址是连续的，通过数组的下标来访问数组对应的元素。可以在一些可以确定数据大小和随机访问元素等场景中使用，因为它可以根据下标直接获取到元素。</p>
-<h3 id="数组该怎么使用？"><a href="#数组该怎么使用？" class="headerlink" title="数组该怎么使用？"></a>数组该怎么使用？</h3><p>声明并初始化数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] data = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] tdData = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>获取指定下标的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> one = data[<span class="number">0</span>];</span><br><span class="line">System.out.println(one);<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> td = tdData[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">System.out.println(td);<span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
-<p> 遍历数组<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    System.out.print(data[i] + <span class="string">" "</span>);<span class="comment">//1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tdData.length; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] d = tdData[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; d.length; j++) &#123;</span><br><span class="line">        System.out.print(d[j] + <span class="string">" "</span>);<span class="comment">// 1 2 3 4 5 6</span></span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>数组可以是一维，也可以是多维的。需要初始化在使用，并且之后大小是不可更改的，整个数组地址是连续的，通过数组的下标来访问数组对应的元素，也可通过遍历来访问。一般可以确定元素数量，并且需要快速访问时，可用数组来实现。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/11/数组/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -671,11 +669,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -683,11 +677,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
              
               <li class="article-tag-list-item">

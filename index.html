@@ -144,6 +144,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-red-black-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/red-black-tree/">红黑树</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/31/red-black-tree/" class="archive-article-date">
+  	<time datetime="2019-03-31T04:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。<br>红黑树的特性：<br>1.节点要么是红色要么就是黑色，不能没有颜色。<br>2.根节点是黑色的。<br>3.所有叶子节点都是黑色的。<br>4.每个红色节点必须有两个黑色的子节点。<br>5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。<br><img src="/img/red-black-tree.png" alt><br>从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，所以它对查找、删除和新增的最差时间复杂度为 O(log n)，且叶子上没有数据存储。</p>
+<h3 id="红黑树的实现"><a href="#红黑树的实现" class="headerlink" title="红黑树的实现"></a>红黑树的实现</h3><p>在 AVL树 插入中，插入后导致不平衡，我们使用旋转来保证它的平衡性。在红黑树中，我们使用 <strong>重新着色</strong> 和 <strong>旋转</strong> 来进行平衡。<br>首先，我们尝试重新着色，如果重新着色满足不了红黑树的特性，那么我们就进行旋转。</p>
+<p>插入算法主要有两种情况，取决于叔叔节点的颜色。如果叔叔节点是红色的，就进行重新着色。如果叔叔节点是黑色的，就要进行旋转和（或）重新着色操作。</p>
+<p>左旋和右旋请先参考《数据结构之「AVL树」》。</p>
+<p>新添加的节点设置为红色。如果设为黑色，就会导致根到叶子节点的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过重新着色和树旋转来调整。</p>
+<p>假如新插入的节点为 x：<br>1.按标准的二叉搜索树插入节点颜色为红色的新节点。</p>
+<p>2.假如 x 就是根节点，那么改变 x 节点颜色为黑色。</p>
+<p>3.如果新节点的父节点是黑色的，直接返回。</p>
+<p>4.如果父节点和叔叔节点都是红色的，需要改变父节点和叔叔节点的颜色为黑色，并设置祖父节点为红色，如果祖父节点为根节点，设置祖父节点颜色为黑色。</p>
+<p>5.如果父节点是红色而叔叔节点是黑色或缺少，新节点是父节点的左子节点，而父节点又是其父节点的左子节点。这种情况就需要对祖父节点进行一次右旋，然后在切换父节点和祖父节点的颜色，就满足红黑树的性质了。</p>
+<p>6.如果父节点是红色，而叔叔节点是黑色或缺少，并且新节点是其父节点的右子节点而父节点又是其父节点的左子节点。需要先对当前节点节点进行左旋，变成 情形5，然后按 情形5 的步骤操作来。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>与 AVL树 相比，AVL树 更加平衡，但它可能在插入和删除期间引<br>起更多旋转。因此，如果频繁的插入和删除操作，那么应该首选红黑树。如果插入和删除频率较低且搜索是更频繁的操作，那么AVL树应优先于红黑树。</p>
+<p>红黑树牺牲了部分平衡性以换取插入/删除操作时做少量的旋转操作，整体来说性能要优于AVL树。</p>
+<p>在 JDK 中，都是用红黑树来做 TreeSet 和 TreeMap 的数据结构存储，在 JDK1.8之后都是用红黑树来存储哈希冲突大于等于八个节点的数据结构，所以红黑树还是一种比较常用的数据结构。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">红黑树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/31/red-black-tree/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-balancing-BSTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -497,91 +588,9 @@
 
 
   
-    <article id="post-hash-table" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/18/hash-table/">哈希表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/18/hash-table/" class="archive-article-date">
-  	<time datetime="2019-03-18T13:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是哈希表？"><a href="#什么是哈希表？" class="headerlink" title="什么是哈希表？"></a>什么是哈希表？</h3><p>哈希表（Hash table, 也叫散列表），是根据键（Key）来直接访问在内存存储位置的数据结构。它通过一个哈希函数将所需要查询的数据映射到一张哈希表中，来提升查询效率。<br>哈希函数的实现方法：<br>1.除留余数法<br>取关键字被某个不大于哈希表表长的数除后所得的余数为散列地址。<br>2.折叠法<br>将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。<br>3.平方取中法<br>取关键字平方后的中间几位为哈希地址。<br>4.直接定址法<br>取关键字或关键字的某个线性函数值为哈希地址。</p>
-<h3 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h3><p>不管用什么哈希函数去计算哈希地址，都是会产生哈希冲突的，因此我们需要想办法解决哈希冲突，并且在设计哈希函数时，尽可能减少哈希冲突。<br>1.单独的链表法<br>在哈希表的后面单独链上一个单链表来存储冲突的元素，JDK 1.8 里的 HashMap 就是选择的这种方式解决冲突的，不过它对链表做了一层优化。当元素个数大于等于 8 时，会把链表转换成红黑树，提升查询效率。<br>2.线性探测法<br>当发生哈希冲突时，逐个探测存放地址的表，直到查找到一个空单元。这个方式不便于查找，不建议使用。<br>3.建立一个公共溢出区<br>当发生哈希冲突时，就把元素存入到公用的溢出区，查询时遍历溢出区。<br>从上面这几种处理方法来说，还是链表法效率比较高，推荐使用。不过都有现成的工具类使用，因此只需要知道实现原理，最好自己可以去写代码实现它。<br><img src="/img/hash_table.png" alt="哈希表"></p>
-<h3 id="哈希表有什么用？"><a href="#哈希表有什么用？" class="headerlink" title="哈希表有什么用？"></a>哈希表有什么用？</h3><p>哈希表在日常开发中还是比较常用的，因为它最优的查询时间复杂度是 O(1)，当哈希冲突比较严重的时候，查询效率就相当于线性的，因此哈希算法直接影响到查询的效率。</p>
-<h3 id="哈希表怎么实现的？"><a href="#哈希表怎么实现的？" class="headerlink" title="哈希表怎么实现的？"></a>哈希表怎么实现的？</h3><p>哈希表的结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//用节点数组当作哈希表</span></span><br><span class="line">    Node&lt;K,V&gt;[] table;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="comment">//节点</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">        <span class="comment">//哈希值</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">        <span class="comment">//键</span></span><br><span class="line">        <span class="keyword">final</span> K key;</span><br><span class="line">        <span class="comment">//值</span></span><br><span class="line">        V value;</span><br><span class="line">        <span class="comment">//哈希值冲突是存储</span></span><br><span class="line">        Node&lt;K,V&gt; next;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">            <span class="keyword">this</span>.hash = hash;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>哈希表是一个键值对的存储结构，并且根据键进行哈希算法找到对应的存储位置。哈希算法会直接影响到哈希表的查询效率，一般选择哈希冲突小的实现方式，以便提升查询效率。当哈希冲突时，一般选择链表来存储冲突的元素，当冲突的元素增多时，可以采用红黑树来存储，以提升查询效率。JDK 1.8 版本的 HashMap，当链表个数大于等于 8 时，就是采用红黑树来存储的。在知道元素个数时，初始化哈希表时直接指定哈希表大小，因为当元素达到哈希表大小时，会做 resize 操作。当元素越来越多时，resize 是很耗时的，相当于重建哈希表。因此直接指定哈希表大小，减少 resize 次数以便提升插入性能。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/18/hash-table/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -680,11 +689,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,11 +697,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
              
               <li class="article-tag-list-item">

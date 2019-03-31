@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>Tag: 链表 | 清尘闲聊</title>
+  <title>红黑树 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
-<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="清尘闲聊">
-<meta property="og:url" content="https://iqchen.github.io/tags/链表/index.html">
+  <meta name="description" content="红黑树红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。红黑树的特性：1.节点要么是红色要么就是黑色，不能没有颜色。2.根节点是黑色的。3.所有叶子节点都是黑色的。4.每个红色节点必须有两个黑色的子节点。5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，">
+<meta name="keywords" content="数据结构,红黑树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红黑树">
+<meta property="og:url" content="https://iqchen.github.io/2019/03/31/red-black-tree/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta property="og:description" content="红黑树红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。红黑树的特性：1.节点要么是红色要么就是黑色，不能没有颜色。2.根节点是黑色的。3.所有叶子节点都是黑色的。4.每个红色节点必须有两个黑色的子节点。5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://iqchen.github.io/img/red-black-tree.png">
+<meta property="og:updated_time" content="2019-03-31T14:10:11.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清尘闲聊">
-<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="twitter:title" content="红黑树">
+<meta name="twitter:description" content="红黑树红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。红黑树的特性：1.节点要么是红色要么就是黑色，不能没有颜色。2.根节点是黑色的。3.所有叶子节点都是黑色的。4.每个红色节点必须有两个黑色的子节点。5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，">
+<meta name="twitter:image" content="https://iqchen.github.io/img/red-black-tree.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -142,36 +145,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-red-black-tree" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/12/Linked-List/" class="archive-article-date">
-  	<time datetime="2019-03-12T14:27:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/12/Linked-List/">链表</a>
+    <h1 class="article-title" itemprop="name">
+      红黑树
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/31/red-black-tree/" class="archive-article-date">
+  	<time datetime="2019-03-31T04:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。<br>红黑树的特性：<br>1.节点要么是红色要么就是黑色，不能没有颜色。<br>2.根节点是黑色的。<br>3.所有叶子节点都是黑色的。<br>4.每个红色节点必须有两个黑色的子节点。<br>5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。<br><img src="/img/red-black-tree.png" alt><br>从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，所以它对查找、删除和新增的最差时间复杂度为 O(log n)，且叶子上没有数据存储。</p>
+<h3 id="红黑树的实现"><a href="#红黑树的实现" class="headerlink" title="红黑树的实现"></a>红黑树的实现</h3><p>在 AVL树 插入中，插入后导致不平衡，我们使用旋转来保证它的平衡性。在红黑树中，我们使用 <strong>重新着色</strong> 和 <strong>旋转</strong> 来进行平衡。<br>首先，我们尝试重新着色，如果重新着色满足不了红黑树的特性，那么我们就进行旋转。</p>
+<p>插入算法主要有两种情况，取决于叔叔节点的颜色。如果叔叔节点是红色的，就进行重新着色。如果叔叔节点是黑色的，就要进行旋转和（或）重新着色操作。</p>
+<p>左旋和右旋请先参考《数据结构之「AVL树」》。</p>
+<p>新添加的节点设置为红色。如果设为黑色，就会导致根到叶子节点的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过重新着色和树旋转来调整。</p>
+<p>假如新插入的节点为 x：<br>1.按标准的二叉搜索树插入节点颜色为红色的新节点。</p>
+<p>2.假如 x 就是根节点，那么改变 x 节点颜色为黑色。</p>
+<p>3.如果新节点的父节点是黑色的，直接返回。</p>
+<p>4.如果父节点和叔叔节点都是红色的，需要改变父节点和叔叔节点的颜色为黑色，并设置祖父节点为红色，如果祖父节点为根节点，设置祖父节点颜色为黑色。</p>
+<p>5.如果父节点是红色而叔叔节点是黑色或缺少，新节点是父节点的左子节点，而父节点又是其父节点的左子节点。这种情况就需要对祖父节点进行一次右旋，然后在切换父节点和祖父节点的颜色，就满足红黑树的性质了。</p>
+<p>6.如果父节点是红色，而叔叔节点是黑色或缺少，并且新节点是其父节点的右子节点而父节点又是其父节点的左子节点。需要先对当前节点节点进行左旋，变成 情形5，然后按 情形5 的步骤操作来。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>与 AVL树 相比，AVL树 更加平衡，但它可能在插入和删除期间引<br>起更多旋转。因此，如果频繁的插入和删除操作，那么应该首选红黑树。如果插入和删除频率较低且搜索是更频繁的操作，那么AVL树应优先于红黑树。</p>
+<p>红黑树牺牲了部分平衡性以换取插入/删除操作时做少量的旋转操作，整体来说性能要优于AVL树。</p>
+<p>在 JDK 中，都是用红黑树来做 TreeSet 和 TreeMap 的数据结构存储，在 JDK1.8之后都是用红黑树来存储哈希冲突大于等于八个节点的数据结构，所以红黑树还是一种比较常用的数据结构。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,25 +196,112 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">红黑树</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/03/31/red-black-tree/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/03/30/balancing-BSTree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">平衡二叉搜索树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +324,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
