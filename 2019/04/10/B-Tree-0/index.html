@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>红黑树 | 清尘闲聊</title>
+  <title>B+树 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="红黑树红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。红黑树的特性：1.节点要么是红色要么就是黑色，不能没有颜色。2.根节点是黑色的。3.所有叶子节点都是黑色的。4.每个红色节点必须有两个黑色的子节点。5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，">
-<meta name="keywords" content="数据结构,红黑树">
+  <meta name="description" content="B+树B+树 是 B树 的扩展，允许有效的插入，删除和搜索操作。 在 B树 中，键和记录（数据）都可以存储在内部节点和叶子节点中。 然而，在 B+树 中，记录只能存储在叶节点上，而内部节点只能存储键值。 B+树 的叶节点以单链表的形式链接在一起，解决区间查询，以使搜索查询更加高效。 B+树 用于无法存储大量的数据在主存储器中。 由于主存储器的大小总是有限的，B+树 的内部节点（访问记录的键）存储在">
+<meta name="keywords" content="数据结构,B+树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="红黑树">
-<meta property="og:url" content="https://iqchen.github.io/2019/03/31/red-black-tree/index.html">
+<meta property="og:title" content="B+树">
+<meta property="og:url" content="https://iqchen.github.io/2019/04/10/B-Tree-0/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="红黑树红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。红黑树的特性：1.节点要么是红色要么就是黑色，不能没有颜色。2.根节点是黑色的。3.所有叶子节点都是黑色的。4.每个红色节点必须有两个黑色的子节点。5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，">
+<meta property="og:description" content="B+树B+树 是 B树 的扩展，允许有效的插入，删除和搜索操作。 在 B树 中，键和记录（数据）都可以存储在内部节点和叶子节点中。 然而，在 B+树 中，记录只能存储在叶节点上，而内部节点只能存储键值。 B+树 的叶节点以单链表的形式链接在一起，解决区间查询，以使搜索查询更加高效。 B+树 用于无法存储大量的数据在主存储器中。 由于主存储器的大小总是有限的，B+树 的内部节点（访问记录的键）存储在">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://iqchen.github.io/img/red-black-tree.png">
-<meta property="og:updated_time" content="2019-03-31T14:10:11.810Z">
+<meta property="og:image" content="https://iqchen.github.io/img/b+tree.png">
+<meta property="og:updated_time" content="2019-04-10T15:17:13.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红黑树">
-<meta name="twitter:description" content="红黑树红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。红黑树的特性：1.节点要么是红色要么就是黑色，不能没有颜色。2.根节点是黑色的。3.所有叶子节点都是黑色的。4.每个红色节点必须有两个黑色的子节点。5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，">
-<meta name="twitter:image" content="https://iqchen.github.io/img/red-black-tree.png">
+<meta name="twitter:title" content="B+树">
+<meta name="twitter:description" content="B+树B+树 是 B树 的扩展，允许有效的插入，删除和搜索操作。 在 B树 中，键和记录（数据）都可以存储在内部节点和叶子节点中。 然而，在 B+树 中，记录只能存储在叶节点上，而内部节点只能存储键值。 B+树 的叶节点以单链表的形式链接在一起，解决区间查询，以使搜索查询更加高效。 B+树 用于无法存储大量的数据在主存储器中。 由于主存储器的大小总是有限的，B+树 的内部节点（访问记录的键）存储在">
+<meta name="twitter:image" content="https://iqchen.github.io/img/b+tree.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -145,40 +145,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-red-black-tree" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-B-Tree-0" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      红黑树
+      B+树
     </h1>
   
 
         
-        <a href="/2019/03/31/red-black-tree/" class="archive-article-date">
-  	<time datetime="2019-03-31T04:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+        <a href="/2019/04/10/B-Tree-0/" class="archive-article-date">
+  	<time datetime="2019-04-10T15:15:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。<br>红黑树的特性：<br>1.节点要么是红色要么就是黑色，不能没有颜色。<br>2.根节点是黑色的。<br>3.所有叶子节点都是黑色的。<br>4.每个红色节点必须有两个黑色的子节点。<br>5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。<br><img src="/img/red-black-tree.png" alt><br>从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，所以它对查找、删除和新增的最差时间复杂度为 O(log n)，且叶子上没有数据存储。</p>
-<h3 id="红黑树的实现"><a href="#红黑树的实现" class="headerlink" title="红黑树的实现"></a>红黑树的实现</h3><p>在 AVL树 插入中，插入后导致不平衡，我们使用旋转来保证它的平衡性。在红黑树中，我们使用 <strong>重新着色</strong> 和 <strong>旋转</strong> 来进行平衡。<br>首先，我们尝试重新着色，如果重新着色满足不了红黑树的特性，那么我们就进行旋转。</p>
-<p>插入算法主要有两种情况，取决于叔叔节点的颜色。如果叔叔节点是红色的，就进行重新着色。如果叔叔节点是黑色的，就要进行旋转和（或）重新着色操作。</p>
-<p>左旋和右旋请先参考《数据结构之「AVL树」》。</p>
-<p>新添加的节点设置为红色。如果设为黑色，就会导致根到叶子节点的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过重新着色和树旋转来调整。</p>
-<p>假如新插入的节点为 x：<br>1.按标准的二叉搜索树插入节点颜色为红色的新节点。</p>
-<p>2.假如 x 就是根节点，那么改变 x 节点颜色为黑色。</p>
-<p>3.如果新节点的父节点是黑色的，直接返回。</p>
-<p>4.如果父节点和叔叔节点都是红色的，需要改变父节点和叔叔节点的颜色为黑色，并设置祖父节点为红色，如果祖父节点为根节点，设置祖父节点颜色为黑色。</p>
-<p>5.如果父节点是红色而叔叔节点是黑色或缺少，新节点是父节点的左子节点，而父节点又是其父节点的左子节点。这种情况就需要对祖父节点进行一次右旋，然后在切换父节点和祖父节点的颜色，就满足红黑树的性质了。</p>
-<p>6.如果父节点是红色，而叔叔节点是黑色或缺少，并且新节点是其父节点的右子节点而父节点又是其父节点的左子节点。需要先对当前节点节点进行左旋，变成 情形5，然后按 情形5 的步骤操作来。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>与 AVL树 相比，AVL树 更加平衡，但它可能在插入和删除期间引<br>起更多旋转。因此，如果频繁的插入和删除操作，那么应该首选红黑树。如果插入和删除频率较低且搜索是更频繁的操作，那么AVL树应优先于红黑树。</p>
-<p>红黑树牺牲了部分平衡性以换取插入/删除操作时做少量的旋转操作，整体来说性能要优于AVL树。</p>
-<p>在 JDK 中，都是用红黑树来做 TreeSet 和 TreeMap 的数据结构存储，在 JDK1.8之后都是用红黑树来存储哈希冲突大于等于八个节点的数据结构，所以红黑树还是一种比较常用的数据结构。</p>
+        <h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p><strong>B+树</strong> 是 B树 的扩展，允许有效的插入，删除和搜索操作。</p>
+<p>在 B树 中，键和记录（数据）都可以存储在内部节点和叶子节点中。 然而，在 B+树 中，记录只能存储在叶节点上，而内部节点只能存储键值。</p>
+<p>B+树 的叶节点以单链表的形式链接在一起，解决区间查询，以使搜索查询更加高效。</p>
+<p>B+树 用于无法存储大量的数据在主存储器中。 由于主存储器的大小总是有限的，B+树 的内部节点（访问记录的键）存储在主存储器（内存）中，而叶节点存储在辅助存储器（硬盘）中。由于内存的查询速度远大于硬盘，就可以把 键 放入内存，把 记录 放入硬盘，以达到最优方案。</p>
+<p>B+树 的内部节点通常称为索引节点。</p>
+<p>在 B+树 中的节点通常被表示为一组有序的元素和子指针。如果此 B+树 的阶数是m，则除了根之外的每个节点都包含最少 m/2 个元素最多 m 个元素，对于任意的结点有最多 m 个子指针。对于所有内部节点，子指针的数目总是与元素的数目相同。所有叶子都在相同的高度上，叶结点本身按关键字大小从小到大链接。<br><img src="/img/b+tree.png" alt></p>
+<h3 id="B-树-的优点"><a href="#B-树-的优点" class="headerlink" title="B+树 的优点"></a>B+树 的优点</h3><p>可以在相同数量的磁盘访问中获取记录。<br>树的高度保持平衡，与 B树 相比较少。<br>我们可以顺序访问存储在 B+树 中的数据，也可以直接访问。<br>键用于索引。<br>更快的搜索查询，因为数据仅存储在叶节点上。</p>
+<h3 id="B-树-的实现"><a href="#B-树-的实现" class="headerlink" title="B+树 的实现"></a>B+树 的实现</h3><p><strong>1.查找</strong><br>类似于 <strong>二叉查找树</strong>。起始于根节点，自顶向下遍历树，选择其分离值在要查找值的任意一边的子指针。</p>
+<p><strong>2.插入</strong><br>首先，查找到要插入其中的节点的位置。接着把值插入这个节点中。</p>
+<p>如果没有节点违反 B+树 的规则（不能大于 m-1 个元素）直接成功返回。</p>
+<p>如果某个节点有过多元素，则把它分裂为两个节点，每个都有最小数目的元素。在树上递归向上继续这个处理直到到达根节点，如果根节点被分裂，则创建一个新根节点。分裂的节点一般是这组元素的中位数。</p>
+<p><strong>3.删除</strong><br>首先，查找到要删除的值，从叶子节点中删除键和数据。</p>
+<p>如果没有节点违反 B+树 的规则（不能小于 m/2 个元素）直接成功返回。</p>
+<p>如果叶节点包含少于最小数量的元素，则将节点与其兄弟节点合并，并删除它们之间的键。</p>
+<p>如果索引节点包含少于最小数量的元素，则将节点与兄弟节点合并，并在它们之间向下移动键。</p>
+<h3 id="B-树-与-B-树的区别"><a href="#B-树-与-B-树的区别" class="headerlink" title="B-树 与 B+树的区别"></a>B-树 与 B+树的区别</h3><p>1.搜索键无法重复存储； 可以存在冗余搜索键。<br>2.数据可以存储在叶节点以及内部节点中；数据只能存储在叶节点上。<br>3.搜索某些数据的过程较慢，因为可以在内部节点和叶节点上找到数据； 搜索速度相对较快，因为只能在叶节点上找到数据。<br>4.删除内部节点非常复杂且耗时；删除永远不会是一个复杂的过程，因为元素将始终从叶节点中删除。<br>5.叶节点不能链接在一起；叶节点链接在一起以使搜索操作更有效。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B+树 把内部节点当作键来存储，存储的元素比较少，可以放入内存中，提升查询效率。叶子节点里存储里键和数据，适合放入硬盘，只需要少量的读取硬盘即可完成查询。因为内存的读取比硬盘块很多，所以效率提升很多。</p>
+<p>由于 B+树 内部节点只有键，存储内容较少，增删查时间复杂度为 O(log n)，叶子节点链接在一起，可以区间查询等，所以非常适合做数据库索引存储结构。数据库主键索引最好是自增的，以提升插入效率。</p>
 
       
 
@@ -196,7 +200,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">红黑树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">B+树</a>
         		</li>
       		
 		</ul>
@@ -252,7 +256,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/03/31/red-black-tree/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/10/B-Tree-0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -266,18 +270,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/01/B-tree/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          B树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/30/balancing-BSTree/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">平衡二叉搜索树</div>
+    <a href="/2019/04/01/B-tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">B树</div>
       <i class="icon-circle-right"></i>
     </a>
   

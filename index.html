@@ -144,6 +144,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-B-Tree-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/10/B-Tree-0/">B+树</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/10/B-Tree-0/" class="archive-article-date">
+  	<time datetime="2019-04-10T15:15:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p><strong>B+树</strong> 是 B树 的扩展，允许有效的插入，删除和搜索操作。</p>
+<p>在 B树 中，键和记录（数据）都可以存储在内部节点和叶子节点中。 然而，在 B+树 中，记录只能存储在叶节点上，而内部节点只能存储键值。</p>
+<p>B+树 的叶节点以单链表的形式链接在一起，解决区间查询，以使搜索查询更加高效。</p>
+<p>B+树 用于无法存储大量的数据在主存储器中。 由于主存储器的大小总是有限的，B+树 的内部节点（访问记录的键）存储在主存储器（内存）中，而叶节点存储在辅助存储器（硬盘）中。由于内存的查询速度远大于硬盘，就可以把 键 放入内存，把 记录 放入硬盘，以达到最优方案。</p>
+<p>B+树 的内部节点通常称为索引节点。</p>
+<p>在 B+树 中的节点通常被表示为一组有序的元素和子指针。如果此 B+树 的阶数是m，则除了根之外的每个节点都包含最少 m/2 个元素最多 m 个元素，对于任意的结点有最多 m 个子指针。对于所有内部节点，子指针的数目总是与元素的数目相同。所有叶子都在相同的高度上，叶结点本身按关键字大小从小到大链接。<br><img src="/img/b+tree.png" alt></p>
+<h3 id="B-树-的优点"><a href="#B-树-的优点" class="headerlink" title="B+树 的优点"></a>B+树 的优点</h3><p>可以在相同数量的磁盘访问中获取记录。<br>树的高度保持平衡，与 B树 相比较少。<br>我们可以顺序访问存储在 B+树 中的数据，也可以直接访问。<br>键用于索引。<br>更快的搜索查询，因为数据仅存储在叶节点上。</p>
+<h3 id="B-树-的实现"><a href="#B-树-的实现" class="headerlink" title="B+树 的实现"></a>B+树 的实现</h3><p><strong>1.查找</strong><br>类似于 <strong>二叉查找树</strong>。起始于根节点，自顶向下遍历树，选择其分离值在要查找值的任意一边的子指针。</p>
+<p><strong>2.插入</strong><br>首先，查找到要插入其中的节点的位置。接着把值插入这个节点中。</p>
+<p>如果没有节点违反 B+树 的规则（不能大于 m-1 个元素）直接成功返回。</p>
+<p>如果某个节点有过多元素，则把它分裂为两个节点，每个都有最小数目的元素。在树上递归向上继续这个处理直到到达根节点，如果根节点被分裂，则创建一个新根节点。分裂的节点一般是这组元素的中位数。</p>
+<p><strong>3.删除</strong><br>首先，查找到要删除的值，从叶子节点中删除键和数据。</p>
+<p>如果没有节点违反 B+树 的规则（不能小于 m/2 个元素）直接成功返回。</p>
+<p>如果叶节点包含少于最小数量的元素，则将节点与其兄弟节点合并，并删除它们之间的键。</p>
+<p>如果索引节点包含少于最小数量的元素，则将节点与兄弟节点合并，并在它们之间向下移动键。</p>
+<h3 id="B-树-与-B-树的区别"><a href="#B-树-与-B-树的区别" class="headerlink" title="B-树 与 B+树的区别"></a>B-树 与 B+树的区别</h3><p>1.搜索键无法重复存储； 可以存在冗余搜索键。<br>2.数据可以存储在叶节点以及内部节点中；数据只能存储在叶节点上。<br>3.搜索某些数据的过程较慢，因为可以在内部节点和叶节点上找到数据； 搜索速度相对较快，因为只能在叶节点上找到数据。<br>4.删除内部节点非常复杂且耗时；删除永远不会是一个复杂的过程，因为元素将始终从叶节点中删除。<br>5.叶节点不能链接在一起；叶节点链接在一起以使搜索操作更有效。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B+树 把内部节点当作键来存储，存储的元素比较少，可以放入内存中，提升查询效率。叶子节点里存储里键和数据，适合放入硬盘，只需要少量的读取硬盘即可完成查询。因为内存的读取比硬盘块很多，所以效率提升很多。</p>
+<p>由于 B+树 内部节点只有键，存储内容较少，增删查时间复杂度为 O(log n)，叶子节点链接在一起，可以区间查询等，所以非常适合做数据库索引存储结构。数据库主键索引最好是自增的，以提升插入效率。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">B+树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/10/B-Tree-0/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-B-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -510,101 +605,6 @@
 
 
   
-    <article id="post-binary-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/24/binary-tree/">二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/24/binary-tree/" class="archive-article-date">
-  	<time datetime="2019-03-24T14:58:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树（Binary Tree）是每个节点最多只有两个子节点的结构，通常左边的叫左子树，右边的叫右子树，二叉树的节点是具有左右次序的，不能随意颠倒。</p>
-<h3 id="二叉树的-4-种形态"><a href="#二叉树的-4-种形态" class="headerlink" title="二叉树的 4 种形态"></a>二叉树的 4 种形态</h3><p>1.仅仅只有一个根节点，没有子节点。<br>2.根节点只有左子树。<br>3.根节点只有右子树。<br>4.根节点既有左子树，又有右子树。  </p>
-<h3 id="二叉树的分类"><a href="#二叉树的分类" class="headerlink" title="二叉树的分类"></a>二叉树的分类</h3><p><strong>1.完全二叉树</strong><br>假设其深度为 d（d&gt;1）。除了第 d 层外，其它各层的节点数目均已达最大值，且第 d 层所有节点从左向右连续地紧密排列，这样的二叉树被称为完全二叉树。<br><img src="/img/complete_binary_tree.png" alt="完全二叉树"></p>
-<p><strong>2.满二叉树</strong><br>所有叶子节点全都出现在最底层的完全二叉树就叫满二叉树。就相当于这棵树的第一层是 1 个节点，第二层是 2 个节点，第三层是 4 个节点，第五层是 8 个节点，以此类推。 </p>
-<p><img src="/img/full_binary_tree.png" alt="满二叉树"></p>
-<p><strong>3.斜树</strong><br>所有的节点都只有左子树的二叉树叫左斜树，所有的节点都只有右子树的二叉树叫右子树，它们都叫斜树。实际上这棵二叉树看起来像一撇或者一捺。<br><img src="/img/oblique_tree.png" alt="左斜树"></p>
-<p><strong>4.二叉搜索树（也叫二叉查找树或者二叉排序树）</strong><br>若它的左子树不为空，则左子树上所有节点的值均小于它的根节点的值；若它的右子树不为空，则右子树上所有节点的值均大于它的根节点的值；它的左、右子树也分别是二叉排序树。说明它是一颗有顺序的树，左子树节点的值小于根节点的值，右子树节点的值大于根节点的值。<br><img src="/img/binary_search_tree.png" alt="二叉搜索树"></p>
-<p><strong>5.平衡二叉树</strong><br>它的左右两个子树的高度差的绝对值不超过 1，并且左右两个子树都是一棵平衡二叉树。<br><img src="/img/binary_search_tree.png" alt="平衡二叉树"></p>
-<h3 id="二叉树的存储"><a href="#二叉树的存储" class="headerlink" title="二叉树的存储"></a>二叉树的存储</h3><p>以下面的二叉树为例<br><img src="/img/full_binary_tree.png" alt="二叉树"></p>
-<p><strong>1.顺序存储</strong><br>二叉树的顺序存储结构就是用一维数组存储二叉树中的节点，并且节点的存储位置，也就是数组的下标要能体现节点之间的逻辑关系。如果某个节点的索引为 i，（假设根节点的索引为 0）则在它左子节点的索引会是 2i+1，以及右子节点会是 2i+2。<br><img src="/img/array_tree.png" alt="顺序存储二叉树"></p>
-<p><strong>2.链式存储</strong><br>因为在二叉树中，一个父节点最多只允许 2 个子节点，所以我们只需要一个存储数据和左右子节点的指针，这样的结构就是链式存储，也叫二叉链表。  </p>
-<p><img src="/img/linked_tree.png" alt="链式存储二叉树"></p>
-<h3 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h3><p>以下面的二叉树为例<br><img src="/img/binary_search_tree.png" alt="二叉树"></p>
-<p><strong>1.前序遍历</strong><br>先访问根节点，然后前序遍历左子树，再前序遍历右子树。根据上面的二叉树前序遍历结果是 ECBADGFH。  </p>
-<p><strong>2.中序遍历</strong><br>从根节点开始（注意并不是先访问根节点），中序遍历根节点的左子树，然后是访问根节点，最后中序遍历右子树。根据上面的二叉树中序遍历结果是 ABCDEFGH。  </p>
-<p><strong>3.后序遍历</strong><br>从左到右先叶子节点后父节点的方式遍历访问左右子树，最后是访问根节点。根据上面的二叉树后序遍历结果是 ABDCFHGE。  </p>
-<p><strong>4.层序遍历</strong><br>从树的第一层，也就是根节点开始访问，从上而下逐层遍历，在同一层中，按从左到右的顺序对节点逐个访问。根据上面的二叉树层序遍历结果是 ECGBDFHA。  </p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>二叉树有多种形态，多种类型，多种存储方式和多种遍历方法。完全二叉树和满二叉树还是难以理解的，满二叉树一定是一棵完全二叉树，但完全二叉树不一定是满二叉树，主要是「满」和「完全」的区别分清楚。<br>由于线性查找需要遍历全部数据，在数据量大的时候效率就非常低下，到底有多低，在数据库有几百万几千万以上数据量写过查询语句的就知道有索引和没索引的区别。那为什么有索引的就那么快呢？当然数据库的索引不是用二叉树来实现的，想想如果使用二叉树来实现，那这个索引树得多高啊。而是采用更适合数据库查找的 B+树 来实现的，不过 B+树 也是由二叉树进化而来的。<br>二叉搜索树由于它是有序的，左子树节点的值小于根节点的值，右子树节点的值大于根节点的值，那么就可以利用二分查找来查找对应的值，也叫折半查找。但二叉搜索树最坏的情况下可能变异成斜树，斜树的查找时间复杂度就是 O(n)，就跟线性查询没区别了。那么平衡二叉树就是来解决这个问题的，因为它限定了左右两个子树的高度差的绝对值不超过 1，当插入和删除时，不满足这种情况时，通过左旋和右旋来保持这个规则。所以，它是时间复杂度是 O(log(n));</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/24/binary-tree/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -702,11 +702,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">B树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,11 +738,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
