@@ -144,6 +144,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-queue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/15/queue/">队列</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/15/queue/" class="archive-article-date">
+  	<time datetime="2019-03-15T14:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是队列？"><a href="#什么是队列？" class="headerlink" title="什么是队列？"></a>什么是队列？</h3><p>队列（queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。是一种先进先出（First In First Out）的线性表，简称 FIFO。允许插入的一端称为队尾，允许删除的一端称为队头。<br>队列有 2 种方式来存储：数组 和 链表。<br>数组我们都知道它是预先分配好长度的，因此会出现溢出现象，而且删除元素需要向队头移动一个位置，时间复杂度就变成 O(n)。因此，需要一种新的方式来解决这个问题，那就是循环队列。<br>队列的这种头尾相接的顺序存储结构称为循环队列。为了避免队列删除元素需要移动整个队列，使得队头和队尾可以在数组中循环变化。解决了移动元素的时间损耗，使得本来删除是 O(n) 的时间复杂度变成了 O(1)。</p>
+<h5 id="1-数组式队列"><a href="#1-数组式队列" class="headerlink" title="1. 数组式队列"></a>1. 数组式队列</h5><p>申请一片连续的存储空间，并设置两个指针进行管理。一个是队头指针front，它指向队头元素；另一个是队尾指针rear，它指向下一个入队元素的存储位置。一般是实现循环队列，队头和队尾会随着入队和出队的变化而变化的。例如 JDK 中 ArrayBlockingQueue 就是基于循环队列来实现的。不过它会有溢出现象，一般解决方案是如果队列满了，设置入队等待时间或者返回入队不成功。一般在确定元素个数情况下使用，如果不确定元素个数，建议使用链表式队列。<br><img src="/img/array_queue.png" alt="数组式队列"></p>
+<h5 id="2-链表式队列"><a href="#2-链表式队列" class="headerlink" title="2. 链表式队列"></a>2. 链表式队列</h5><p>它就是基于链表存储结构的队列，可以动态的创建和删除元素，不用关心队列的长度，因此不用担心溢出现象。新元素插入到队尾，读取的时候从队头开始，每次读取一个元素，释放一个元素，这就是所谓的动态创建和动态删除。<br><img src="/img/linked_queue.png" alt="链表式队列"></p>
+<h3 id="队列有什么用？"><a href="#队列有什么用？" class="headerlink" title="队列有什么用？"></a>队列有什么用？</h3><h5 id="1-保证输入顺序"><a href="#1-保证输入顺序" class="headerlink" title="1. 保证输入顺序"></a>1. 保证输入顺序</h5><p>比如吃饭排队，先找服务员要个号码，上面会写着前面还有 n 桌，这就相当于服务员把你加入了她们店的队列中，当有空位置时，就直接叫你入座吃饭，当没有空位子时，要么排队等候，要么换一家吃饭。这就是队列的用处。</p>
+<h5 id="2-解耦"><a href="#2-解耦" class="headerlink" title="2. 解耦"></a>2. 解耦</h5><p>在系统设计中，好的设计是低耦合，高内聚。意思就是一个系统只做一件事情，把一件事情做好。既方便代码维护，又方便扩展。比如又一个下单的场景，用户下单之后需要加积分，需要给各种优惠券等等。我们就可以利用队列来解偶，但真实使用一般是用开源的消息队列，如Rocket MQ,Kafka 等等。</p>
+<h5 id="3-提升系统吞吐量"><a href="#3-提升系统吞吐量" class="headerlink" title="3. 提升系统吞吐量"></a>3. 提升系统吞吐量</h5><p>就拿上面订单来说，本来以前是用户下单，给用户添加积分，给用户发优惠券是一起处理成功后返回的。现在只是处理下单，然后告诉某某系统，给某某用户加积分，给某某用户发优惠券了，它自己并不真正做这个动作，所以会提升系统响应，当然需要保证最终一致性。一般也是用开源的消息队列来完成的。</p>
+<h3 id="队列怎么实现？"><a href="#队列怎么实现？" class="headerlink" title="队列怎么实现？"></a>队列怎么实现？</h3><p>这里是基于数组的循环队列实现，也就是 JDK 的 ArrayBlockingQueue。有兴趣的朋友也可以看看基于链表的 LinkedBlockingQueue 的实现。<br>存储结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayBlockingQueue</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//用数组来存储元素</span></span><br><span class="line">    Object[] items;</span><br><span class="line">    <span class="comment">//数组里出队的下标</span></span><br><span class="line">    <span class="keyword">int</span> takeIndex;</span><br><span class="line">    <span class="comment">//入队的下标</span></span><br><span class="line">    <span class="keyword">int</span> putIndex;</span><br><span class="line">    <span class="comment">//元素个数</span></span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>入队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//加入数组满了，则返回入队失败</span></span><br><span class="line">    <span class="keyword">if</span> (count == items.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//获得当前数组</span></span><br><span class="line">        Object[] items = <span class="keyword">this</span>.items;</span><br><span class="line">        <span class="comment">//把元素 e 加入到队尾</span></span><br><span class="line">        items[putIndex] = e;</span><br><span class="line">        <span class="comment">//判断是不是队尾是不是倒数第二个元素</span></span><br><span class="line">        <span class="comment">//是的话把下标为 0 置为队尾，说明一圈了</span></span><br><span class="line">        <span class="keyword">if</span> (++putIndex == items.length) &#123;</span><br><span class="line">            putIndex = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//总数加一</span></span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>出队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">poll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//空队列则返回 null</span></span><br><span class="line">    <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//获取当前数组</span></span><br><span class="line">        Object[] items = <span class="keyword">this</span>.items;</span><br><span class="line">        <span class="comment">//获取队头元素</span></span><br><span class="line">        E item = (E) items[takeIndex];</span><br><span class="line">        <span class="comment">//置空</span></span><br><span class="line">        items[takeIndex] = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//重置队头为下标 0；</span></span><br><span class="line">        <span class="keyword">if</span> (++takeIndex == items.length) &#123;</span><br><span class="line">            takeIndex = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//总数减一</span></span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>队列的作用还是很大的，比如保证输入顺序，解偶，提升系统吞吐量等等，都基于队列的原理来实现的。队列有数组式队列和链表式队列。数组式队列就是基于数组存储结构来实现的，数组的优缺点它全有。链表式队列就是基于链表存储结构来实现的，它也包含来链表的优缺点。所以在使用时可以根据业务需求来选择最优的方案。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/15/queue/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-stack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -496,7 +583,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,11 +591,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,11 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,11 +623,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">

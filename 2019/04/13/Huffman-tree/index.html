@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>Tag: 平衡二叉搜索树 | 清尘闲聊</title>
+  <title>霍夫曼树 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
-<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="清尘闲聊">
-<meta property="og:url" content="https://iqchen.github.io/tags/平衡二叉搜索树/index.html">
+  <meta name="description" content="霍夫曼树霍夫曼树 是由美国计算机科学家大卫·霍夫曼（David Albert Huffman）（又译为哈夫曼、赫夫曼）在1952年发明霍夫曼编码所用到的特殊二叉树。为了纪念他的成就，于是就叫 霍夫曼树，他的编码方法称为 霍夫曼编码。 从二叉树中一个节点到另一个节点之间的分支构成两个节点之间的路径，路径上的分支数目称做路径长度。树的路径长度就是从树根到每一节点的路径长度之和。 在带有权重的节点中，节">
+<meta name="keywords" content="数据结构,霍夫曼树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="霍夫曼树">
+<meta property="og:url" content="https://iqchen.github.io/2019/04/13/Huffman-tree/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta property="og:description" content="霍夫曼树霍夫曼树 是由美国计算机科学家大卫·霍夫曼（David Albert Huffman）（又译为哈夫曼、赫夫曼）在1952年发明霍夫曼编码所用到的特殊二叉树。为了纪念他的成就，于是就叫 霍夫曼树，他的编码方法称为 霍夫曼编码。 从二叉树中一个节点到另一个节点之间的分支构成两个节点之间的路径，路径上的分支数目称做路径长度。树的路径长度就是从树根到每一节点的路径长度之和。 在带有权重的节点中，节">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://iqchen.github.io/img/huffman-1.png">
+<meta property="og:image" content="https://iqchen.github.io/img/huffman-2.png">
+<meta property="og:updated_time" content="2019-04-13T06:36:18.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清尘闲聊">
-<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="twitter:title" content="霍夫曼树">
+<meta name="twitter:description" content="霍夫曼树霍夫曼树 是由美国计算机科学家大卫·霍夫曼（David Albert Huffman）（又译为哈夫曼、赫夫曼）在1952年发明霍夫曼编码所用到的特殊二叉树。为了纪念他的成就，于是就叫 霍夫曼树，他的编码方法称为 霍夫曼编码。 从二叉树中一个节点到另一个节点之间的分支构成两个节点之间的路径，路径上的分支数目称做路径长度。树的路径长度就是从树根到每一节点的路径长度之和。 在带有权重的节点中，节">
+<meta name="twitter:image" content="https://iqchen.github.io/img/huffman-1.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -142,36 +146,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Huffman-tree" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/30/balancing-BSTree/" class="archive-article-date">
-  	<time datetime="2019-03-30T06:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/30/balancing-BSTree/">平衡二叉搜索树</a>
+    <h1 class="article-title" itemprop="name">
+      霍夫曼树
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/04/13/Huffman-tree/" class="archive-article-date">
+  	<time datetime="2019-04-13T02:47:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="霍夫曼树"><a href="#霍夫曼树" class="headerlink" title="霍夫曼树"></a>霍夫曼树</h3><p><strong>霍夫曼树</strong> 是由美国计算机科学家大卫·霍夫曼（David Albert Huffman）（又译为哈夫曼、赫夫曼）在1952年发明霍夫曼编码所用到的特殊二叉树。为了纪念他的成就，于是就叫 霍夫曼树，他的编码方法称为 霍夫曼编码。</p>
+<p>从二叉树中一个节点到另一个节点之间的分支构成两个节点之间的路径，路径上的分支数目称做路径长度。树的路径长度就是从树根到每一节点的路径长度之和。</p>
+<p>在带有权重的节点中，节点带权的路径长度是从该节点到树根之间的路径长度与节点上权的乘积。树的带权路径长度是树中所有叶子节点的带权路径长度之和。其中带权路径长度最小的二叉树称做 <strong>霍夫曼树</strong>，也称为 <strong>最优二叉树</strong>。</p>
+<h3 id="构建霍夫曼树"><a href="#构建霍夫曼树" class="headerlink" title="构建霍夫曼树"></a>构建霍夫曼树</h3><p>1.先把有权值的叶子节点按照从小到大的顺序排列成一个有序序列。<br>2.取前两个最小权值的节点作为一个新节点（<strong>T1</strong>）的两个子节点，注意相对较小的是左节点，稍大点的是右节点。<br>3.把 <strong>T1</strong> 2个子节点的和，加入到剩余有序序列中，按第二步的规则构建新的节点。<br>4.重复第三步，直到连上所有节点为止。这棵树便是 霍夫曼树。  </p>
+<h3 id="霍夫曼编码"><a href="#霍夫曼编码" class="headerlink" title="霍夫曼编码"></a>霍夫曼编码</h3><p>按照需要编码的字符集的权值来构造一棵 霍夫曼树。规定霍夫曼树的左分支代表 0，右分支代表 1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该结点对应字符的编码，这就是 赫夫曼编码。</p>
+<p>比如现在有一段内容“ACBDEDABDA”需要传输。假设一个字母占 3 位，A=000,B=001,C=010,D=011,E=100。那么这段内容的编码是 000010001011100011000001011000（占 30 位）。</p>
+<p>假设 ABCDE 的权重分别为 32,20,10,30,8。那么构建好霍夫曼树后 A=11,B=01,C=001,D=10,E=000。霍夫曼树编码内容是 1100101100001011011011（占 22 位）。</p>
+<p><strong>构建好的霍夫曼树</strong><br><img src="/img/huffman-1.png" alt><br><strong>根据霍夫曼树转换的编码</strong><br><img src="/img/huffman-2.png" alt><br>根据上面例子，用霍夫曼编码，节省了 8 位。说明数据被压缩了，节约了大约 27% 的存储或传输成本。随着字符的增加和多字符权重的不同，这种压缩会更加显出其优势。</p>
+<p>编码中非0即1，长短不等的话其实是很容易混淆的，所以若要设计长短不等的编码，则必须是任一字符的编码都不是另一个字符的编码的前缀，这种编码称做前缀编码。</p>
+<p>在解码时，还是要用到霍夫曼树，即发送方和接收方必须要约定好同样的霍夫曼编码规则。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>霍夫曼树是根据权重来构建的二叉树，我们也称为 最优二叉树。</p>
+<p>它的主要作用是用来编码，也可以用来压缩数据。也可用来编码之后传送给第三方，提升安全性和节省网络资源，然后在根据双方约定好的 霍夫曼树 进行解码，可以做到无损编码和无错解码。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,25 +195,112 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">平衡二叉搜索树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">霍夫曼树</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/13/Huffman-tree/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/04/10/B-Tree-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">B+树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +323,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
