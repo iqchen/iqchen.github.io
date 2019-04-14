@@ -144,6 +144,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-balancing-BSTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/30/balancing-BSTree/">平衡二叉搜索树</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/30/balancing-BSTree/" class="archive-article-date">
+  	<time datetime="2019-03-30T06:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>二叉搜索树在一般情况下它的查找时间复杂度是 O(log n)。但在一些特殊的情况下，它会退化为斜树变成线性结构，导致查询效率大大降低，根本发挥不出折半查找的优势。因此，就需要一种平衡的二叉搜索树来达到我们期望查询时间复杂度为 O(log n) 的数据结构，那就是<strong>平衡二叉搜索树</strong>。</p>
+<h3 id="平衡二叉搜索树"><a href="#平衡二叉搜索树" class="headerlink" title="平衡二叉搜索树"></a>平衡二叉搜索树</h3><p>平衡二叉搜索树又叫 AVL树，它具有以下性质：<br>1.任一节点对应的两棵子树的最大高度差为 1。<br>2.两棵子树都是平衡二叉树。</p>
+<p>通过保证上面 2 条规则，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是O(log n)。因此，它是一颗相对稳定的树。</p>
+<p>为了保证左右 2 棵子树的最大高度差为 1，我们需要在插入和删除时，对树进行旋转操作，以保证树的平衡性。有 2 种基本的操作，那就是<strong>左旋</strong>和<strong>右旋</strong>。<br><img src="/img/rotation_bbst.png" alt></p>
+<p>在进行左右旋转时，会出现四种可能性：<br><strong>1.左左形态</strong><br>当 x 是 y 的左节点，y 又是 z 的左节点时，这个时候只需要把 y 节点向右旋转即可。如下图：<br><img src="/img/l_l_bbst.png" alt><br><strong>2.左右形态</strong><br>当 x 是 y 的右节点，而 y 又是 z 的左节点时，需要先把 y 左旋，变成 <strong>左左形态</strong>，然后再把 z 右旋。如下图：<br><img src="/img/l_r_bbst.png" alt><br><strong>3.右右形态</strong><br>当 x 是 y 的右节点， y 又是 z 的右节点时，这时候只需要把 y 节点向左旋转即可。如下图：<br><img src="/img/r_r_bbst.png" alt><br><strong>4.右左形态</strong><br>当 x 是 y 的左节点，而 y 又是 z 的右节点时，需要先把 y 右旋，变成 <strong>右右形态</strong>，然后再把 z 左旋。如下图：<br><img src="/img/r_l_bbst.png" alt></p>
+<h3 id="平衡二叉树的实现"><a href="#平衡二叉树的实现" class="headerlink" title="平衡二叉树的实现"></a>平衡二叉树的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AVLTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取左右节点的高度差</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">(Node n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (getHeight(n.left) - getHeight(n.right));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取节点的高度</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(Node n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n.height;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//右旋</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">rightRotate</span><span class="params">(Node y)</span> </span>&#123;</span><br><span class="line">        Node x = y.left;</span><br><span class="line">        Node T2 = x.right;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 旋转</span></span><br><span class="line">        x.right = y;</span><br><span class="line">        y.left = T2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新节点的高度</span></span><br><span class="line">        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + <span class="number">1</span>;</span><br><span class="line">        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//左旋</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">leftRotate</span><span class="params">(Node x)</span> </span>&#123;</span><br><span class="line">        Node y = x.right;</span><br><span class="line">        Node T2 = y.left;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 旋转</span></span><br><span class="line">        y.left = x;</span><br><span class="line">        x.right = T2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新节点的高度</span></span><br><span class="line">        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + <span class="number">1</span>;</span><br><span class="line">        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">insert</span><span class="params">(Node node, <span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">new</span> Node(data));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (node.data &gt; data) &#123;</span><br><span class="line">            node.left = insert(node.left, data);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            node.right = insert(node.right, data);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新节点的高度</span></span><br><span class="line">        node.height = Math.max(getHeight(node.left), getHeight(node.right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> balDiff = getBalance(node);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 右旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &gt; <span class="number">1</span> &amp;&amp; data &lt; node.left.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> rightRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 左旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &lt; -<span class="number">1</span> &amp;&amp; data &gt; node.right.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> leftRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先左旋在右旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &gt; <span class="number">1</span> &amp;&amp; data &gt; node.left.data) &#123;</span><br><span class="line">            node.left = leftRotate(node.left);</span><br><span class="line">            <span class="keyword">return</span> rightRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先右旋在左旋</span></span><br><span class="line">        <span class="keyword">if</span> (balDiff &lt; -<span class="number">1</span> &amp;&amp; data &lt; node.right.data) &#123;</span><br><span class="line">            node.right = rightRotate(node.right);</span><br><span class="line">            <span class="keyword">return</span> leftRotate(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node left;</span><br><span class="line">    Node right;</span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        height = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>二叉搜索树的不稳定性，就有可能退化为近似链或链，查询时间复杂度就退化为 O(n)。当 n 很大的时候，性能就大大降低，达不到折半的效果。因此，我们需要一个平衡的二叉搜索树。</p>
+<p>平衡二叉树是通过对树节点的左旋和右旋来保证树的平衡性，也就是保证左右子树的高度差不超过 1。</p>
+<p>在对树进行左旋和右旋时，有四种形态分别是：<strong>左左</strong>，<strong>左右</strong>，<strong>右右</strong>，<strong>右左</strong>。</p>
+<p>因此，平衡二叉树的查找、插入和删除在平均和最坏情况下的时间复杂度都是O(log n)。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">平衡二叉搜索树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/30/balancing-BSTree/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-binary-search-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -492,90 +579,6 @@
 
 
   
-    <article id="post-deque" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/17/deque/">双端队列</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/17/deque/" class="archive-article-date">
-  	<time datetime="2019-03-17T07:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是双端队列？"><a href="#什么是双端队列？" class="headerlink" title="什么是双端队列？"></a>什么是双端队列？</h3><p>双端队列（deque）是指允许两端都可以进行入队和出队操作的队列，deque 是 “double ended queue” 的简称。那就说明元素可以从队头出队和入队，也可以从队尾出队和入队。<br><img src="/img/deque.png" alt="双端队列"></p>
-<h3 id="双端队列怎么实现？"><a href="#双端队列怎么实现？" class="headerlink" title="双端队列怎么实现？"></a>双端队列怎么实现？</h3><p>双端队列的存储结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedBlockingDeque</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//队头</span></span><br><span class="line">    Node&lt;E&gt; first;</span><br><span class="line">    <span class="comment">//队尾</span></span><br><span class="line">    Node&lt;E&gt; last;</span><br><span class="line">    <span class="comment">//元素个数</span></span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">        <span class="comment">//存储元素</span></span><br><span class="line">        E item;</span><br><span class="line">        <span class="comment">//上一个元素</span></span><br><span class="line">        Node&lt;E&gt; prev;</span><br><span class="line">        <span class="comment">//下一个元素</span></span><br><span class="line">        Node&lt;E&gt; next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从队头入队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offerFirst</span><span class="params">(Node&lt;E&gt; node)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//头节点临时变量</span></span><br><span class="line">    Node&lt;E&gt; f = first;</span><br><span class="line">    <span class="comment">//把当前的下一个节点指向头节点</span></span><br><span class="line">    node.next = f;</span><br><span class="line">    <span class="comment">//更新当前节点为头节点</span></span><br><span class="line">    first = node;</span><br><span class="line">    <span class="comment">//假如尾节点为空，则把当前节点设置为尾节点</span></span><br><span class="line">    <span class="keyword">if</span> (last == <span class="keyword">null</span>)</span><br><span class="line">        last = node;</span><br><span class="line">    <span class="comment">//就把以前的头节点指向当前节点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        f.prev = node;</span><br><span class="line">    <span class="comment">//总数加一</span></span><br><span class="line">    ++count;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从队头出队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">pollFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     Node&lt;E&gt; f = first;</span><br><span class="line">    <span class="comment">//头节点的下一个节点</span></span><br><span class="line">    Node&lt;E&gt; n = f.next;</span><br><span class="line">    <span class="comment">//获取头节点元素</span></span><br><span class="line">    E item = f.item;</span><br><span class="line">    <span class="comment">//置空</span></span><br><span class="line">    f.item = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//孤立头节点，不指向任何节点</span></span><br><span class="line">    f.next = f; <span class="comment">// help GC</span></span><br><span class="line">    <span class="comment">//重置头节点</span></span><br><span class="line">    first = n;</span><br><span class="line">    <span class="comment">//说明是最后一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="keyword">null</span>)</span><br><span class="line">        last = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//否则把头节点的上一个节点置空</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        n.prev = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//总数减一</span></span><br><span class="line">    --count;</span><br><span class="line">    <span class="keyword">return</span> item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从队尾入队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offerLast</span><span class="params">(Node&lt;E&gt; node)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//尾节点临时变量</span></span><br><span class="line">    Node&lt;E&gt; l = last;</span><br><span class="line">    <span class="keyword">if</span> (l == <span class="keyword">null</span>) </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//把当前的上一个节点指向尾节点</span></span><br><span class="line">    node.prev = l;</span><br><span class="line">    <span class="comment">//更新当前节点为尾节点</span></span><br><span class="line">    last = node;</span><br><span class="line">    <span class="comment">//假如头节点为空，则把头节点置为当前节点</span></span><br><span class="line">    <span class="keyword">if</span> (first == <span class="keyword">null</span>)</span><br><span class="line">        first = node;</span><br><span class="line">    <span class="comment">//否则把临时的尾节点的下一个节点指向当前节点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        l.next = node;</span><br><span class="line">    <span class="comment">//总数加一</span></span><br><span class="line">    ++count;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从队尾出队<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">pollLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Node&lt;E&gt; l = last;</span><br><span class="line">    <span class="keyword">if</span> (l == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//最后节点的上一个节点</span></span><br><span class="line">    Node&lt;E&gt; p = l.prev;</span><br><span class="line">    <span class="comment">//获取元素</span></span><br><span class="line">    E item = l.item;</span><br><span class="line">    <span class="comment">//置空</span></span><br><span class="line">    l.item = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//孤立尾节点</span></span><br><span class="line">    l.prev = l; <span class="comment">// help GC</span></span><br><span class="line">    <span class="comment">//更新尾节点</span></span><br><span class="line">    last = p;</span><br><span class="line">    <span class="comment">//假如是最后一个元素，置空头节点</span></span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span>)</span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//否则置空下一个节点指向</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        p.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//总数减一</span></span><br><span class="line">    --count;</span><br><span class="line">    <span class="keyword">return</span> item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>双端队列其实和队列差不多的，只是更加灵活了，队头和队尾均可进行入队和出队操作。这里是基于链表的双端队列实现，具体详情可查看 JDK 的 LinkedBlockingDeque 的实现，它还考虑了线程安全相关的东西，这里只是简单的一个实现，了解双端队列的结构和运作方式。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/17/deque/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -673,15 +676,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">B树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -693,11 +692,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,7 +700,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,6 +721,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
