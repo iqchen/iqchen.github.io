@@ -6,29 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>B树 | 清尘闲聊</title>
+  <title>Tag: 堆 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
-<meta name="keywords" content="数据结构,B树">
-<meta property="og:type" content="article">
-<meta property="og:title" content="B树">
-<meta property="og:url" content="https://iqchen.github.io/2019/04/01/B-tree/index.html">
+  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="清尘闲聊">
+<meta property="og:url" content="https://iqchen.github.io/tags/堆/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
+<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-1.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-2.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-3.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-1.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-2.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-3.png">
-<meta property="og:updated_time" content="2019-04-08T16:21:15.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="B树">
-<meta name="twitter:description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
-<meta name="twitter:image" content="https://iqchen.github.io/img/b-tree.png">
+<meta name="twitter:title" content="清尘闲聊">
+<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -152,59 +142,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-B-tree" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      B树
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/04/19/heap/" class="archive-article-date">
+  	<time datetime="2019-04-19T08:27:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-19</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/04/19/heap/">堆</a>
     </h1>
   
 
-        
-        <a href="/2019/04/01/B-tree/" class="archive-article-date">
-  	<time datetime="2019-04-01T00:04:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是-B树"><a href="#什么是-B树" class="headerlink" title="什么是 B树"></a>什么是 B树</h3><p>B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 <strong>数据库</strong> 和 <strong>文件系统</strong> 的实现上。</p>
-<p>这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。</p>
-<p><strong>一棵 M阶 的 B树 要满足以下条件</strong><br>1.每一个节点最多有 M 个子节点。<br>2.除了根节点和叶子节点外，其他每个节点最少有 M/2 个子节点。<br>3.根节点不是叶子节点，它至少有 2 个子节点。<br>4.有 k 个子节点的非叶子节点拥有 k−1 个键。<br>5.所有的叶子节点必须在同一层。<br><img src="/img/b-tree.png" alt="B树"></p>
-<h3 id="B树的实现"><a href="#B树的实现" class="headerlink" title="B树的实现"></a>B树的实现</h3><p><strong>1.搜索</strong><br>B树的搜索和二叉搜索树类似。从根节点开始，从上到下递归的遍历树。在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键确定。</p>
-<p><strong>搜索下图中的数字 49</strong><br>a.用 49 和根节点元素比较，由于 49 &lt; 78，所以继续遍历左子树。<br>b.由于 40&lt;49&lt;56，所以遍历节点 40 的右子树。<br>c.49&gt;45，往右移。<br>d.找到 49，返回。<br><img src="/img/b-tree.png" alt></p>
-<p><strong>2.插入</strong></p>
-<p>从根节点开始，搜索这棵树找到新元素应该被添加到的叶子节点。如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序。否则的话，需要将它平均地分裂成两个节点，从叶子节点的元素和新的元素中选择出中位数，小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值。</p>
-<p>分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。</p>
-<p><strong>插入元素 8 到下图的 5阶 B树中</strong><br><img src="/img/b-tree-insert-1.png" alt></p>
-<p>由于 8 大于 5，插入到 5 的后面。<br><img src="/img/b-tree-insert-2.png" alt></p>
-<p>由于一棵 B树最多包含 k-1 个键，然而这个节点包含了 5 个键，所以需要按中位拆分，8 变成父节点。<br><img src="/img/b-tree-insert-3.png" alt></p>
-<p><strong>3.删除</strong></p>
-<p>假如删除的是叶子节点，将它删除后，重新进行平衡。</p>
-<p>假如删除的是中间节点，每一个元素都作为分隔两颗子树的分隔值，因此我们需要重新划分。选择一个新的分隔符（左子树中最大的元素或右子树中最小的元素），将它从叶子节点中移除，替换掉被删除的元素作为新的分隔值。如果删除的这个叶子节点拥有的元素数量小于最低要求，那么从这一叶子节点开始重新进行平衡。</p>
-<p><strong>删除下面 5阶B树 为 53 的节点</strong><br><img src="/img/b-tree-del-1.png" alt></p>
-<p>找到 53 在 49 的右孩子里，然后删掉它。<br><img src="/img/b-tree-del-2.png" alt></p>
-<p>由于 B树 的中间节点个数不得低于 m/2，现在只剩下一个节点，已经违反了规则，就需要按下面的重新平衡算法去满足它的特性，最后这棵树变成下面这样的。<br><img src="/img/b-tree-del-3.png" alt></p>
-<p><strong>重新平衡算法</strong></p>
-<p>如果缺少元素节点的右兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为右兄弟的第一个元素。</p>
-<p>如果缺少元素节点的左兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为左兄弟的第一个元素。</p>
-<p>如果它的两个直接兄弟节点都只有最小数量的元素，那么将它与一个直接兄弟节点以及父节点中它们的分隔值合并，将分隔值复制到左边的节点，将右边节点中所有的元素移动到左边节点，将父节点中的分隔值和空的右子树移除,如果父节点是根节点并且没有元素了，那么释放它并且让合并之后的节点成为新的根节点，否则，如果父节点的元素数量小于最小值，重新平衡父节点。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B树 实际上是二叉搜索树的升级版，由于二叉树只有 2 个子节点，当数据量大的时候树会变得非常高，也会对性能有一定影响。硬盘的读取是按块来读取的，一般是 4k。因此我们可以根据这一特性，把 2 个节点变为 M 个节点，每次读取减少定位记录时所经历的中间过程，从而加快存取速度。</p>
-<p>B树 在插入和删除时，都有可能导致破坏 B树 的规则，因此当破坏规则时，需要对树进行重新平衡，已到达查找数据、顺序访问、插入数据及删除时的时间复杂度在 O(log n)。</p>
-<p>B树 的变体 B+树，键值和记录存储在叶子节点，一个叶子节点可以包含一个指针，指向另一个叶子节点以加速顺序存取。</p>
-<p>B树 的变体 B*树，分支出更多的内部邻居节点以保持内部节点更密集地填充。此变体要求非根节点至少 2/3 填充，而不是 1/2。为了维持这样的结构，当一个节点填满之后将不会再立即分割节点，而是将它的键值与下一个节点共享。当两个节点都填满之后，分割成 3 个节点。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -214,121 +181,25 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">B树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">堆</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/01/B-tree/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/04/10/B-Tree-0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          B+树
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/03/31/red-black-tree/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">红黑树</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -351,9 +222,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

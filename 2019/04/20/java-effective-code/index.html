@@ -6,29 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>B树 | 清尘闲聊</title>
+  <title>Java 优秀代码必知必会 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
-<meta name="keywords" content="数据结构,B树">
+  <meta name="description" content="1.使用静态工厂方法替代构造方法静态工厂方法的优点：不像构造方法，它是有名字的。它不需要每次调用时都创建一个新对象。它可以返回 其返回类型的任何子类型的对象。返回对象的类可以根据输入参数的不同而不同。在编写包含该方法的类时，返回的对象的类不需要存在。 2.当构造方法参数过多时请使用 builder 模式当一个对象中，属性过多时，使用构造方法时，参数过多导致难以维护，并且很难读懂每个参数的含义是什么">
+<meta name="keywords" content="java,优秀代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="B树">
-<meta property="og:url" content="https://iqchen.github.io/2019/04/01/B-tree/index.html">
+<meta property="og:title" content="Java 优秀代码必知必会">
+<meta property="og:url" content="https://iqchen.github.io/2019/04/20/java-effective-code/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
+<meta property="og:description" content="1.使用静态工厂方法替代构造方法静态工厂方法的优点：不像构造方法，它是有名字的。它不需要每次调用时都创建一个新对象。它可以返回 其返回类型的任何子类型的对象。返回对象的类可以根据输入参数的不同而不同。在编写包含该方法的类时，返回的对象的类不需要存在。 2.当构造方法参数过多时请使用 builder 模式当一个对象中，属性过多时，使用构造方法时，参数过多导致难以维护，并且很难读懂每个参数的含义是什么">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-1.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-2.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-3.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-1.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-2.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-3.png">
-<meta property="og:updated_time" content="2019-04-08T16:21:15.126Z">
+<meta property="og:updated_time" content="2019-04-20T08:24:59.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="B树">
-<meta name="twitter:description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
-<meta name="twitter:image" content="https://iqchen.github.io/img/b-tree.png">
+<meta name="twitter:title" content="Java 优秀代码必知必会">
+<meta name="twitter:description" content="1.使用静态工厂方法替代构造方法静态工厂方法的优点：不像构造方法，它是有名字的。它不需要每次调用时都创建一个新对象。它可以返回 其返回类型的任何子类型的对象。返回对象的类可以根据输入参数的不同而不同。在编写包含该方法的类时，返回的对象的类不需要存在。 2.当构造方法参数过多时请使用 builder 模式当一个对象中，属性过多时，使用构造方法时，参数过多导致难以维护，并且很难读懂每个参数的含义是什么">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -152,51 +143,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-B-tree" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-effective-code" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      B树
+      Java 优秀代码必知必会
     </h1>
   
 
         
-        <a href="/2019/04/01/B-tree/" class="archive-article-date">
-  	<time datetime="2019-04-01T00:04:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
+        <a href="/2019/04/20/java-effective-code/" class="archive-article-date">
+  	<time datetime="2019-04-20T08:19:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是-B树"><a href="#什么是-B树" class="headerlink" title="什么是 B树"></a>什么是 B树</h3><p>B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 <strong>数据库</strong> 和 <strong>文件系统</strong> 的实现上。</p>
-<p>这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。</p>
-<p><strong>一棵 M阶 的 B树 要满足以下条件</strong><br>1.每一个节点最多有 M 个子节点。<br>2.除了根节点和叶子节点外，其他每个节点最少有 M/2 个子节点。<br>3.根节点不是叶子节点，它至少有 2 个子节点。<br>4.有 k 个子节点的非叶子节点拥有 k−1 个键。<br>5.所有的叶子节点必须在同一层。<br><img src="/img/b-tree.png" alt="B树"></p>
-<h3 id="B树的实现"><a href="#B树的实现" class="headerlink" title="B树的实现"></a>B树的实现</h3><p><strong>1.搜索</strong><br>B树的搜索和二叉搜索树类似。从根节点开始，从上到下递归的遍历树。在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键确定。</p>
-<p><strong>搜索下图中的数字 49</strong><br>a.用 49 和根节点元素比较，由于 49 &lt; 78，所以继续遍历左子树。<br>b.由于 40&lt;49&lt;56，所以遍历节点 40 的右子树。<br>c.49&gt;45，往右移。<br>d.找到 49，返回。<br><img src="/img/b-tree.png" alt></p>
-<p><strong>2.插入</strong></p>
-<p>从根节点开始，搜索这棵树找到新元素应该被添加到的叶子节点。如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序。否则的话，需要将它平均地分裂成两个节点，从叶子节点的元素和新的元素中选择出中位数，小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值。</p>
-<p>分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。</p>
-<p><strong>插入元素 8 到下图的 5阶 B树中</strong><br><img src="/img/b-tree-insert-1.png" alt></p>
-<p>由于 8 大于 5，插入到 5 的后面。<br><img src="/img/b-tree-insert-2.png" alt></p>
-<p>由于一棵 B树最多包含 k-1 个键，然而这个节点包含了 5 个键，所以需要按中位拆分，8 变成父节点。<br><img src="/img/b-tree-insert-3.png" alt></p>
-<p><strong>3.删除</strong></p>
-<p>假如删除的是叶子节点，将它删除后，重新进行平衡。</p>
-<p>假如删除的是中间节点，每一个元素都作为分隔两颗子树的分隔值，因此我们需要重新划分。选择一个新的分隔符（左子树中最大的元素或右子树中最小的元素），将它从叶子节点中移除，替换掉被删除的元素作为新的分隔值。如果删除的这个叶子节点拥有的元素数量小于最低要求，那么从这一叶子节点开始重新进行平衡。</p>
-<p><strong>删除下面 5阶B树 为 53 的节点</strong><br><img src="/img/b-tree-del-1.png" alt></p>
-<p>找到 53 在 49 的右孩子里，然后删掉它。<br><img src="/img/b-tree-del-2.png" alt></p>
-<p>由于 B树 的中间节点个数不得低于 m/2，现在只剩下一个节点，已经违反了规则，就需要按下面的重新平衡算法去满足它的特性，最后这棵树变成下面这样的。<br><img src="/img/b-tree-del-3.png" alt></p>
-<p><strong>重新平衡算法</strong></p>
-<p>如果缺少元素节点的右兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为右兄弟的第一个元素。</p>
-<p>如果缺少元素节点的左兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为左兄弟的第一个元素。</p>
-<p>如果它的两个直接兄弟节点都只有最小数量的元素，那么将它与一个直接兄弟节点以及父节点中它们的分隔值合并，将分隔值复制到左边的节点，将右边节点中所有的元素移动到左边节点，将父节点中的分隔值和空的右子树移除,如果父节点是根节点并且没有元素了，那么释放它并且让合并之后的节点成为新的根节点，否则，如果父节点的元素数量小于最小值，重新平衡父节点。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B树 实际上是二叉搜索树的升级版，由于二叉树只有 2 个子节点，当数据量大的时候树会变得非常高，也会对性能有一定影响。硬盘的读取是按块来读取的，一般是 4k。因此我们可以根据这一特性，把 2 个节点变为 M 个节点，每次读取减少定位记录时所经历的中间过程，从而加快存取速度。</p>
-<p>B树 在插入和删除时，都有可能导致破坏 B树 的规则，因此当破坏规则时，需要对树进行重新平衡，已到达查找数据、顺序访问、插入数据及删除时的时间复杂度在 O(log n)。</p>
-<p>B树 的变体 B+树，键值和记录存储在叶子节点，一个叶子节点可以包含一个指针，指向另一个叶子节点以加速顺序存取。</p>
-<p>B树 的变体 B*树，分支出更多的内部邻居节点以保持内部节点更密集地填充。此变体要求非根节点至少 2/3 填充，而不是 1/2。为了维持这样的结构，当一个节点填满之后将不会再立即分割节点，而是将它的键值与下一个节点共享。当两个节点都填满之后，分割成 3 个节点。</p>
+        <h3 id="1-使用静态工厂方法替代构造方法"><a href="#1-使用静态工厂方法替代构造方法" class="headerlink" title="1.使用静态工厂方法替代构造方法"></a>1.使用静态工厂方法替代构造方法</h3><p>静态工厂方法的优点：<br>不像构造方法，它是有名字的。<br>它不需要每次调用时都创建一个新对象。<br>它可以返回 其返回类型的任何子类型的对象。<br>返回对象的类可以根据输入参数的不同而不同。<br>在编写包含该方法的类时，返回的对象的类不需要存在。</p>
+<h3 id="2-当构造方法参数过多时请使用-builder-模式"><a href="#2-当构造方法参数过多时请使用-builder-模式" class="headerlink" title="2.当构造方法参数过多时请使用 builder 模式"></a>2.当构造方法参数过多时请使用 builder 模式</h3><p>当一个对象中，属性过多时，使用构造方法时，参数过多导致难以维护，并且很难读懂每个参数的含义是什么。</p>
+<p>使用 构造方法 来构建必传参数，而用 setter 的方式来传可选参数呢？这看似参数少，创建实例也很容易，并且所生成的代码也易于阅读。但由于 JavaBeans 模式本身有严重的缺陷，由于构造方法在多次调用中被分割，导致 JavaBeans 可能处于不一致的状态，并且还需要额外增加工作以确保线程安全。</p>
+<p>最好处理参数过多的方法是使用 builder 模式，它结合了可伸缩构造方法模式的安全性和 JavaBeans 模式的可读性，然后在调用 builder 对象的 setter 相似方法来设置每个可选参数。</p>
+<h3 id="3-使用依赖注入的方式注入资源"><a href="#3-使用依赖注入的方式注入资源" class="headerlink" title="3.使用依赖注入的方式注入资源"></a>3.使用依赖注入的方式注入资源</h3><p>依赖注入的实践将极大地增强类的灵活性、可重用性和可测试性。</p>
+<h3 id="4-不要创建不必要的对象"><a href="#4-不要创建不必要的对象" class="headerlink" title="4.不要创建不必要的对象"></a>4.不要创建不必要的对象</h3><p>如果对象是不可变的，它总是可以被重用的，比如 String 类是 final 的，不可变的，最好不要用 new String(“test”)， 因为它每次都会创建一个新的对象。在性能有严格要求的情况下，优先使用基本类型而不是装箱的基本类型，也要注意无意识的自动装箱，因为它们会影响性能。</p>
+<h3 id="5-消除过期的对象引用"><a href="#5-消除过期的对象引用" class="headerlink" title="5.消除过期的对象引用"></a>5.消除过期的对象引用</h3><p>这个也就是常说的内存泄露。当一个类自己管理内存时，应该警惕内存泄漏问题。 每当一个元素被释放时，元素中包含的任何对象引用都应该被清除。</p>
+<p>另一个常见的内存泄漏来源是缓存。一旦将对象引用放入缓存中，很容易忘记它的存在，可以用 WeakHashMap 来表示缓存。</p>
+<h3 id="6-避免使用-Finalizer-和-Cleaner-机制，请使用-try-with-resources-语句"><a href="#6-避免使用-Finalizer-和-Cleaner-机制，请使用-try-with-resources-语句" class="headerlink" title="6.避免使用 Finalizer 和 Cleaner 机制，请使用 try-with-resources 语句"></a>6.避免使用 Finalizer 和 Cleaner 机制，请使用 try-with-resources 语句</h3><p>用于 Finalizer 和 Cleaner 机制的不确定性，我们不知道它到底何时会执行。例如，依赖于 Finalizer 和 Cleaner 机制来关闭文件是严重的错误，因为打开的文件描述符是有限的资源。 如果由于系统迟迟没有运行 Finalizer 和 Cleaner 机制而导致许多文件被打开，程序可能会失败，因为它不能再打开文件了。可以用 try-with-resources 语句 或 try-finally 语句，当打开多个文件时，try-finally 语句的可读性就不如 try-with-resources 语句，因此推荐使用 try-with-resources 语句。</p>
+<h3 id="7-重写-equals-方法时同时也要重写-hashcode-方法"><a href="#7-重写-equals-方法时同时也要重写-hashcode-方法" class="headerlink" title="7.重写 equals 方法时同时也要重写 hashcode 方法"></a>7.重写 equals 方法时同时也要重写 hashcode 方法</h3><p>重写 equals 方法时，需要满足以下特性。<br><strong>自反性</strong>：一个对象必须与自身相等。<br><strong>对称性</strong>：任何非空引用 x 和 y，如果且仅当 y.equals(x) 返回 true 时 x.equals(y) 必须返回 true。<br><strong>传递性</strong>：如果第一个对象等于第二个对象，第二个对象等于第三个对象，那么第一个对象必须等于第三个对象。<br><strong>一致性</strong>：如果两个对象是相等的，除非一个（或两个）对象被修改了， 那么它们必须始终保持相等。<br><strong>非空性</strong>：对于任何非空引用 x，x.equals(null) 必须返回 false。</p>
+<p>每次重写 equals 方法时都必须重写 hashCode 方法，否则程序将无法正常运行。 hashCode 方法必须遵从 Object 类指定的常规约定，将不同的哈希码分配给不同的实例对象。</p>
+<h3 id="8-始终重写-toString-方法"><a href="#8-始终重写-toString-方法" class="headerlink" title="8.始终重写 toString 方法"></a>8.始终重写 toString 方法</h3><p>Object 类提供了 toString 方法的实现是包名+类名+@+哈希码的无符号十六进制。toString 的通用约定要求，返回的字符串应该是“一个简洁但内容丰富的表示，对人们来说是很容易阅读的”。就需要 toString 方法，方便可读性。  </p>
+<h3 id="9-考虑实现-Comparable-接口"><a href="#9-考虑实现-Comparable-接口" class="headerlink" title="9.考虑实现 Comparable 接口"></a>9.考虑实现 Comparable 接口</h3><p>在需要可比较的场景中，最好实现 Comparable 接口，以便在基于比较的集合中轻松对其实例进行排序，搜索和使用。 比较 compareTo 方法的实现中的字段值时，请避免使用”&lt;”和”&gt;”运算符。 最好使用包装类中的静态 compare 方法或 Comparator 接口中的构建方法。</p>
+<h3 id="10-使类和成员的可访问性最小化"><a href="#10-使类和成员的可访问性最小化" class="headerlink" title="10.使类和成员的可访问性最小化"></a>10.使类和成员的可访问性最小化</h3><p>一个优秀设计的组件隐藏了它的所有实现细节，干净地将它的 API 与它的实现分离开来。然后，组件只通过它们的 API 进行通信，并且对彼此的内部工作一无所知。称为信息隐藏或封装，是软件设计的基本原则。</p>
+<p>Java中的四种访问级别：<br>private——只能自己访问。<br>package-private——默认级别，同包中的任意类访问。<br>protected——子类和自己可以访问。<br>public —— 任何类都可访问。</p>
+<h3 id="11-在公共类中使用访问方法而不是直接访问属性"><a href="#11-在公共类中使用访问方法而不是直接访问属性" class="headerlink" title="11.在公共类中使用访问方法而不是直接访问属性"></a>11.在公共类中使用访问方法而不是直接访问属性</h3><p>这种设计不是优秀的设计方式。如果属性直接暴露出去，如果需要修改返回值，那基本是不可能的，因为调用方散布在很多地方。如果是提供的访问方法，我们只需要改方法本身即可。</p>
+<h3 id="12-最小化可变性，能用不可变对象最好用不可变对象"><a href="#12-最小化可变性，能用不可变对象最好用不可变对象" class="headerlink" title="12.最小化可变性，能用不可变对象最好用不可变对象"></a>12.最小化可变性，能用不可变对象最好用不可变对象</h3><p>不可变对象的优点：<br>不可变对象是线程安全的。<br>不可变对象可以被自由地共享。<br>不可变对象也可以共享内部属性。<br>不可变对象可以被重复使用。<br>不可变对象提供了免费的原子失败机制。  </p>
+<h3 id="13-该选择接口还是抽象类"><a href="#13-该选择接口还是抽象类" class="headerlink" title="13.该选择接口还是抽象类"></a>13.该选择接口还是抽象类</h3><p>在 Java 中，通过 接口 和 抽象类 来允许多个实现。在 Java 8 中也引入了接口的默认方法实现，所以这两种机制都允许为某些实例方法提供实现。由于 Java 中只允许单一继承，常用的方式是接口定义了类型，可能提供了一些默认的方法，抽象类去实现多个接口并实现通用接口方法，具体的实现类去继承抽象类并实现抽象类中的抽象方法。</p>
+<h3 id="14-该选择组合还是继承"><a href="#14-该选择组合还是继承" class="headerlink" title="14.该选择组合还是继承"></a>14.该选择组合还是继承</h3><p>继承是实现代码重用的有效方式，但并不总是最好的工具。与方法调用不同，继承打破了封装，一个子类依赖于其父类的实现细节来保证其正确的功能。如果父类发生了变化，即使子类并没有做任何的改动也会导致子类被破坏。</p>
+<p>不要继承一个现有的类，而应该给你的新类增加一个私有属性，该属性是现有类的实例引用，这种设计被称为组合。现在不依赖于现有类的实现细节，即使将新的方法添加到现有的类中，也不会对新类产生影响。</p>
+<p>继承是强大的，也可以最大化代码重用，只有在子类和父类之间存在真正的子类型关系时才适用。 如果子类与父类不在同一个包中，并且父类不是为继承而设计的，那就可以使用组合来代替继承。</p>
+<h3 id="15-接口最好只用来定义类型"><a href="#15-接口最好只用来定义类型" class="headerlink" title="15.接口最好只用来定义类型"></a>15.接口最好只用来定义类型</h3><p>接口不包含任何方法，它只包含静态 final 属性，每个输出一个常量，这样的接口叫常量接口，这是对接口的糟糕使用方式。</p>
+<p>如果常量跟类的关系密切，那么我们可以把常量定义在类中。假如是公共的常量，我们应该用枚举类型来定义它们。</p>
+<p>接口只能用于定义类型，它们不应该仅用于定义常量。</p>
+<h3 id="16-优先考虑使用泛型"><a href="#16-优先考虑使用泛型" class="headerlink" title="16.优先考虑使用泛型"></a>16.优先考虑使用泛型</h3><p>一个集合对象中数据类型应该是一致的，如果不规定数据的具体类型，在编译期是没有任何问题的。但到程序运行时，如果类型不一致，就与可能抛出 ClassCastException 异常。因此，我们需要使用泛型强制约束数据的类型，让问题暴露在编译期，而不是在运行期。</p>
+<h3 id="17-使用限定通配符来增加-API-的灵活性"><a href="#17-使用限定通配符来增加-API-的灵活性" class="headerlink" title="17.使用限定通配符来增加 API 的灵活性"></a>17.使用限定通配符来增加 API 的灵活性</h3><p>我们用泛型强制规定了参数的类型，因此它非常的不灵活，使用场景非常少。相对于提供的不可变的类型，有时需要比此更多的灵活性我们就需要使用通配符类型。</p>
+<p>所以将类型从 List<t> 更改为 List&lt;? extends T&gt;。在 API 中使用通配符类型，虽然棘手，但使得 API 更加灵活。 如果编写一个将被广泛使用的类库，请使用通配符类型来最大化该 API 的灵活性。</t></p>
+<h3 id="18-小心泛型和可变参数的结合使用"><a href="#18-小心泛型和可变参数的结合使用" class="headerlink" title="18.小心泛型和可变参数的结合使用"></a>18.小心泛型和可变参数的结合使用</h3><p>因为可变参数和泛型不能很友好的限制，泛型可变参数不是类型安全的，但它们是合法的。如果选择使用泛型可变参数编写方法，请首先确保该方法类型一致，然后使用 @SafeVarargs 注解对其进行标注，以免造成使用不愉快。</p>
+<h3 id="19-不要为类打标签，而应使用类层次结构"><a href="#19-不要为类打标签，而应使用类层次结构" class="headerlink" title="19.不要为类打标签，而应使用类层次结构"></a>19.不要为类打标签，而应使用类层次结构</h3><p>一个类用 枚举声明，标签属性和 switch 语句来判断类型，会使代码可读性更差，容易出错的，而且效率低下。因此，带标签的类很应少最好别用。当遇到一个带有标签属性的现有类时，可以考虑将其重构为一个类层次中。</p>
+<h3 id="20-注意消除非检查警告"><a href="#20-注意消除非检查警告" class="headerlink" title="20.注意消除非检查警告"></a>20.注意消除非检查警告</h3><p>未经检查的警告是重要的，不要忽视他们。因为每个未经检查的警告代表在运行时出现 ClassCastException 异常的可能性，尽量消除这些警告。如果无法消除未经检查的警告，并且可以证明引发该警告的代码是安全类型的，则可以在尽可能小的范围内使用 @SuppressWarnings(“unchecked”) 注解来禁止警告。 并注释为什么是安全的。</p>
+<h3 id="21-该选择列表还是数组"><a href="#21-该选择列表还是数组" class="headerlink" title="21.该选择列表还是数组"></a>21.该选择列表还是数组</h3><p>数组和泛型具有非常不同的类型规则。 数组是协变和具体化的， 泛型是不变和类型擦除的。</p>
+<p>因此，数组能保证运行时类型的安全性，但不保证编译时类型的安全性，反之亦然。 </p>
+<p>一般来说，数组和泛型不能很好地混合工作。如果你发现把它们混合在一起，得到编译时错误或者警告，首先应该使用列表来替换数组。</p>
+<h3 id="22-使用枚举类型替代整型常量"><a href="#22-使用枚举类型替代整型常量" class="headerlink" title="22.使用枚举类型替代整型常量"></a>22.使用枚举类型替代整型常量</h3><p>枚举的优点：<br>提供了编译时类型的安全性，可以使用 == 运算符来比较不同枚举类型的值。<br>具有相同名称常量的枚举类型可以和平共存，因为每种类型都有其自己的名称空间。<br>还允许添加任意方法和属性并实现任意接口，功能更强大。  </p>
+<p>枚举更具可读性，更安全，更强大。</p>
+<h3 id="23-始终使用-Override-注解"><a href="#23-始终使用-Override-注解" class="headerlink" title="23.始终使用 Override 注解"></a>23.始终使用 Override 注解</h3><p>此注解只能在方法声明上使用，它表明带此注解的方法声明重写了父类的声明。如果始终使用这个注解，它将避免产生大量的恶意 bug。</p>
+<p>如果在每个方法声明中使用 Override 注解，并且认为要重写父类声明，那么编译器可以保护免受很多错误的影响。</p>
+<h3 id="24-优先使用标准的函数式接口"><a href="#24-优先使用标准的函数式接口" class="headerlink" title="24.优先使用标准的函数式接口"></a>24.优先使用标准的函数式接口</h3><p>java.util.function 包提供了大量标准函数式接口供你使用。 如果其中一个标准函数式接口完成这项工作，则通常应该优先使用它，而不是专门构建的函数式接口。 这将使你的 API 更容易学习，通过减少其不必要概念，并将提供重要的互操作性好处，因为许多标准函数式接口提供了有用的默认方法。</p>
+<p>不要提供具有多个重载的方法，这些重载在相同的参数位置上使用不同的函数式接口，如果这样做可能会在调用方中产生歧义。</p>
+<h3 id="25-Stream"><a href="#25-Stream" class="headerlink" title="25.Stream"></a>25.Stream</h3><p>在 Java 8 中添加了 Stream API，以简化顺序或并行执行批量操作的任务。</p>
+<p>流 (Stream)，表示有限或无限的数据元素序列。<br>流管道 (stream pipeline)，表示对这些元素的多级计算。   </p>
+<p>Stream 中的元素可以来自任何地方。常见的源包括集合，数组，文件，正则表达式模式匹配器，伪随机数生成器和其他流。</p>
+<p>流可以很容易地做一些事情：<br>统一转换元素序列。<br>过滤元素序列。<br>使用单个操作组合元素序列。<br>将元素序列累积到一个集合中，可能通过一些公共属性将它们分组。<br>在元素序列中搜索满足某些条件的元素。<br>遍历元素序列。  </p>
+<p>Stream 类提供了很多好用又简单的方法，可以多加使用。</p>
 
       
 
@@ -210,11 +220,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">B树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">优秀代码</a>
         		</li>
       		
 		</ul>
@@ -270,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/01/B-tree/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/20/java-effective-code/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -284,18 +294,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/10/B-Tree-0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          B+树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/31/red-black-tree/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">红黑树</div>
+    <a href="/2019/04/19/heap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">堆</div>
       <i class="icon-circle-right"></i>
     </a>
   

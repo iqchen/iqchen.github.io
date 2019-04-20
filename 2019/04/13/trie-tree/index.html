@@ -17,7 +17,7 @@
 <meta property="og:description" content="字典树字典树，又称 前缀树 或 trie树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。 字典树的性质1.根节点不包含字符，除根节点外每一个节点都">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://iqchen.github.io/img/trie_tree.png">
-<meta property="og:updated_time" content="2019-04-13T14:05:14.740Z">
+<meta property="og:updated_time" content="2019-04-13T14:06:11.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字典树">
 <meta name="twitter:description" content="字典树字典树，又称 前缀树 或 trie树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。 字典树的性质1.根节点不包含字符，除根节点外每一个节点都">
@@ -167,7 +167,7 @@
       
         <h3 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h3><p>字典树，又称 前缀树 或 trie树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。</p>
 <h3 id="字典树的性质"><a href="#字典树的性质" class="headerlink" title="字典树的性质"></a>字典树的性质</h3><p>1.根节点不包含字符，除根节点外每一个节点都只包含一个字符。<br>2.从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串。<br>3.每个节点的所有子节点包含的字符都不相同。</p>
-<p>用字典树结构存储 《<strong>JVN JAVA PHP HTML HTTP </strong>》 字符串。</p>
+<p>用字典树结构存储 《<strong>JVM JAVA PHP HTML HTTP </strong>》 字符串。</p>
 <p><img src="/img/trie_tree.png" alt></p>
 <h3 id="字典树的实现"><a href="#字典树的实现" class="headerlink" title="字典树的实现"></a>字典树的实现</h3><p>字典树的结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">    <span class="comment">//26 个字母</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> SIZE = <span class="number">26</span>;</span><br><span class="line">    <span class="comment">//字典树的根</span></span><br><span class="line">    <span class="keyword">private</span> TrieNode root;</span><br><span class="line">    <span class="comment">//初始化字典树</span></span><br><span class="line">    Trie() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//字典树节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">        <span class="comment">//由根至该节点组成的字符串模式出现的次数</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line">        <span class="comment">//所有的孩子节点</span></span><br><span class="line">        <span class="keyword">private</span> TrieNode[] children;</span><br><span class="line">        <span class="comment">//是不是最后一个节点</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;</span><br><span class="line">        <span class="comment">//节点的值</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">char</span> val;</span><br><span class="line"></span><br><span class="line">        TrieNode() &#123;</span><br><span class="line">            num = <span class="number">1</span>;</span><br><span class="line">            children = <span class="keyword">new</span> TrieNode[SIZE];</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>字典树的插入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字典树中插入一个单词</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//参数校验</span></span><br><span class="line">    <span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TrieNode node = root;</span><br><span class="line">    <span class="keyword">char</span>[] letters = str.toCharArray();</span><br><span class="line">    <span class="comment">//循环整个单词插入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, len = str.length(); i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> pos = letters[i] - <span class="string">'a'</span>;</span><br><span class="line">        <span class="comment">//假如不存在就新建一个节点</span></span><br><span class="line">        <span class="keyword">if</span> (node.children[pos] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            node.children[pos] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">            node.children[pos].val = letters[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//否则通过这个节点数加一</span></span><br><span class="line">            node.children[pos].num++;</span><br><span class="line">        &#125;</span><br><span class="line">        node = node.children[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最后一个节点</span></span><br><span class="line">    node.isEnd = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -260,6 +260,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/04/19/heap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          堆
+        
+      </div>
+    </a>
   
   
     <a href="/2019/04/13/Huffman-tree/" id="article-nav-older" class="article-nav-link-wrap">
@@ -389,7 +398,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -397,11 +406,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -409,15 +414,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -425,7 +430,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
+                <a href="javascript:void(0)" class="js-tag color2">堆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -437,11 +442,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优秀代码</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,29 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>B树 | 清尘闲聊</title>
+  <title>堆 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
-<meta name="keywords" content="数据结构,B树">
+  <meta name="description" content="堆堆 是一种特殊的完全二叉树结构，通常，它有两种类型：最小堆 和 最大堆。   最小堆（min heap）是父节点的值恒小于等于子节点的值。 最大堆（max heap）是父节点的值恒大于等于子节点的值。 二叉堆的性质任意节点小于（或大于）它的所有子节点，最小值（或最大值）在堆的根上。堆总是一棵完全树。即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。 二叉堆的实现堆的存储结构">
+<meta name="keywords" content="数据结构,堆">
 <meta property="og:type" content="article">
-<meta property="og:title" content="B树">
-<meta property="og:url" content="https://iqchen.github.io/2019/04/01/B-tree/index.html">
+<meta property="og:title" content="堆">
+<meta property="og:url" content="https://iqchen.github.io/2019/04/19/heap/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
+<meta property="og:description" content="堆堆 是一种特殊的完全二叉树结构，通常，它有两种类型：最小堆 和 最大堆。   最小堆（min heap）是父节点的值恒小于等于子节点的值。 最大堆（max heap）是父节点的值恒大于等于子节点的值。 二叉堆的性质任意节点小于（或大于）它的所有子节点，最小值（或最大值）在堆的根上。堆总是一棵完全树。即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。 二叉堆的实现堆的存储结构">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-1.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-2.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-insert-3.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-1.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-2.png">
-<meta property="og:image" content="https://iqchen.github.io/img/b-tree-del-3.png">
-<meta property="og:updated_time" content="2019-04-08T16:21:15.126Z">
+<meta property="og:image" content="https://iqchen.github.io/img/min_heap.png">
+<meta property="og:image" content="https://iqchen.github.io/img/max_heap.png">
+<meta property="og:updated_time" content="2019-04-20T08:29:40.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="B树">
-<meta name="twitter:description" content="什么是 B树B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 数据库 和 文件系统 的实现上。 这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。 一棵 M阶 的 B">
-<meta name="twitter:image" content="https://iqchen.github.io/img/b-tree.png">
+<meta name="twitter:title" content="堆">
+<meta name="twitter:description" content="堆堆 是一种特殊的完全二叉树结构，通常，它有两种类型：最小堆 和 最大堆。   最小堆（min heap）是父节点的值恒小于等于子节点的值。 最大堆（max heap）是父节点的值恒大于等于子节点的值。 二叉堆的性质任意节点小于（或大于）它的所有子节点，最小值（或最大值）在堆的根上。堆总是一棵完全树。即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。 二叉堆的实现堆的存储结构">
+<meta name="twitter:image" content="https://iqchen.github.io/img/min_heap.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -152,51 +146,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-B-tree" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-heap" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      B树
+      堆
     </h1>
   
 
         
-        <a href="/2019/04/01/B-tree/" class="archive-article-date">
-  	<time datetime="2019-04-01T00:04:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
+        <a href="/2019/04/19/heap/" class="archive-article-date">
+  	<time datetime="2019-04-19T08:27:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是-B树"><a href="#什么是-B树" class="headerlink" title="什么是 B树"></a>什么是 B树</h3><p>B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 <strong>数据库</strong> 和 <strong>文件系统</strong> 的实现上。</p>
-<p>这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。</p>
-<p><strong>一棵 M阶 的 B树 要满足以下条件</strong><br>1.每一个节点最多有 M 个子节点。<br>2.除了根节点和叶子节点外，其他每个节点最少有 M/2 个子节点。<br>3.根节点不是叶子节点，它至少有 2 个子节点。<br>4.有 k 个子节点的非叶子节点拥有 k−1 个键。<br>5.所有的叶子节点必须在同一层。<br><img src="/img/b-tree.png" alt="B树"></p>
-<h3 id="B树的实现"><a href="#B树的实现" class="headerlink" title="B树的实现"></a>B树的实现</h3><p><strong>1.搜索</strong><br>B树的搜索和二叉搜索树类似。从根节点开始，从上到下递归的遍历树。在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键确定。</p>
-<p><strong>搜索下图中的数字 49</strong><br>a.用 49 和根节点元素比较，由于 49 &lt; 78，所以继续遍历左子树。<br>b.由于 40&lt;49&lt;56，所以遍历节点 40 的右子树。<br>c.49&gt;45，往右移。<br>d.找到 49，返回。<br><img src="/img/b-tree.png" alt></p>
-<p><strong>2.插入</strong></p>
-<p>从根节点开始，搜索这棵树找到新元素应该被添加到的叶子节点。如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序。否则的话，需要将它平均地分裂成两个节点，从叶子节点的元素和新的元素中选择出中位数，小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值。</p>
-<p>分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。</p>
-<p><strong>插入元素 8 到下图的 5阶 B树中</strong><br><img src="/img/b-tree-insert-1.png" alt></p>
-<p>由于 8 大于 5，插入到 5 的后面。<br><img src="/img/b-tree-insert-2.png" alt></p>
-<p>由于一棵 B树最多包含 k-1 个键，然而这个节点包含了 5 个键，所以需要按中位拆分，8 变成父节点。<br><img src="/img/b-tree-insert-3.png" alt></p>
-<p><strong>3.删除</strong></p>
-<p>假如删除的是叶子节点，将它删除后，重新进行平衡。</p>
-<p>假如删除的是中间节点，每一个元素都作为分隔两颗子树的分隔值，因此我们需要重新划分。选择一个新的分隔符（左子树中最大的元素或右子树中最小的元素），将它从叶子节点中移除，替换掉被删除的元素作为新的分隔值。如果删除的这个叶子节点拥有的元素数量小于最低要求，那么从这一叶子节点开始重新进行平衡。</p>
-<p><strong>删除下面 5阶B树 为 53 的节点</strong><br><img src="/img/b-tree-del-1.png" alt></p>
-<p>找到 53 在 49 的右孩子里，然后删掉它。<br><img src="/img/b-tree-del-2.png" alt></p>
-<p>由于 B树 的中间节点个数不得低于 m/2，现在只剩下一个节点，已经违反了规则，就需要按下面的重新平衡算法去满足它的特性，最后这棵树变成下面这样的。<br><img src="/img/b-tree-del-3.png" alt></p>
-<p><strong>重新平衡算法</strong></p>
-<p>如果缺少元素节点的右兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为右兄弟的第一个元素。</p>
-<p>如果缺少元素节点的左兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为左兄弟的第一个元素。</p>
-<p>如果它的两个直接兄弟节点都只有最小数量的元素，那么将它与一个直接兄弟节点以及父节点中它们的分隔值合并，将分隔值复制到左边的节点，将右边节点中所有的元素移动到左边节点，将父节点中的分隔值和空的右子树移除,如果父节点是根节点并且没有元素了，那么释放它并且让合并之后的节点成为新的根节点，否则，如果父节点的元素数量小于最小值，重新平衡父节点。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B树 实际上是二叉搜索树的升级版，由于二叉树只有 2 个子节点，当数据量大的时候树会变得非常高，也会对性能有一定影响。硬盘的读取是按块来读取的，一般是 4k。因此我们可以根据这一特性，把 2 个节点变为 M 个节点，每次读取减少定位记录时所经历的中间过程，从而加快存取速度。</p>
-<p>B树 在插入和删除时，都有可能导致破坏 B树 的规则，因此当破坏规则时，需要对树进行重新平衡，已到达查找数据、顺序访问、插入数据及删除时的时间复杂度在 O(log n)。</p>
-<p>B树 的变体 B+树，键值和记录存储在叶子节点，一个叶子节点可以包含一个指针，指向另一个叶子节点以加速顺序存取。</p>
-<p>B树 的变体 B*树，分支出更多的内部邻居节点以保持内部节点更密集地填充。此变体要求非根节点至少 2/3 填充，而不是 1/2。为了维持这样的结构，当一个节点填满之后将不会再立即分割节点，而是将它的键值与下一个节点共享。当两个节点都填满之后，分割成 3 个节点。</p>
+        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆 是一种特殊的完全二叉树结构，通常，它有两种类型：最小堆 和 最大堆。  </p>
+<p><strong>最小堆</strong>（min heap）是父节点的值恒小于等于子节点的值。<br><img src="/img/min_heap.png" alt></p>
+<p><strong>最大堆</strong>（max heap）是父节点的值恒大于等于子节点的值。<br><img src="/img/max_heap.png" alt></p>
+<h3 id="二叉堆的性质"><a href="#二叉堆的性质" class="headerlink" title="二叉堆的性质"></a>二叉堆的性质</h3><p>任意节点小于（或大于）它的所有子节点，最小值（或最大值）在堆的根上。<br>堆总是一棵完全树。即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。</p>
+<h3 id="二叉堆的实现"><a href="#二叉堆的实现" class="headerlink" title="二叉堆的实现"></a>二叉堆的实现</h3><p><strong>堆的存储结构</strong></p>
+<p>堆一般可以用数组的方式来存储，数组的顺序其实就是堆层级遍历的结果。</p>
+<p><strong>堆的插入</strong></p>
+<p>由于堆是一个完全二叉树，每次总是先填满上一层，再在下一层从左往右依次插入。  </p>
+<p>插入步骤：<br>1.首先将新元素增加到堆的末尾。<br>2.然后在新元素与其父节点的值比较，如果新元素小于父节点的值则将两者交换位置。<br>3.不断进行第2步操作，直到不需要交换元素，或者达到堆顶。  </p>
+<p>最后就会得到一个最小堆，上面交换元素的过程叫做上滤。</p>
+<p><strong>堆的删除</strong>  </p>
+<p>堆的删除和插入操作是刚刚相反的，插入是从下往上调整堆，删除是从上往下调整堆。</p>
+<p>删除步骤：<br>1.首先删除堆顶元素。<br>2.然后在比较左右子节点，将小的元素上调。<br>3.不断进行步骤2，直到不需要调整或者调整到堆底了。</p>
+<p>上面交换元素的过程叫做下滤。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>堆有两种类型，最大堆和最小堆，并且堆总是一颗完全树。</p>
+<p>由于堆的 父节点的值恒小于等于子节点的值 或者 父节点的值恒大于等于子节点的值，可以作为 Top n 使用。</p>
+<p>堆（通常是二叉堆）常用于排序。这种算法称作堆排序。</p>
 
       
 
@@ -214,7 +200,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">B树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">堆</a>
         		</li>
       		
 		</ul>
@@ -270,7 +256,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/01/B-tree/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/19/heap/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -284,18 +270,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/10/B-Tree-0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/04/20/java-effective-code/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          B+树
+          Java 优秀代码必知必会
         
       </div>
     </a>
   
   
-    <a href="/2019/03/31/red-black-tree/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">红黑树</div>
+    <a href="/2019/04/13/trie-tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字典树</div>
       <i class="icon-circle-right"></i>
     </a>
   

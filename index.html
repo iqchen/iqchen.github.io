@@ -144,6 +144,221 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java-effective-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/20/java-effective-code/">Java 优秀代码必知必会</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/20/java-effective-code/" class="archive-article-date">
+  	<time datetime="2019-04-20T08:19:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-使用静态工厂方法替代构造方法"><a href="#1-使用静态工厂方法替代构造方法" class="headerlink" title="1.使用静态工厂方法替代构造方法"></a>1.使用静态工厂方法替代构造方法</h3><p>静态工厂方法的优点：<br>不像构造方法，它是有名字的。<br>它不需要每次调用时都创建一个新对象。<br>它可以返回 其返回类型的任何子类型的对象。<br>返回对象的类可以根据输入参数的不同而不同。<br>在编写包含该方法的类时，返回的对象的类不需要存在。</p>
+<h3 id="2-当构造方法参数过多时请使用-builder-模式"><a href="#2-当构造方法参数过多时请使用-builder-模式" class="headerlink" title="2.当构造方法参数过多时请使用 builder 模式"></a>2.当构造方法参数过多时请使用 builder 模式</h3><p>当一个对象中，属性过多时，使用构造方法时，参数过多导致难以维护，并且很难读懂每个参数的含义是什么。</p>
+<p>使用 构造方法 来构建必传参数，而用 setter 的方式来传可选参数呢？这看似参数少，创建实例也很容易，并且所生成的代码也易于阅读。但由于 JavaBeans 模式本身有严重的缺陷，由于构造方法在多次调用中被分割，导致 JavaBeans 可能处于不一致的状态，并且还需要额外增加工作以确保线程安全。</p>
+<p>最好处理参数过多的方法是使用 builder 模式，它结合了可伸缩构造方法模式的安全性和 JavaBeans 模式的可读性，然后在调用 builder 对象的 setter 相似方法来设置每个可选参数。</p>
+<h3 id="3-使用依赖注入的方式注入资源"><a href="#3-使用依赖注入的方式注入资源" class="headerlink" title="3.使用依赖注入的方式注入资源"></a>3.使用依赖注入的方式注入资源</h3><p>依赖注入的实践将极大地增强类的灵活性、可重用性和可测试性。</p>
+<h3 id="4-不要创建不必要的对象"><a href="#4-不要创建不必要的对象" class="headerlink" title="4.不要创建不必要的对象"></a>4.不要创建不必要的对象</h3><p>如果对象是不可变的，它总是可以被重用的，比如 String 类是 final 的，不可变的，最好不要用 new String(“test”)， 因为它每次都会创建一个新的对象。在性能有严格要求的情况下，优先使用基本类型而不是装箱的基本类型，也要注意无意识的自动装箱，因为它们会影响性能。</p>
+<h3 id="5-消除过期的对象引用"><a href="#5-消除过期的对象引用" class="headerlink" title="5.消除过期的对象引用"></a>5.消除过期的对象引用</h3><p>这个也就是常说的内存泄露。当一个类自己管理内存时，应该警惕内存泄漏问题。 每当一个元素被释放时，元素中包含的任何对象引用都应该被清除。</p>
+<p>另一个常见的内存泄漏来源是缓存。一旦将对象引用放入缓存中，很容易忘记它的存在，可以用 WeakHashMap 来表示缓存。</p>
+<h3 id="6-避免使用-Finalizer-和-Cleaner-机制，请使用-try-with-resources-语句"><a href="#6-避免使用-Finalizer-和-Cleaner-机制，请使用-try-with-resources-语句" class="headerlink" title="6.避免使用 Finalizer 和 Cleaner 机制，请使用 try-with-resources 语句"></a>6.避免使用 Finalizer 和 Cleaner 机制，请使用 try-with-resources 语句</h3><p>用于 Finalizer 和 Cleaner 机制的不确定性，我们不知道它到底何时会执行。例如，依赖于 Finalizer 和 Cleaner 机制来关闭文件是严重的错误，因为打开的文件描述符是有限的资源。 如果由于系统迟迟没有运行 Finalizer 和 Cleaner 机制而导致许多文件被打开，程序可能会失败，因为它不能再打开文件了。可以用 try-with-resources 语句 或 try-finally 语句，当打开多个文件时，try-finally 语句的可读性就不如 try-with-resources 语句，因此推荐使用 try-with-resources 语句。</p>
+<h3 id="7-重写-equals-方法时同时也要重写-hashcode-方法"><a href="#7-重写-equals-方法时同时也要重写-hashcode-方法" class="headerlink" title="7.重写 equals 方法时同时也要重写 hashcode 方法"></a>7.重写 equals 方法时同时也要重写 hashcode 方法</h3><p>重写 equals 方法时，需要满足以下特性。<br><strong>自反性</strong>：一个对象必须与自身相等。<br><strong>对称性</strong>：任何非空引用 x 和 y，如果且仅当 y.equals(x) 返回 true 时 x.equals(y) 必须返回 true。<br><strong>传递性</strong>：如果第一个对象等于第二个对象，第二个对象等于第三个对象，那么第一个对象必须等于第三个对象。<br><strong>一致性</strong>：如果两个对象是相等的，除非一个（或两个）对象被修改了， 那么它们必须始终保持相等。<br><strong>非空性</strong>：对于任何非空引用 x，x.equals(null) 必须返回 false。</p>
+<p>每次重写 equals 方法时都必须重写 hashCode 方法，否则程序将无法正常运行。 hashCode 方法必须遵从 Object 类指定的常规约定，将不同的哈希码分配给不同的实例对象。</p>
+<h3 id="8-始终重写-toString-方法"><a href="#8-始终重写-toString-方法" class="headerlink" title="8.始终重写 toString 方法"></a>8.始终重写 toString 方法</h3><p>Object 类提供了 toString 方法的实现是包名+类名+@+哈希码的无符号十六进制。toString 的通用约定要求，返回的字符串应该是“一个简洁但内容丰富的表示，对人们来说是很容易阅读的”。就需要 toString 方法，方便可读性。  </p>
+<h3 id="9-考虑实现-Comparable-接口"><a href="#9-考虑实现-Comparable-接口" class="headerlink" title="9.考虑实现 Comparable 接口"></a>9.考虑实现 Comparable 接口</h3><p>在需要可比较的场景中，最好实现 Comparable 接口，以便在基于比较的集合中轻松对其实例进行排序，搜索和使用。 比较 compareTo 方法的实现中的字段值时，请避免使用”&lt;”和”&gt;”运算符。 最好使用包装类中的静态 compare 方法或 Comparator 接口中的构建方法。</p>
+<h3 id="10-使类和成员的可访问性最小化"><a href="#10-使类和成员的可访问性最小化" class="headerlink" title="10.使类和成员的可访问性最小化"></a>10.使类和成员的可访问性最小化</h3><p>一个优秀设计的组件隐藏了它的所有实现细节，干净地将它的 API 与它的实现分离开来。然后，组件只通过它们的 API 进行通信，并且对彼此的内部工作一无所知。称为信息隐藏或封装，是软件设计的基本原则。</p>
+<p>Java中的四种访问级别：<br>private——只能自己访问。<br>package-private——默认级别，同包中的任意类访问。<br>protected——子类和自己可以访问。<br>public —— 任何类都可访问。</p>
+<h3 id="11-在公共类中使用访问方法而不是直接访问属性"><a href="#11-在公共类中使用访问方法而不是直接访问属性" class="headerlink" title="11.在公共类中使用访问方法而不是直接访问属性"></a>11.在公共类中使用访问方法而不是直接访问属性</h3><p>这种设计不是优秀的设计方式。如果属性直接暴露出去，如果需要修改返回值，那基本是不可能的，因为调用方散布在很多地方。如果是提供的访问方法，我们只需要改方法本身即可。</p>
+<h3 id="12-最小化可变性，能用不可变对象最好用不可变对象"><a href="#12-最小化可变性，能用不可变对象最好用不可变对象" class="headerlink" title="12.最小化可变性，能用不可变对象最好用不可变对象"></a>12.最小化可变性，能用不可变对象最好用不可变对象</h3><p>不可变对象的优点：<br>不可变对象是线程安全的。<br>不可变对象可以被自由地共享。<br>不可变对象也可以共享内部属性。<br>不可变对象可以被重复使用。<br>不可变对象提供了免费的原子失败机制。  </p>
+<h3 id="13-该选择接口还是抽象类"><a href="#13-该选择接口还是抽象类" class="headerlink" title="13.该选择接口还是抽象类"></a>13.该选择接口还是抽象类</h3><p>在 Java 中，通过 接口 和 抽象类 来允许多个实现。在 Java 8 中也引入了接口的默认方法实现，所以这两种机制都允许为某些实例方法提供实现。由于 Java 中只允许单一继承，常用的方式是接口定义了类型，可能提供了一些默认的方法，抽象类去实现多个接口并实现通用接口方法，具体的实现类去继承抽象类并实现抽象类中的抽象方法。</p>
+<h3 id="14-该选择组合还是继承"><a href="#14-该选择组合还是继承" class="headerlink" title="14.该选择组合还是继承"></a>14.该选择组合还是继承</h3><p>继承是实现代码重用的有效方式，但并不总是最好的工具。与方法调用不同，继承打破了封装，一个子类依赖于其父类的实现细节来保证其正确的功能。如果父类发生了变化，即使子类并没有做任何的改动也会导致子类被破坏。</p>
+<p>不要继承一个现有的类，而应该给你的新类增加一个私有属性，该属性是现有类的实例引用，这种设计被称为组合。现在不依赖于现有类的实现细节，即使将新的方法添加到现有的类中，也不会对新类产生影响。</p>
+<p>继承是强大的，也可以最大化代码重用，只有在子类和父类之间存在真正的子类型关系时才适用。 如果子类与父类不在同一个包中，并且父类不是为继承而设计的，那就可以使用组合来代替继承。</p>
+<h3 id="15-接口最好只用来定义类型"><a href="#15-接口最好只用来定义类型" class="headerlink" title="15.接口最好只用来定义类型"></a>15.接口最好只用来定义类型</h3><p>接口不包含任何方法，它只包含静态 final 属性，每个输出一个常量，这样的接口叫常量接口，这是对接口的糟糕使用方式。</p>
+<p>如果常量跟类的关系密切，那么我们可以把常量定义在类中。假如是公共的常量，我们应该用枚举类型来定义它们。</p>
+<p>接口只能用于定义类型，它们不应该仅用于定义常量。</p>
+<h3 id="16-优先考虑使用泛型"><a href="#16-优先考虑使用泛型" class="headerlink" title="16.优先考虑使用泛型"></a>16.优先考虑使用泛型</h3><p>一个集合对象中数据类型应该是一致的，如果不规定数据的具体类型，在编译期是没有任何问题的。但到程序运行时，如果类型不一致，就与可能抛出 ClassCastException 异常。因此，我们需要使用泛型强制约束数据的类型，让问题暴露在编译期，而不是在运行期。</p>
+<h3 id="17-使用限定通配符来增加-API-的灵活性"><a href="#17-使用限定通配符来增加-API-的灵活性" class="headerlink" title="17.使用限定通配符来增加 API 的灵活性"></a>17.使用限定通配符来增加 API 的灵活性</h3><p>我们用泛型强制规定了参数的类型，因此它非常的不灵活，使用场景非常少。相对于提供的不可变的类型，有时需要比此更多的灵活性我们就需要使用通配符类型。</p>
+<p>所以将类型从 List<t> 更改为 List&lt;? extends T&gt;。在 API 中使用通配符类型，虽然棘手，但使得 API 更加灵活。 如果编写一个将被广泛使用的类库，请使用通配符类型来最大化该 API 的灵活性。</t></p>
+<h3 id="18-小心泛型和可变参数的结合使用"><a href="#18-小心泛型和可变参数的结合使用" class="headerlink" title="18.小心泛型和可变参数的结合使用"></a>18.小心泛型和可变参数的结合使用</h3><p>因为可变参数和泛型不能很友好的限制，泛型可变参数不是类型安全的，但它们是合法的。如果选择使用泛型可变参数编写方法，请首先确保该方法类型一致，然后使用 @SafeVarargs 注解对其进行标注，以免造成使用不愉快。</p>
+<h3 id="19-不要为类打标签，而应使用类层次结构"><a href="#19-不要为类打标签，而应使用类层次结构" class="headerlink" title="19.不要为类打标签，而应使用类层次结构"></a>19.不要为类打标签，而应使用类层次结构</h3><p>一个类用 枚举声明，标签属性和 switch 语句来判断类型，会使代码可读性更差，容易出错的，而且效率低下。因此，带标签的类很应少最好别用。当遇到一个带有标签属性的现有类时，可以考虑将其重构为一个类层次中。</p>
+<h3 id="20-注意消除非检查警告"><a href="#20-注意消除非检查警告" class="headerlink" title="20.注意消除非检查警告"></a>20.注意消除非检查警告</h3><p>未经检查的警告是重要的，不要忽视他们。因为每个未经检查的警告代表在运行时出现 ClassCastException 异常的可能性，尽量消除这些警告。如果无法消除未经检查的警告，并且可以证明引发该警告的代码是安全类型的，则可以在尽可能小的范围内使用 @SuppressWarnings(“unchecked”) 注解来禁止警告。 并注释为什么是安全的。</p>
+<h3 id="21-该选择列表还是数组"><a href="#21-该选择列表还是数组" class="headerlink" title="21.该选择列表还是数组"></a>21.该选择列表还是数组</h3><p>数组和泛型具有非常不同的类型规则。 数组是协变和具体化的， 泛型是不变和类型擦除的。</p>
+<p>因此，数组能保证运行时类型的安全性，但不保证编译时类型的安全性，反之亦然。 </p>
+<p>一般来说，数组和泛型不能很好地混合工作。如果你发现把它们混合在一起，得到编译时错误或者警告，首先应该使用列表来替换数组。</p>
+<h3 id="22-使用枚举类型替代整型常量"><a href="#22-使用枚举类型替代整型常量" class="headerlink" title="22.使用枚举类型替代整型常量"></a>22.使用枚举类型替代整型常量</h3><p>枚举的优点：<br>提供了编译时类型的安全性，可以使用 == 运算符来比较不同枚举类型的值。<br>具有相同名称常量的枚举类型可以和平共存，因为每种类型都有其自己的名称空间。<br>还允许添加任意方法和属性并实现任意接口，功能更强大。  </p>
+<p>枚举更具可读性，更安全，更强大。</p>
+<h3 id="23-始终使用-Override-注解"><a href="#23-始终使用-Override-注解" class="headerlink" title="23.始终使用 Override 注解"></a>23.始终使用 Override 注解</h3><p>此注解只能在方法声明上使用，它表明带此注解的方法声明重写了父类的声明。如果始终使用这个注解，它将避免产生大量的恶意 bug。</p>
+<p>如果在每个方法声明中使用 Override 注解，并且认为要重写父类声明，那么编译器可以保护免受很多错误的影响。</p>
+<h3 id="24-优先使用标准的函数式接口"><a href="#24-优先使用标准的函数式接口" class="headerlink" title="24.优先使用标准的函数式接口"></a>24.优先使用标准的函数式接口</h3><p>java.util.function 包提供了大量标准函数式接口供你使用。 如果其中一个标准函数式接口完成这项工作，则通常应该优先使用它，而不是专门构建的函数式接口。 这将使你的 API 更容易学习，通过减少其不必要概念，并将提供重要的互操作性好处，因为许多标准函数式接口提供了有用的默认方法。</p>
+<p>不要提供具有多个重载的方法，这些重载在相同的参数位置上使用不同的函数式接口，如果这样做可能会在调用方中产生歧义。</p>
+<h3 id="25-Stream"><a href="#25-Stream" class="headerlink" title="25.Stream"></a>25.Stream</h3><p>在 Java 8 中添加了 Stream API，以简化顺序或并行执行批量操作的任务。</p>
+<p>流 (Stream)，表示有限或无限的数据元素序列。<br>流管道 (stream pipeline)，表示对这些元素的多级计算。   </p>
+<p>Stream 中的元素可以来自任何地方。常见的源包括集合，数组，文件，正则表达式模式匹配器，伪随机数生成器和其他流。</p>
+<p>流可以很容易地做一些事情：<br>统一转换元素序列。<br>过滤元素序列。<br>使用单个操作组合元素序列。<br>将元素序列累积到一个集合中，可能通过一些公共属性将它们分组。<br>在元素序列中搜索满足某些条件的元素。<br>遍历元素序列。  </p>
+<p>Stream 类提供了很多好用又简单的方法，可以多加使用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">优秀代码</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/20/java-effective-code/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-heap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/19/heap/">堆</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/19/heap/" class="archive-article-date">
+  	<time datetime="2019-04-19T08:27:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆 是一种特殊的完全二叉树结构，通常，它有两种类型：最小堆 和 最大堆。  </p>
+<p><strong>最小堆</strong>（min heap）是父节点的值恒小于等于子节点的值。<br><img src="/img/min_heap.png" alt></p>
+<p><strong>最大堆</strong>（max heap）是父节点的值恒大于等于子节点的值。<br><img src="/img/max_heap.png" alt></p>
+<h3 id="二叉堆的性质"><a href="#二叉堆的性质" class="headerlink" title="二叉堆的性质"></a>二叉堆的性质</h3><p>任意节点小于（或大于）它的所有子节点，最小值（或最大值）在堆的根上。<br>堆总是一棵完全树。即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。</p>
+<h3 id="二叉堆的实现"><a href="#二叉堆的实现" class="headerlink" title="二叉堆的实现"></a>二叉堆的实现</h3><p><strong>堆的存储结构</strong></p>
+<p>堆一般可以用数组的方式来存储，数组的顺序其实就是堆层级遍历的结果。</p>
+<p><strong>堆的插入</strong></p>
+<p>由于堆是一个完全二叉树，每次总是先填满上一层，再在下一层从左往右依次插入。  </p>
+<p>插入步骤：<br>1.首先将新元素增加到堆的末尾。<br>2.然后在新元素与其父节点的值比较，如果新元素小于父节点的值则将两者交换位置。<br>3.不断进行第2步操作，直到不需要交换元素，或者达到堆顶。  </p>
+<p>最后就会得到一个最小堆，上面交换元素的过程叫做上滤。</p>
+<p><strong>堆的删除</strong>  </p>
+<p>堆的删除和插入操作是刚刚相反的，插入是从下往上调整堆，删除是从上往下调整堆。</p>
+<p>删除步骤：<br>1.首先删除堆顶元素。<br>2.然后在比较左右子节点，将小的元素上调。<br>3.不断进行步骤2，直到不需要调整或者调整到堆底了。</p>
+<p>上面交换元素的过程叫做下滤。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>堆有两种类型，最大堆和最小堆，并且堆总是一颗完全树。</p>
+<p>由于堆的 父节点的值恒小于等于子节点的值 或者 父节点的值恒大于等于子节点的值，可以作为 Top n 使用。</p>
+<p>堆（通常是二叉堆）常用于排序。这种算法称作堆排序。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">堆</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/19/heap/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-trie-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -166,7 +381,7 @@
       
         <h3 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h3><p>字典树，又称 前缀树 或 trie树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。</p>
 <h3 id="字典树的性质"><a href="#字典树的性质" class="headerlink" title="字典树的性质"></a>字典树的性质</h3><p>1.根节点不包含字符，除根节点外每一个节点都只包含一个字符。<br>2.从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串。<br>3.每个节点的所有子节点包含的字符都不相同。</p>
-<p>用字典树结构存储 《<strong>JVN JAVA PHP HTML HTTP </strong>》 字符串。</p>
+<p>用字典树结构存储 《<strong>JVM JAVA PHP HTML HTTP </strong>》 字符串。</p>
 <p><img src="/img/trie_tree.png" alt></p>
 <h3 id="字典树的实现"><a href="#字典树的实现" class="headerlink" title="字典树的实现"></a>字典树的实现</h3><p>字典树的结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">    <span class="comment">//26 个字母</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> SIZE = <span class="number">26</span>;</span><br><span class="line">    <span class="comment">//字典树的根</span></span><br><span class="line">    <span class="keyword">private</span> TrieNode root;</span><br><span class="line">    <span class="comment">//初始化字典树</span></span><br><span class="line">    Trie() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//字典树节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">        <span class="comment">//由根至该节点组成的字符串模式出现的次数</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line">        <span class="comment">//所有的孩子节点</span></span><br><span class="line">        <span class="keyword">private</span> TrieNode[] children;</span><br><span class="line">        <span class="comment">//是不是最后一个节点</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;</span><br><span class="line">        <span class="comment">//节点的值</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">char</span> val;</span><br><span class="line"></span><br><span class="line">        TrieNode() &#123;</span><br><span class="line">            num = <span class="number">1</span>;</span><br><span class="line">            children = <span class="keyword">new</span> TrieNode[SIZE];</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>字典树的插入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字典树中插入一个单词</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//参数校验</span></span><br><span class="line">    <span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TrieNode node = root;</span><br><span class="line">    <span class="keyword">char</span>[] letters = str.toCharArray();</span><br><span class="line">    <span class="comment">//循环整个单词插入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, len = str.length(); i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> pos = letters[i] - <span class="string">'a'</span>;</span><br><span class="line">        <span class="comment">//假如不存在就新建一个节点</span></span><br><span class="line">        <span class="keyword">if</span> (node.children[pos] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            node.children[pos] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">            node.children[pos].val = letters[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//否则通过这个节点数加一</span></span><br><span class="line">            node.children[pos].num++;</span><br><span class="line">        &#125;</span><br><span class="line">        node = node.children[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最后一个节点</span></span><br><span class="line">    node.isEnd = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -414,202 +629,9 @@
 
 
   
-    <article id="post-B-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/01/B-tree/">B树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/01/B-tree/" class="archive-article-date">
-  	<time datetime="2019-04-01T00:04:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是-B树"><a href="#什么是-B树" class="headerlink" title="什么是 B树"></a>什么是 B树</h3><p>B树（B-tree）是一种自平衡的树，能够保持数据有序。是一种专用的 M 阶树，最多有 M 个节点的自平衡树，与自平衡二叉查找树不同，B树 为系统大块数据的读写操作做了优化。B树 减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在 <strong>数据库</strong> 和 <strong>文件系统</strong> 的实现上。</p>
-<p>这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。</p>
-<p><strong>一棵 M阶 的 B树 要满足以下条件</strong><br>1.每一个节点最多有 M 个子节点。<br>2.除了根节点和叶子节点外，其他每个节点最少有 M/2 个子节点。<br>3.根节点不是叶子节点，它至少有 2 个子节点。<br>4.有 k 个子节点的非叶子节点拥有 k−1 个键。<br>5.所有的叶子节点必须在同一层。<br><img src="/img/b-tree.png" alt="B树"></p>
-<h3 id="B树的实现"><a href="#B树的实现" class="headerlink" title="B树的实现"></a>B树的实现</h3><p><strong>1.搜索</strong><br>B树的搜索和二叉搜索树类似。从根节点开始，从上到下递归的遍历树。在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键确定。</p>
-<p><strong>搜索下图中的数字 49</strong><br>a.用 49 和根节点元素比较，由于 49 &lt; 78，所以继续遍历左子树。<br>b.由于 40&lt;49&lt;56，所以遍历节点 40 的右子树。<br>c.49&gt;45，往右移。<br>d.找到 49，返回。<br><img src="/img/b-tree.png" alt></p>
-<p><strong>2.插入</strong></p>
-<p>从根节点开始，搜索这棵树找到新元素应该被添加到的叶子节点。如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序。否则的话，需要将它平均地分裂成两个节点，从叶子节点的元素和新的元素中选择出中位数，小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值。</p>
-<p>分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。</p>
-<p><strong>插入元素 8 到下图的 5阶 B树中</strong><br><img src="/img/b-tree-insert-1.png" alt></p>
-<p>由于 8 大于 5，插入到 5 的后面。<br><img src="/img/b-tree-insert-2.png" alt></p>
-<p>由于一棵 B树最多包含 k-1 个键，然而这个节点包含了 5 个键，所以需要按中位拆分，8 变成父节点。<br><img src="/img/b-tree-insert-3.png" alt></p>
-<p><strong>3.删除</strong></p>
-<p>假如删除的是叶子节点，将它删除后，重新进行平衡。</p>
-<p>假如删除的是中间节点，每一个元素都作为分隔两颗子树的分隔值，因此我们需要重新划分。选择一个新的分隔符（左子树中最大的元素或右子树中最小的元素），将它从叶子节点中移除，替换掉被删除的元素作为新的分隔值。如果删除的这个叶子节点拥有的元素数量小于最低要求，那么从这一叶子节点开始重新进行平衡。</p>
-<p><strong>删除下面 5阶B树 为 53 的节点</strong><br><img src="/img/b-tree-del-1.png" alt></p>
-<p>找到 53 在 49 的右孩子里，然后删掉它。<br><img src="/img/b-tree-del-2.png" alt></p>
-<p>由于 B树 的中间节点个数不得低于 m/2，现在只剩下一个节点，已经违反了规则，就需要按下面的重新平衡算法去满足它的特性，最后这棵树变成下面这样的。<br><img src="/img/b-tree-del-3.png" alt></p>
-<p><strong>重新平衡算法</strong></p>
-<p>如果缺少元素节点的右兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为右兄弟的第一个元素。</p>
-<p>如果缺少元素节点的左兄弟节点存在且拥有多余的元素，将父节点的分隔值复制到缺少元素节点的最后，将父节点的分隔值替换为左兄弟的第一个元素。</p>
-<p>如果它的两个直接兄弟节点都只有最小数量的元素，那么将它与一个直接兄弟节点以及父节点中它们的分隔值合并，将分隔值复制到左边的节点，将右边节点中所有的元素移动到左边节点，将父节点中的分隔值和空的右子树移除,如果父节点是根节点并且没有元素了，那么释放它并且让合并之后的节点成为新的根节点，否则，如果父节点的元素数量小于最小值，重新平衡父节点。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B树 实际上是二叉搜索树的升级版，由于二叉树只有 2 个子节点，当数据量大的时候树会变得非常高，也会对性能有一定影响。硬盘的读取是按块来读取的，一般是 4k。因此我们可以根据这一特性，把 2 个节点变为 M 个节点，每次读取减少定位记录时所经历的中间过程，从而加快存取速度。</p>
-<p>B树 在插入和删除时，都有可能导致破坏 B树 的规则，因此当破坏规则时，需要对树进行重新平衡，已到达查找数据、顺序访问、插入数据及删除时的时间复杂度在 O(log n)。</p>
-<p>B树 的变体 B+树，键值和记录存储在叶子节点，一个叶子节点可以包含一个指针，指向另一个叶子节点以加速顺序存取。</p>
-<p>B树 的变体 B*树，分支出更多的内部邻居节点以保持内部节点更密集地填充。此变体要求非根节点至少 2/3 填充，而不是 1/2。为了维持这样的结构，当一个节点填满之后将不会再立即分割节点，而是将它的键值与下一个节点共享。当两个节点都填满之后，分割成 3 个节点。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">B树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/01/B-tree/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-red-black-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/31/red-black-tree/">红黑树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/31/red-black-tree/" class="archive-article-date">
-  	<time datetime="2019-03-31T04:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树（Red–black tree）是一种自平衡二叉查找树。红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或黑色。<br>红黑树的特性：<br>1.节点要么是红色要么就是黑色，不能没有颜色。<br>2.根节点是黑色的。<br>3.所有叶子节点都是黑色的。<br>4.每个红色节点必须有两个黑色的子节点。<br>5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。<br><img src="/img/red-black-tree.png" alt><br>从根节点到叶子节点的最长路径不会超过最短路径的 2 倍，所以它对查找、删除和新增的最差时间复杂度为 O(log n)，且叶子上没有数据存储。</p>
-<h3 id="红黑树的实现"><a href="#红黑树的实现" class="headerlink" title="红黑树的实现"></a>红黑树的实现</h3><p>在 AVL树 插入中，插入后导致不平衡，我们使用旋转来保证它的平衡性。在红黑树中，我们使用 <strong>重新着色</strong> 和 <strong>旋转</strong> 来进行平衡。<br>首先，我们尝试重新着色，如果重新着色满足不了红黑树的特性，那么我们就进行旋转。</p>
-<p>插入算法主要有两种情况，取决于叔叔节点的颜色。如果叔叔节点是红色的，就进行重新着色。如果叔叔节点是黑色的，就要进行旋转和（或）重新着色操作。</p>
-<p>左旋和右旋请先参考《数据结构之「AVL树」》。</p>
-<p>新添加的节点设置为红色。如果设为黑色，就会导致根到叶子节点的路径上有一条路上，多一个额外的黑节点，这个是很难调整的。但是设为红色节点后，可能会导致出现两个连续红色节点的冲突，那么可以通过重新着色和树旋转来调整。</p>
-<p>假如新插入的节点为 x：<br>1.按标准的二叉搜索树插入节点颜色为红色的新节点。</p>
-<p>2.假如 x 就是根节点，那么改变 x 节点颜色为黑色。</p>
-<p>3.如果新节点的父节点是黑色的，直接返回。</p>
-<p>4.如果父节点和叔叔节点都是红色的，需要改变父节点和叔叔节点的颜色为黑色，并设置祖父节点为红色，如果祖父节点为根节点，设置祖父节点颜色为黑色。</p>
-<p>5.如果父节点是红色而叔叔节点是黑色或缺少，新节点是父节点的左子节点，而父节点又是其父节点的左子节点。这种情况就需要对祖父节点进行一次右旋，然后在切换父节点和祖父节点的颜色，就满足红黑树的性质了。</p>
-<p>6.如果父节点是红色，而叔叔节点是黑色或缺少，并且新节点是其父节点的右子节点而父节点又是其父节点的左子节点。需要先对当前节点节点进行左旋，变成 情形5，然后按 情形5 的步骤操作来。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>与 AVL树 相比，AVL树 更加平衡，但它可能在插入和删除期间引<br>起更多旋转。因此，如果频繁的插入和删除操作，那么应该首选红黑树。如果插入和删除频率较低且搜索是更频繁的操作，那么AVL树应优先于红黑树。</p>
-<p>红黑树牺牲了部分平衡性以换取插入/删除操作时做少量的旋转操作，整体来说性能要优于AVL树。</p>
-<p>在 JDK 中，都是用红黑树来做 TreeSet 和 TreeMap 的数据结构存储，在 JDK1.8之后都是用红黑树来存储哈希冲突大于等于八个节点的数据结构，所以红黑树还是一种比较常用的数据结构。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">红黑树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/31/red-black-tree/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -704,7 +726,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,11 +734,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,15 +742,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,7 +758,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
+                <a href="javascript:void(0)" class="js-tag color2">堆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,11 +770,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优秀代码</a>
               </li>
             
             <div class="clearfix"></div>
