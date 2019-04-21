@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>Archives: 2019/3 | 清尘闲聊</title>
+  <title>图 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
-<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="清尘闲聊">
-<meta property="og:url" content="https://iqchen.github.io/archives/2019/03/index.html">
+  <meta name="description" content="图图 是由顶点的有穷非空集合和顶点之间边的集合组成。 图 是一种较线性表和树更加复杂的数据结构。在图形结构中，结点之间的关系可以是任意的，图中任意两个数据元素之间都可能相关。 线性表中我们把数据元素叫元素，树中将数据元素节点，在图中数据元素，我们则称之为顶点。 线性表中，相邻的数据元素之间具有线性关系，树结构中，相邻两层的节点具有层次关系，而图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用">
+<meta name="keywords" content="数据结构,图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图">
+<meta property="og:url" content="https://iqchen.github.io/2019/04/21/graph/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta property="og:description" content="图图 是由顶点的有穷非空集合和顶点之间边的集合组成。 图 是一种较线性表和树更加复杂的数据结构。在图形结构中，结点之间的关系可以是任意的，图中任意两个数据元素之间都可能相关。 线性表中我们把数据元素叫元素，树中将数据元素节点，在图中数据元素，我们则称之为顶点。 线性表中，相邻的数据元素之间具有线性关系，树结构中，相邻两层的节点具有层次关系，而图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-21T15:27:47.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清尘闲聊">
-<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="twitter:title" content="图">
+<meta name="twitter:description" content="图图 是由顶点的有穷非空集合和顶点之间边的集合组成。 图 是一种较线性表和树更加复杂的数据结构。在图形结构中，结点之间的关系可以是任意的，图中任意两个数据元素之间都可能相关。 线性表中我们把数据元素叫元素，树中将数据元素节点，在图中数据元素，我们则称之为顶点。 线性表中，相邻的数据元素之间具有线性关系，树结构中，相邻两层的节点具有层次关系，而图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -142,36 +143,85 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-graph" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图
+    </h1>
+  
+
+        
+        <a href="/2019/04/21/graph/" class="archive-article-date">
+  	<time datetime="2019-04-21T15:26:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-21</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>图 是由顶点的有穷非空集合和顶点之间边的集合组成。</p>
+<p>图 是一种较线性表和树更加复杂的数据结构。在图形结构中，结点之间的关系可以是任意的，图中任意两个数据元素之间都可能相关。</p>
+<p>线性表中我们把数据元素叫元素，树中将数据元素节点，在图中数据元素，我们则称之为顶点。</p>
+<p>线性表中，相邻的数据元素之间具有线性关系，树结构中，相邻两层的节点具有层次关系，而图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用边来表示，边集可以是空的。</p>
+<p>若顶点到顶点之间的边没有方向，则称这条边为 <strong>无向边</strong>。<br>若顶点到顶点之间的边有方向，则称这条边为 <strong>有向边</strong>，也称为 <strong>弧</strong>。</p>
+<p>如果图中任意两个顶点之间的边都是有向边，则称该图为 <strong>有向图</strong>。<br>如果图中任意两个顶点之间的边都是无向边，则称该图为 <strong>无向图</strong>。</p>
+<p>在无向图中，如果任意两个顶点之间都存在边，则称该图为 <strong>无向完全图</strong>。<br>在有向图中，如果任意两个顶点之间都存在方向互为相反的两条弧，则称该图为 <strong>有向完全图</strong>。</p>
+<p>在图中，若不存在顶点到其自身的边，且同一条边不重复出现，则称这样的图为 <strong>简单图</strong>。</p>
+<p>有些图的边或弧具有与它相关的数字，这种与图的边或弧相关的数叫做 <strong>权</strong>。这些权可以表示从一个顶点到另一个顶点的距离或耗费。这种带权的图通常称为 <strong>网</strong>。</p>
+<p>与该顶点相关联的总边数称为 <strong>度</strong>。在有向图中，顶点的度还可分为出度和入度。以该顶点为起点的边称为 <strong>出度</strong>，以该顶点为终点的边称为 <strong>入度</strong>。</p>
+<p>从一个顶点到另一个顶点之间的边序列叫做 <strong>路径</strong>，路径上的边或弧的数目称为 <strong>路径的长度</strong>。</p>
+<p>第一个顶点和最后一个顶点相同的路径称为回路或环。序列中顶点不重复出现的路径称为简单路径。除了第一个顶点和最后一个顶点之外，其余顶点不重复出现的回路，称为简单回路或简单环。</p>
+<p>无向图中连通且 n 个顶点 n-1 条边叫 <strong>生成树</strong>。有向图中一顶点入度为 0 其余顶点入度为 1 的叫 <strong>有向树</strong>。一个有向图由若干棵有向树构成 <strong>生成森林</strong>。</p>
+<h3 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h3><p><strong>1.邻接矩阵</strong></p>
+<p>用两个数组来表示图。一个一维数组存储图中顶点信息，一个二维数组存储图中的边或弧的信息。</p>
+<p>在无向图中，顶点到顶点之间有边，就把二维数组里对应的值设为 1，否则设为 0。如果需要知道某个顶点的度，就是邻接矩阵某行元素之和。实际上，无向图的边数组是一个对称矩阵。</p>
+<p>从矩阵的左上角到右下角的主对角线为轴，右上角的元与左下角相对应的元全都是相等的称为 <strong>对称矩阵</strong>。</p>
+<p>在有向图中，边是有方向的，根据方向分 入度 和 出度。因此，一个顶点到另一个顶点之间有边时二维数组对应的值设为 1，否则为 0。出度为某行之和，入度为某列之和。</p>
+<p>如果在图中每条边带权时，称为 网。比如计算最短路径时，需要用到这个权值，因此需要把对应的权值存储下来。上面二维数组中用 1 和 0 来区分顶点之间是否有边，我们可以把真实的权值存储到对应的二维数组中去，这样就解决来存储权值的问题。</p>
+<p><strong>2.邻接表</strong></p>
+<p>上面的邻接矩阵看起来是一个存储图不错的方案，但是，当边树比较少的图中，会浪费大量的存储空间。这个时候就可以变二维数组为 <strong>一维数组 + 链表</strong> 来存储对应的图了，称为邻接表。</p>
+<p>图中顶点用一个一维数组存储，每个顶点的所有邻接点在对应一维数组后构成一个线性表，在无向图中称为顶点的边表，在有向图中称为顶点作为弧尾的出边表。</p>
+<p>这样用 <strong>一维数组 + 链表</strong> 来存储图的方式叫做邻接表。</p>
+<p><strong>3.十字链表</strong></p>
+<p>上面的存储看似很完美，但有向图有方向，我们是以顶点为弧尾来存储边表的，这样很容易就可以得到每个顶点的出度。但也有时为了便于确定顶点的入度或以顶点为弧头的弧，我们可以建立一个有向图的逆邻接表，即对每个顶点都建立一个链接顶点为弧头的表。</p>
+<p>把邻接表与逆邻接表结合起来的一种存储方法称为 <strong>十字链表</strong>。</p>
+<p>新的顶点表节点结构，分别是 <strong>data、firstin、firstout</strong>。</p>
+<p><strong>data</strong> 表示顶点的信息。<br><strong>firstin</strong> 表示入边表头指针，指向该顶点的入边表中第一个节点。<br><strong>firstout</strong> 表示出边表头指针，指向该顶点的出边表中的第一个节点。</p>
+<p>新的边表节点结构，分别是 <strong>tailvex、headvex、headlink、taillink</strong>。</p>
+<p><strong>tailvex</strong> 是指弧起点在顶点表的下标。<br><strong>headvex</strong> 是指弧终点在顶点表中的下标。<br><strong>headlink</strong> 是指入边表指针域，指向终点相同的下一条边。<br><strong>taillink</strong> 是指边表指针域，指向起点相同的下一条边。<br>如果是网，还可以再增加一个 weight 域来存储权值。</p>
+<p>十字链表的好处就是容易求得顶点的出度和入度。</p>
+<p><strong>4.邻接多重表</strong></p>
+<p>十字链表是对有向图的优化，可以很容易的求得顶点的出度和入度。<br>在无向图中，邻接表主要是关注的顶点，如果是要标记或者删除一条边的时候，邻接表的操作就比较麻烦了，这时候就可以参考有向图的优化十字链表了。</p>
+<p>新的顶点表节点结构，分别是 <strong>data、firstedge</strong>。</p>
+<p><strong>data</strong> 表示顶点的信息。<br><strong>firstin</strong> 表示第一个边表指针，指向该顶点的边表中第一个节点。  </p>
+<p>新的边表节点结构，分别是 <strong>ivex、ilink、jvex、jvex</strong>。</p>
+<p><strong>ivex</strong> 和 <strong>jvex</strong> 是与某条边依附的两个顶点在顶点表中的下标。<br><strong>ilink</strong> 指向依附顶点 <strong>ivex</strong> 的下一条边，<strong>jlink</strong> 指向依附顶点 <strong>jvex</strong> 的下一条边。</p>
+<p>这样的结构称为 邻接多重表。邻接多重表与邻接表的差别，仅仅是在于同一条边在邻接表中用两个节点表示，而在邻接多重表中只有一个节点。</p>
+<h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><p>从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历。</p>
+<p>对于图的遍历来说，如何避免因回路陷入死循环，就需要科学地设计遍历方案，通常有两种遍历次序方案：它们是 <strong>深度优先遍历</strong> 和 <strong>广度优先遍历</strong>。</p>
+<p><strong>1.深度优先遍历</strong></p>
+<p>深度优先遍历（Depth First Search），也有称为深度优先搜索，简称为 DFS。</p>
+<p>沿着顶点，尽可能深的遍历的分支。当顶点的所在边都己被探寻过，遍历将回溯到发现顶点的那条边的起始顶点。这一过程一直进行到已发现从源顶点可达的所有顶点为止。如果还存在未被发现的顶点，则选择其中一个作为源顶点并重复以上过程，整个进程反复进行直到所有顶点都被访问为止。</p>
+<p>深度优先遍历 就像是树的前序遍历。</p>
+<p><strong>2.广度优先遍历</strong></p>
+<p>广度优先遍历（Breadth First Search），又称为广度优先搜索，简称BFS。</p>
+<p>图的广度优先遍历就类似于树的层序遍历，就是从最上面的顶点，一层一层向下遍历，直到遍历所有的顶点。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>图 分为 无向图 和 有向图，与该顶点相关联的总边数称为 度，有向图中又分为 出度 和 入度。</p>
+<p>从一个顶点到另一个顶点之间的边序列叫做 路径，路径上的边或弧的数目称为 路径的长度。</p>
+<p>存储图的结构主要有 邻接矩阵、邻接表、十字链表 和 邻接多重表。</p>
+<p>图的遍历分别为 深度优先遍历 和 广度优先遍历。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/31/red-black-tree/" class="archive-article-date">
-  	<time datetime="2019-03-31T04:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/31/red-black-tree/">红黑树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,406 +231,111 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">红黑树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">图</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/21/graph/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/30/balancing-BSTree/" class="archive-article-date">
-  	<time datetime="2019-03-30T06:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/20/java-effective-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 优秀代码必知必会</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/30/balancing-BSTree/">平衡二叉搜索树</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">平衡二叉搜索树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/26/binary-search-tree/" class="archive-article-date">
-  	<time datetime="2019-03-26T14:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/26/binary-search-tree/">二叉搜索树</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">二叉搜索树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/24/binary-tree/" class="archive-article-date">
-  	<time datetime="2019-03-24T14:58:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/24/binary-tree/">二叉树</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/21/tree-base/" class="archive-article-date">
-  	<time datetime="2019-03-21T13:32:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/21/tree-base/">树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/18/hash-table/" class="archive-article-date">
-  	<time datetime="2019-03-18T13:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/hash-table/">哈希表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/17/deque/" class="archive-article-date">
-  	<time datetime="2019-03-17T07:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/17/deque/">双端队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/15/queue/" class="archive-article-date">
-  	<time datetime="2019-03-15T14:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/15/queue/">队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/14/stack/" class="archive-article-date">
-  	<time datetime="2019-03-14T14:22:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/14/stack/">栈</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/12/Linked-List/" class="archive-article-date">
-  	<time datetime="2019-03-12T14:27:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/12/Linked-List/">链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/03/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -604,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

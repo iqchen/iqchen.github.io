@@ -144,6 +144,134 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-graph" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/21/graph/">图</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/21/graph/" class="archive-article-date">
+  	<time datetime="2019-04-21T15:26:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>图 是由顶点的有穷非空集合和顶点之间边的集合组成。</p>
+<p>图 是一种较线性表和树更加复杂的数据结构。在图形结构中，结点之间的关系可以是任意的，图中任意两个数据元素之间都可能相关。</p>
+<p>线性表中我们把数据元素叫元素，树中将数据元素节点，在图中数据元素，我们则称之为顶点。</p>
+<p>线性表中，相邻的数据元素之间具有线性关系，树结构中，相邻两层的节点具有层次关系，而图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用边来表示，边集可以是空的。</p>
+<p>若顶点到顶点之间的边没有方向，则称这条边为 <strong>无向边</strong>。<br>若顶点到顶点之间的边有方向，则称这条边为 <strong>有向边</strong>，也称为 <strong>弧</strong>。</p>
+<p>如果图中任意两个顶点之间的边都是有向边，则称该图为 <strong>有向图</strong>。<br>如果图中任意两个顶点之间的边都是无向边，则称该图为 <strong>无向图</strong>。</p>
+<p>在无向图中，如果任意两个顶点之间都存在边，则称该图为 <strong>无向完全图</strong>。<br>在有向图中，如果任意两个顶点之间都存在方向互为相反的两条弧，则称该图为 <strong>有向完全图</strong>。</p>
+<p>在图中，若不存在顶点到其自身的边，且同一条边不重复出现，则称这样的图为 <strong>简单图</strong>。</p>
+<p>有些图的边或弧具有与它相关的数字，这种与图的边或弧相关的数叫做 <strong>权</strong>。这些权可以表示从一个顶点到另一个顶点的距离或耗费。这种带权的图通常称为 <strong>网</strong>。</p>
+<p>与该顶点相关联的总边数称为 <strong>度</strong>。在有向图中，顶点的度还可分为出度和入度。以该顶点为起点的边称为 <strong>出度</strong>，以该顶点为终点的边称为 <strong>入度</strong>。</p>
+<p>从一个顶点到另一个顶点之间的边序列叫做 <strong>路径</strong>，路径上的边或弧的数目称为 <strong>路径的长度</strong>。</p>
+<p>第一个顶点和最后一个顶点相同的路径称为回路或环。序列中顶点不重复出现的路径称为简单路径。除了第一个顶点和最后一个顶点之外，其余顶点不重复出现的回路，称为简单回路或简单环。</p>
+<p>无向图中连通且 n 个顶点 n-1 条边叫 <strong>生成树</strong>。有向图中一顶点入度为 0 其余顶点入度为 1 的叫 <strong>有向树</strong>。一个有向图由若干棵有向树构成 <strong>生成森林</strong>。</p>
+<h3 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h3><p><strong>1.邻接矩阵</strong></p>
+<p>用两个数组来表示图。一个一维数组存储图中顶点信息，一个二维数组存储图中的边或弧的信息。</p>
+<p>在无向图中，顶点到顶点之间有边，就把二维数组里对应的值设为 1，否则设为 0。如果需要知道某个顶点的度，就是邻接矩阵某行元素之和。实际上，无向图的边数组是一个对称矩阵。</p>
+<p>从矩阵的左上角到右下角的主对角线为轴，右上角的元与左下角相对应的元全都是相等的称为 <strong>对称矩阵</strong>。</p>
+<p>在有向图中，边是有方向的，根据方向分 入度 和 出度。因此，一个顶点到另一个顶点之间有边时二维数组对应的值设为 1，否则为 0。出度为某行之和，入度为某列之和。</p>
+<p>如果在图中每条边带权时，称为 网。比如计算最短路径时，需要用到这个权值，因此需要把对应的权值存储下来。上面二维数组中用 1 和 0 来区分顶点之间是否有边，我们可以把真实的权值存储到对应的二维数组中去，这样就解决来存储权值的问题。</p>
+<p><strong>2.邻接表</strong></p>
+<p>上面的邻接矩阵看起来是一个存储图不错的方案，但是，当边树比较少的图中，会浪费大量的存储空间。这个时候就可以变二维数组为 <strong>一维数组 + 链表</strong> 来存储对应的图了，称为邻接表。</p>
+<p>图中顶点用一个一维数组存储，每个顶点的所有邻接点在对应一维数组后构成一个线性表，在无向图中称为顶点的边表，在有向图中称为顶点作为弧尾的出边表。</p>
+<p>这样用 <strong>一维数组 + 链表</strong> 来存储图的方式叫做邻接表。</p>
+<p><strong>3.十字链表</strong></p>
+<p>上面的存储看似很完美，但有向图有方向，我们是以顶点为弧尾来存储边表的，这样很容易就可以得到每个顶点的出度。但也有时为了便于确定顶点的入度或以顶点为弧头的弧，我们可以建立一个有向图的逆邻接表，即对每个顶点都建立一个链接顶点为弧头的表。</p>
+<p>把邻接表与逆邻接表结合起来的一种存储方法称为 <strong>十字链表</strong>。</p>
+<p>新的顶点表节点结构，分别是 <strong>data、firstin、firstout</strong>。</p>
+<p><strong>data</strong> 表示顶点的信息。<br><strong>firstin</strong> 表示入边表头指针，指向该顶点的入边表中第一个节点。<br><strong>firstout</strong> 表示出边表头指针，指向该顶点的出边表中的第一个节点。</p>
+<p>新的边表节点结构，分别是 <strong>tailvex、headvex、headlink、taillink</strong>。</p>
+<p><strong>tailvex</strong> 是指弧起点在顶点表的下标。<br><strong>headvex</strong> 是指弧终点在顶点表中的下标。<br><strong>headlink</strong> 是指入边表指针域，指向终点相同的下一条边。<br><strong>taillink</strong> 是指边表指针域，指向起点相同的下一条边。<br>如果是网，还可以再增加一个 weight 域来存储权值。</p>
+<p>十字链表的好处就是容易求得顶点的出度和入度。</p>
+<p><strong>4.邻接多重表</strong></p>
+<p>十字链表是对有向图的优化，可以很容易的求得顶点的出度和入度。<br>在无向图中，邻接表主要是关注的顶点，如果是要标记或者删除一条边的时候，邻接表的操作就比较麻烦了，这时候就可以参考有向图的优化十字链表了。</p>
+<p>新的顶点表节点结构，分别是 <strong>data、firstedge</strong>。</p>
+<p><strong>data</strong> 表示顶点的信息。<br><strong>firstin</strong> 表示第一个边表指针，指向该顶点的边表中第一个节点。  </p>
+<p>新的边表节点结构，分别是 <strong>ivex、ilink、jvex、jvex</strong>。</p>
+<p><strong>ivex</strong> 和 <strong>jvex</strong> 是与某条边依附的两个顶点在顶点表中的下标。<br><strong>ilink</strong> 指向依附顶点 <strong>ivex</strong> 的下一条边，<strong>jlink</strong> 指向依附顶点 <strong>jvex</strong> 的下一条边。</p>
+<p>这样的结构称为 邻接多重表。邻接多重表与邻接表的差别，仅仅是在于同一条边在邻接表中用两个节点表示，而在邻接多重表中只有一个节点。</p>
+<h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><p>从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历。</p>
+<p>对于图的遍历来说，如何避免因回路陷入死循环，就需要科学地设计遍历方案，通常有两种遍历次序方案：它们是 <strong>深度优先遍历</strong> 和 <strong>广度优先遍历</strong>。</p>
+<p><strong>1.深度优先遍历</strong></p>
+<p>深度优先遍历（Depth First Search），也有称为深度优先搜索，简称为 DFS。</p>
+<p>沿着顶点，尽可能深的遍历的分支。当顶点的所在边都己被探寻过，遍历将回溯到发现顶点的那条边的起始顶点。这一过程一直进行到已发现从源顶点可达的所有顶点为止。如果还存在未被发现的顶点，则选择其中一个作为源顶点并重复以上过程，整个进程反复进行直到所有顶点都被访问为止。</p>
+<p>深度优先遍历 就像是树的前序遍历。</p>
+<p><strong>2.广度优先遍历</strong></p>
+<p>广度优先遍历（Breadth First Search），又称为广度优先搜索，简称BFS。</p>
+<p>图的广度优先遍历就类似于树的层序遍历，就是从最上面的顶点，一层一层向下遍历，直到遍历所有的顶点。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>图 分为 无向图 和 有向图，与该顶点相关联的总边数称为 度，有向图中又分为 出度 和 入度。</p>
+<p>从一个顶点到另一个顶点之间的边序列叫做 路径，路径上的边或弧的数目称为 路径的长度。</p>
+<p>存储图的结构主要有 邻接矩阵、邻接表、十字链表 和 邻接多重表。</p>
+<p>图的遍历分别为 深度优先遍历 和 广度优先遍历。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">图</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/21/graph/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java-effective-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -534,101 +662,6 @@
 
 
   
-    <article id="post-B-Tree-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/B-Tree-0/">B+树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/10/B-Tree-0/" class="archive-article-date">
-  	<time datetime="2019-04-10T15:15:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p><strong>B+树</strong> 是 B树 的扩展，允许有效的插入，删除和搜索操作。</p>
-<p>在 B树 中，键和记录（数据）都可以存储在内部节点和叶子节点中。 然而，在 B+树 中，记录只能存储在叶节点上，而内部节点只能存储键值。</p>
-<p>B+树 的叶节点以单链表的形式链接在一起，解决区间查询，以使搜索查询更加高效。</p>
-<p>B+树 用于无法存储大量的数据在主存储器中。 由于主存储器的大小总是有限的，B+树 的内部节点（访问记录的键）存储在主存储器（内存）中，而叶节点存储在辅助存储器（硬盘）中。由于内存的查询速度远大于硬盘，就可以把 键 放入内存，把 记录 放入硬盘，以达到最优方案。</p>
-<p>B+树 的内部节点通常称为索引节点。</p>
-<p>在 B+树 中的节点通常被表示为一组有序的元素和子指针。如果此 B+树 的阶数是m，则除了根之外的每个节点都包含最少 m/2 个元素最多 m 个元素，对于任意的结点有最多 m 个子指针。对于所有内部节点，子指针的数目总是与元素的数目相同。所有叶子都在相同的高度上，叶结点本身按关键字大小从小到大链接。<br><img src="/img/b+tree.png" alt></p>
-<h3 id="B-树-的优点"><a href="#B-树-的优点" class="headerlink" title="B+树 的优点"></a>B+树 的优点</h3><p>可以在相同数量的磁盘访问中获取记录。<br>树的高度保持平衡，与 B树 相比较少。<br>我们可以顺序访问存储在 B+树 中的数据，也可以直接访问。<br>键用于索引。<br>更快的搜索查询，因为数据仅存储在叶节点上。</p>
-<h3 id="B-树-的实现"><a href="#B-树-的实现" class="headerlink" title="B+树 的实现"></a>B+树 的实现</h3><p><strong>1.查找</strong><br>类似于 <strong>二叉查找树</strong>。起始于根节点，自顶向下遍历树，选择其分离值在要查找值的任意一边的子指针。</p>
-<p><strong>2.插入</strong><br>首先，查找到要插入其中的节点的位置。接着把值插入这个节点中。</p>
-<p>如果没有节点违反 B+树 的规则（不能大于 m-1 个元素）直接成功返回。</p>
-<p>如果某个节点有过多元素，则把它分裂为两个节点，每个都有最小数目的元素。在树上递归向上继续这个处理直到到达根节点，如果根节点被分裂，则创建一个新根节点。分裂的节点一般是这组元素的中位数。</p>
-<p><strong>3.删除</strong><br>首先，查找到要删除的值，从叶子节点中删除键和数据。</p>
-<p>如果没有节点违反 B+树 的规则（不能小于 m/2 个元素）直接成功返回。</p>
-<p>如果叶节点包含少于最小数量的元素，则将节点与其兄弟节点合并，并删除它们之间的键。</p>
-<p>如果索引节点包含少于最小数量的元素，则将节点与兄弟节点合并，并在它们之间向下移动键。</p>
-<h3 id="B-树-与-B-树的区别"><a href="#B-树-与-B-树的区别" class="headerlink" title="B-树 与 B+树的区别"></a>B-树 与 B+树的区别</h3><p>1.搜索键无法重复存储； 可以存在冗余搜索键。<br>2.数据可以存储在叶节点以及内部节点中；数据只能存储在叶节点上。<br>3.搜索某些数据的过程较慢，因为可以在内部节点和叶节点上找到数据； 搜索速度相对较快，因为只能在叶节点上找到数据。<br>4.删除内部节点非常复杂且耗时；删除永远不会是一个复杂的过程，因为元素将始终从叶节点中删除。<br>5.叶节点不能链接在一起；叶节点链接在一起以使搜索操作更有效。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>B+树 把内部节点当作键来存储，存储的元素比较少，可以放入内存中，提升查询效率。叶子节点里存储里键和数据，适合放入硬盘，只需要少量的读取硬盘即可完成查询。因为内存的读取比硬盘块很多，所以效率提升很多。</p>
-<p>由于 B+树 内部节点只有键，存储内容较少，增删查时间复杂度为 O(log n)，叶子节点链接在一起，可以区间查询等，所以非常适合做数据库索引存储结构。数据库主键索引最好是自增的，以提升插入效率。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">B+树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/10/B-Tree-0/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -726,11 +759,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">B树</a>
+                <a href="javascript:void(0)" class="js-tag color5">霍夫曼树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,15 +771,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color3">B树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
+                <a href="javascript:void(0)" class="js-tag color2">图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,15 +783,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">堆</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,14 +812,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,6 +824,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优秀代码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
             
             <div class="clearfix"></div>
