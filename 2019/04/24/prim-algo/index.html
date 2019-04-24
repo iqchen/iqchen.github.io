@@ -6,19 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://iqchen.github.io">
-  <title>Tag: B+树 | 清尘闲聊</title>
+  <title>普里姆（Prim）算法 | 清尘闲聊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="清山绿水始于尘，博学多识贵于勤。">
-<meta name="keywords" content="清尘,清尘闲聊,数据结构,算法,java,spring,redis,后端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="清尘闲聊">
-<meta property="og:url" content="https://iqchen.github.io/tags/B-树/index.html">
+  <meta name="description" content="普里姆算法普里姆算法（Prim’s algorithm）是图中的一种算法，可在加权连通图中搜索最小生成树。 该算法的作用就是根据图中权值找到连接所有顶点的最短路径，也就是连接所有顶点的最小权值之和，也是这个加权图中的最小生成树。 普里姆算法步骤1.选取权值最小边的其中一个顶点作为起始点。2.找到离当前顶点权值最小的边，并记录该顶点为已选择。3.重复第二步，直到找到所有顶点，就找到了图的最小生成树。">
+<meta name="keywords" content="算法,普里姆算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="普里姆（Prim）算法">
+<meta property="og:url" content="https://iqchen.github.io/2019/04/24/prim-algo/index.html">
 <meta property="og:site_name" content="清尘闲聊">
-<meta property="og:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta property="og:description" content="普里姆算法普里姆算法（Prim’s algorithm）是图中的一种算法，可在加权连通图中搜索最小生成树。 该算法的作用就是根据图中权值找到连接所有顶点的最短路径，也就是连接所有顶点的最小权值之和，也是这个加权图中的最小生成树。 普里姆算法步骤1.选取权值最小边的其中一个顶点作为起始点。2.找到离当前顶点权值最小的边，并记录该顶点为已选择。3.重复第二步，直到找到所有顶点，就找到了图的最小生成树。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_1.png">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_2.png">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_3.png">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_4.png">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_5.png">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_6.png">
+<meta property="og:image" content="https://iqchen.github.io/img/prim_7.png">
+<meta property="og:updated_time" content="2019-04-24T15:00:44.464Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清尘闲聊">
-<meta name="twitter:description" content="清山绿水始于尘，博学多识贵于勤。">
+<meta name="twitter:title" content="普里姆（Prim）算法">
+<meta name="twitter:description" content="普里姆算法普里姆算法（Prim’s algorithm）是图中的一种算法，可在加权连通图中搜索最小生成树。 该算法的作用就是根据图中权值找到连接所有顶点的最短路径，也就是连接所有顶点的最小权值之和，也是这个加权图中的最小生成树。 普里姆算法步骤1.选取权值最小边的其中一个顶点作为起始点。2.找到离当前顶点权值最小的边，并记录该顶点为已选择。3.重复第二步，直到找到所有顶点，就找到了图的最小生成树。">
+<meta name="twitter:image" content="https://iqchen.github.io/img/prim_1.png">
   
     <link rel="alternative" href="/atom.xml" title="清尘闲聊" type="application/atom+xml">
   
@@ -142,64 +151,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-prim-algo" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/10/B-Tree-0/" class="archive-article-date">
-  	<time datetime="2019-04-10T15:15:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/10/B-Tree-0/">B+树</a>
+    <h1 class="article-title" itemprop="name">
+      普里姆（Prim）算法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/04/24/prim-algo/" class="archive-article-date">
+  	<time datetime="2019-04-24T14:40:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="普里姆算法"><a href="#普里姆算法" class="headerlink" title="普里姆算法"></a>普里姆算法</h3><p>普里姆算法（Prim’s algorithm）是图中的一种算法，可在加权连通图中搜索最小生成树。</p>
+<p>该算法的作用就是根据图中权值找到连接所有顶点的最短路径，也就是连接所有顶点的最小权值之和，也是这个加权图中的最小生成树。</p>
+<h3 id="普里姆算法步骤"><a href="#普里姆算法步骤" class="headerlink" title="普里姆算法步骤"></a>普里姆算法步骤</h3><p>1.选取权值最小边的其中一个顶点作为起始点。<br>2.找到离当前顶点权值最小的边，并记录该顶点为已选择。<br>3.重复第二步，直到找到所有顶点，就找到了图的最小生成树。  </p>
+<h3 id="普里姆算法时间复杂度"><a href="#普里姆算法时间复杂度" class="headerlink" title="普里姆算法时间复杂度"></a>普里姆算法时间复杂度</h3><p>假如我们有 V 表示图中的顶点个数，E 表示图中的边个数。</p>
+<p>通过邻接矩阵图表示的简易实现中，找到所有最小权边共需 O(V^{2}) 的运行时间。</p>
+<p>使用简单的二叉堆和邻接表来表示的话，普里姆算法的运行时间则可缩减为 O(E log V )。</p>
+<p>如果使用较为复杂的斐波那契堆，则可将运行时间进一步缩短为 O(E+V log V)，这在连通图足够密集时，可较显著地提高运行速度。</p>
+<h3 id="普里姆算法示例"><a href="#普里姆算法示例" class="headerlink" title="普里姆算法示例"></a>普里姆算法示例</h3><p><img src="/img/prim_1.png" alt></p>
+<p>根据上面加权连通图找到最小生成树。</p>
+<p><img src="/img/prim_2.png" alt><br>首先选择顶点 A 作为起点。顶点 D、F、B 与 A 相连，且 AD 之间的权值最小，因此选择这条边。此时 A、D 为已选择顶点，E、F、B 为待选择顶点，H、G 为未选择顶点。</p>
+<p><img src="/img/prim_3.png" alt><br>下一个顶点应选择离 A、D 权值最小的顶点，因此选择 AB 这条边。此时 A、D、B 为已选择顶点，E、F、G 为待选择顶点，H 为未选择顶点。</p>
+<p><img src="/img/prim_4.png" alt><br>下一个顶点应选择离 A、D、B 权值最小的顶点，因此选择 DE 这条边。此时 A、D、B、E 为已选择顶点，F、G、H 为待选择顶点，没有未选择顶点。</p>
+<p><img src="/img/prim_5.png" alt><br>下一个顶点应选择离 A、D、B、E 权值最小的顶点，因此选择 EH 这条边。此时 A、D、B、E、H 为已选择顶点，F、G 为待选择顶点，没有未选择顶点。</p>
+<p><img src="/img/prim_6.png" alt><br>下一个顶点应选择离 A、D、B、E、H 权值最小的顶点，因此选择 FH 这条边。此时 A、D、B、E、H、F 为已选择顶点，G 为待选择顶点，没有未选择顶点。</p>
+<p><img src="/img/prim_7.png" alt><br>最后，只剩下一个顶点 G，到顶点 G 的权值最小的是 HG。现在图中所有顶点都连接了，红色连接的边就是最小生成树，最小生成树的权值之和为 42。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>普里姆算法就是通过一个顶点扩散开找权值最小的边，所经过的顶点和边就是这个图的最小生成树。通过不用的数据结构存储图会导致时间复杂度不一致，用邻接矩阵的时间复杂度是 O(V^{2})，二叉堆和邻接表的时间复杂度是 O(E log V )。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">B+树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">普里姆算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iqchen.github.io/2019/04/24/prim-algo/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/04/21/graph/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">图</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +332,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

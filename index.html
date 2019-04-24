@@ -144,6 +144,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-prim-algo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/prim-algo/">普里姆（Prim）算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/24/prim-algo/" class="archive-article-date">
+  	<time datetime="2019-04-24T14:40:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="普里姆算法"><a href="#普里姆算法" class="headerlink" title="普里姆算法"></a>普里姆算法</h3><p>普里姆算法（Prim’s algorithm）是图中的一种算法，可在加权连通图中搜索最小生成树。</p>
+<p>该算法的作用就是根据图中权值找到连接所有顶点的最短路径，也就是连接所有顶点的最小权值之和，也是这个加权图中的最小生成树。</p>
+<h3 id="普里姆算法步骤"><a href="#普里姆算法步骤" class="headerlink" title="普里姆算法步骤"></a>普里姆算法步骤</h3><p>1.选取权值最小边的其中一个顶点作为起始点。<br>2.找到离当前顶点权值最小的边，并记录该顶点为已选择。<br>3.重复第二步，直到找到所有顶点，就找到了图的最小生成树。  </p>
+<h3 id="普里姆算法时间复杂度"><a href="#普里姆算法时间复杂度" class="headerlink" title="普里姆算法时间复杂度"></a>普里姆算法时间复杂度</h3><p>假如我们有 V 表示图中的顶点个数，E 表示图中的边个数。</p>
+<p>通过邻接矩阵图表示的简易实现中，找到所有最小权边共需 O(V^{2}) 的运行时间。</p>
+<p>使用简单的二叉堆和邻接表来表示的话，普里姆算法的运行时间则可缩减为 O(E log V )。</p>
+<p>如果使用较为复杂的斐波那契堆，则可将运行时间进一步缩短为 O(E+V log V)，这在连通图足够密集时，可较显著地提高运行速度。</p>
+<h3 id="普里姆算法示例"><a href="#普里姆算法示例" class="headerlink" title="普里姆算法示例"></a>普里姆算法示例</h3><p><img src="/img/prim_1.png" alt></p>
+<p>根据上面加权连通图找到最小生成树。</p>
+<p><img src="/img/prim_2.png" alt><br>首先选择顶点 A 作为起点。顶点 D、F、B 与 A 相连，且 AD 之间的权值最小，因此选择这条边。此时 A、D 为已选择顶点，E、F、B 为待选择顶点，H、G 为未选择顶点。</p>
+<p><img src="/img/prim_3.png" alt><br>下一个顶点应选择离 A、D 权值最小的顶点，因此选择 AB 这条边。此时 A、D、B 为已选择顶点，E、F、G 为待选择顶点，H 为未选择顶点。</p>
+<p><img src="/img/prim_4.png" alt><br>下一个顶点应选择离 A、D、B 权值最小的顶点，因此选择 DE 这条边。此时 A、D、B、E 为已选择顶点，F、G、H 为待选择顶点，没有未选择顶点。</p>
+<p><img src="/img/prim_5.png" alt><br>下一个顶点应选择离 A、D、B、E 权值最小的顶点，因此选择 EH 这条边。此时 A、D、B、E、H 为已选择顶点，F、G 为待选择顶点，没有未选择顶点。</p>
+<p><img src="/img/prim_6.png" alt><br>下一个顶点应选择离 A、D、B、E、H 权值最小的顶点，因此选择 FH 这条边。此时 A、D、B、E、H、F 为已选择顶点，G 为待选择顶点，没有未选择顶点。</p>
+<p><img src="/img/prim_7.png" alt><br>最后，只剩下一个顶点 G，到顶点 G 的权值最小的是 HG。现在图中所有顶点都连接了，红色连接的边就是最小生成树，最小生成树的权值之和为 42。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>普里姆算法就是通过一个顶点扩散开找权值最小的边，所经过的顶点和边就是这个图的最小生成树。通过不用的数据结构存储图会导致时间复杂度不一致，用邻接矩阵的时间复杂度是 O(V^{2})，二叉堆和邻接表的时间复杂度是 O(E log V )。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">普里姆算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/24/prim-algo/">我想看 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-graph" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -573,95 +666,6 @@
 
 
   
-    <article id="post-Huffman-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/13/Huffman-tree/">霍夫曼树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/13/Huffman-tree/" class="archive-article-date">
-  	<time datetime="2019-04-13T02:47:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="霍夫曼树"><a href="#霍夫曼树" class="headerlink" title="霍夫曼树"></a>霍夫曼树</h3><p><strong>霍夫曼树</strong> 是由美国计算机科学家大卫·霍夫曼（David Albert Huffman）（又译为哈夫曼、赫夫曼）在1952年发明霍夫曼编码所用到的特殊二叉树。为了纪念他的成就，于是就叫 霍夫曼树，他的编码方法称为 霍夫曼编码。</p>
-<p>从二叉树中一个节点到另一个节点之间的分支构成两个节点之间的路径，路径上的分支数目称做路径长度。树的路径长度就是从树根到每一节点的路径长度之和。</p>
-<p>在带有权重的节点中，节点带权的路径长度是从该节点到树根之间的路径长度与节点上权的乘积。树的带权路径长度是树中所有叶子节点的带权路径长度之和。其中带权路径长度最小的二叉树称做 <strong>霍夫曼树</strong>，也称为 <strong>最优二叉树</strong>。</p>
-<h3 id="构建霍夫曼树"><a href="#构建霍夫曼树" class="headerlink" title="构建霍夫曼树"></a>构建霍夫曼树</h3><p>1.先把有权值的叶子节点按照从小到大的顺序排列成一个有序序列。<br>2.取前两个最小权值的节点作为一个新节点（<strong>T1</strong>）的两个子节点，注意相对较小的是左节点，稍大点的是右节点。<br>3.把 <strong>T1</strong> 2个子节点的和，加入到剩余有序序列中，按第二步的规则构建新的节点。<br>4.重复第三步，直到连上所有节点为止。这棵树便是 霍夫曼树。  </p>
-<h3 id="霍夫曼编码"><a href="#霍夫曼编码" class="headerlink" title="霍夫曼编码"></a>霍夫曼编码</h3><p>按照需要编码的字符集的权值来构造一棵 霍夫曼树。规定霍夫曼树的左分支代表 0，右分支代表 1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该结点对应字符的编码，这就是 赫夫曼编码。</p>
-<p>比如现在有一段内容“ACBDEDABDA”需要传输。假设一个字母占 3 位，A=000,B=001,C=010,D=011,E=100。那么这段内容的编码是 000010001011100011000001011000（占 30 位）。</p>
-<p>假设 ABCDE 的权重分别为 32,20,10,30,8。那么构建好霍夫曼树后 A=11,B=01,C=001,D=10,E=000。霍夫曼树编码内容是 1100101100001011011011（占 22 位）。</p>
-<p><strong>构建好的霍夫曼树</strong><br><img src="/img/huffman-1.png" alt><br><strong>根据霍夫曼树转换的编码</strong><br><img src="/img/huffman-2.png" alt><br>根据上面例子，用霍夫曼编码，节省了 8 位。说明数据被压缩了，节约了大约 27% 的存储或传输成本。随着字符的增加和多字符权重的不同，这种压缩会更加显出其优势。</p>
-<p>编码中非0即1，长短不等的话其实是很容易混淆的，所以若要设计长短不等的编码，则必须是任一字符的编码都不是另一个字符的编码的前缀，这种编码称做前缀编码。</p>
-<p>在解码时，还是要用到霍夫曼树，即发送方和接收方必须要约定好同样的霍夫曼编码规则。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>霍夫曼树是根据权重来构建的二叉树，我们也称为 最优二叉树。</p>
-<p>它的主要作用是用来编码，也可以用来压缩数据。也可用来编码之后传送给第三方，提升安全性和节省网络资源，然后在根据双方约定好的 霍夫曼树 进行解码，可以做到无损编码和无错解码。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">霍夫曼树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/13/Huffman-tree/">我想看 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -759,7 +763,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -767,7 +771,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,7 +779,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">图</a>
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -783,7 +787,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">堆</a>
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">普里姆算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,15 +811,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">平衡二叉搜索树</a>
+                <a href="javascript:void(0)" class="js-tag color2">堆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,7 +819,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -824,10 +840,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优秀代码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
             
             <div class="clearfix"></div>
